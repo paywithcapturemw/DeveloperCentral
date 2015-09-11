@@ -30,6 +30,16 @@ gulp.task('styles', function () {
     .pipe(gulp.dest('./public/css'));
 });
 
+gulp.task('serveprod', function() {
+  connect.server({
+    root: ['/Documents/source/DeveloperCentral'],
+    port: process.env.PORT || 8000, // localhost:5000
+    livereload: false
+  });
+});
 
 gulp.task('nodemon', ['nodemon']);
+
+gulp.task('build', ['bower', 'jade', 'styles', 'browserify', 'static-files']);
+gulp.task('production', ['nodemon', 'build']);
 gulp.task('default', ['nodemon', 'watch']);
