@@ -1,0 +1,17 @@
+div.navbar.navbar-default {
+    padding: 10px 0 12px 12px;
+    margin-bottom: 0;
+}
+.navbar-brand p{
+  margin-top: 8px;
+}
+ul.nav.navbar-nav.navbar-right{
+  color: #666;
+    font-size: 11px;
+    font-weight: bold;
+    font-family: arial;
+}
+.nav-border:after {
+    content: '| ' !important;
+    padding-left: 15px;
+}

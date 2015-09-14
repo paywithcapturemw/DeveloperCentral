@@ -20,7 +20,6 @@ gulp.task('watch', function() {
   gulp.watch(paths.public, ['public']);
 });
 
-
 gulp.task('styles', function () {
     gulp
     .src(paths.styles)
@@ -40,6 +39,6 @@ gulp.task('serveprod', function() {
 
 gulp.task('nodemon', ['nodemon']);
 
-gulp.task('build', ['bower', 'jade', 'styles', 'browserify', 'static-files']);
+gulp.task('build', ['styles']);
 gulp.task('production', ['nodemon', 'build']);
 gulp.task('default', ['nodemon', 'watch']);

@@ -37,7 +37,9 @@ app.use(methodOverride());                  // simulate DELETE and PUT
 // app.use(multer());
 app.use(express.static(path.join(__dirname, '../public'))); 
 
-
+app.get('*', function(req, res) {
+            res.sendfile('../public/index.html'); // load our public/index.html file
+        });
 var server = app.listen(8000, function(){
  var host = server.address().address;
  var port = server.address().port;

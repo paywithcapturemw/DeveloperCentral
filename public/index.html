@@ -1,14 +1,114 @@
-<form action="" method="POST">
-  <script
-    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-    data-key="pk_test_BJBNJ60I7zbQlTQb677Du37Y"
-    data-amount="2000"
-    data-name="Demo Site"
-    data-description="2 widgets ($20.00)"
-    data-image="/128x128.png"
-    data-locale="auto">
-  </script>
-</form>
-<div>
-    my app
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<html ng-app="DeveloperCentral">
+
+<head>
+    <meta charset="utf-8">
+    <title>Developer Central</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/header.css">
+    <!-- endbuild -->
+</head>
+<!-- <body ng-app="DeveloperCentral">
+  <ng-view></ng-view>
+</body> -->
+
+<body>
+    <div class="container">
+        <div data-ng-controller="HeaderCtrl">
+            <div class="navbar navbar-default" role="navigation">
+                <div class="navbar-header logo">
+                    <button class="navbar-toggle" type="button" data-ng-click="toggleCollapsibleMenu()" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="/#!/" class="navbar-brand">
+                        <p><img src="">DEVELOPER CENTRAL</p>
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse nav-padding" collapse="!isCollapsed" role="navigation">
+                    <ul class="nav navbar-nav" data-ng-if="menu.shouldRender(authentication.user);">
+                        <li data-ng-repeat="item in menu.items | orderBy: 'position'" data-ng-if="item.shouldRender(authentication.user);" ng-switch="item.menuItemType" ui-route="{{item.uiRoute}}" class="{{item.menuItemClass}}" ng-class="{active: ($uiRoute)}" dropdown="item.menuItemType === 'dropdown'">
+                            <a ng-switch-when="dropdown" class="dropdown-toggle">
+                                <span data-ng-bind="item.title"></span>
+                                <b class="caret"></b>
+                            </a>
+                            <ul ng-switch-when="dropdown" class="dropdown-menu">
+                                <li data-ng-repeat="subitem in item.items | orderBy: 'position'" data-ng-if="subitem.shouldRender(authentication.user);" ui-route="{{subitem.uiRoute}}" ng-class="{active: $uiRoute}">
+                                    <a href="/#!/{{subitem.link}}" data-ng-bind="subitem.title"></a>
+                                </li>
+                            </ul>
+                            <a ng-switch-default href="/#!/{{item.link}}" data-ng-bind="item.title"></a>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class=="header" ui-route="" ng-class="{active: $uiRoute}">
+                            <a class="nav-border" href="">Services</a>
+                        </li>
+                        <li class="divider-vertical"></li>
+                        <li ui-route="" ng-class="{active: $uiRoute}">
+                            <a class="nav-border" href="">Commuinity</a>
+                        </li>
+                        <li ui-route="" ng-class="{active: $uiRoute}">
+                            <a class="nav-border" href="">Support</a>
+                        </li>
+                        <li ui-route="" ng-class="{active: $uiRoute}">
+                            <a class="navi" href="">Register</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <ng-view></ng-view>
+    </div>
+    <!-- <div class="container-fluid" ng-controller="MainCtrl">
+        <div class="row">
+            <div class="col-md-3" ng-repeat="service in tom">
+                <div class="service-div">
+                    <div class="service-title">
+                        <h2 ng-bind="service.title"></h2>
+                    </div>
+                    <img src="">
+                    <p ng-bind="service.about"></p>
+                    <a href=""><p>Learn more about the API here</p></a>
+                    <div class="hexagon">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <!--   <script type="text/javascript" src="bower_components/angular/angular.min.js"></script> -->
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/header.js"></script>
+</body>
+
+</html>
