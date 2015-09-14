@@ -6,9 +6,6 @@ div.row.services-parent-div{
   position: relative;
 }
 div.service-div{
-    /*float: left;
-    position: relative;
-    width: 32%;*/
   position: absolute;;
   margin: 0;
   padding-top: 90px;
