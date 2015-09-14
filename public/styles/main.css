@@ -2,17 +2,20 @@ body {
     padding-top: 30px;
     background-color: #ebebeb;
 }
+div.row.services-parent-div{
+  position: relative;
+}
 div.service-div{
     /*float: left;
     position: relative;
     width: 32%;*/
-    margin: 0;
+  position: absolute;;
+  margin: 0;
   padding-top: 90px;
   border: 1px solid transparent;
  
 }
 div.service-title.purchase {
-/*  margin: 2.5%;*/
   background-color: #00CDCD;
 }
 div.service-title.transfer {
@@ -34,33 +37,35 @@ div.service-title.purchase, div.service-title.transfer, div.service-title.paymen
 .service-div img{
   width: 100%;
   height: 300px;
+  margin-bottom: 15px;
+}
+.service-div a p{
+  margin: 15px 0;
+}
+.hexagon {
+  position: relative;
+  width: 250px; 
+  height: 144.34px;
+  background-color: #64C7CC;
+  margin: 72.17px 0;
 }
 
-/*.hexagon {
-  width: 100px;
-  height: 55px;
-  background: transparent;
-  position: relative;
-}
-.hexagon:before {
-  content: "";
-  position: absolute;
-  top: -25px;
-  left: 0;
-  width: 0;
-  height: 0;
-  border-left: 50px solid transparent;
-  border-right: 50px solid transparent;
-  border-bottom: 25px solid #d3d3d3;
-}
+.hexagon:before,
 .hexagon:after {
   content: "";
   position: absolute;
-  bottom: -25px;
-  left: 0;
   width: 0;
-  height: 0;
-  border-left: 50px solid transparent;
-  border-right: 50px solid transparent;
-  border-top: 25px solid #d3d3d3;
-}*/
+  border-left: 125px solid transparent;
+  border-right: 125px solid transparent;
+}
+
+.hexagon:before {
+  bottom: 100%;
+  border-bottom: 72.17px solid #64C7CC;
+}
+
+.hexagon:after {
+  top: 100%;
+  width: 0;
+  border-top: 72.17px solid #64C7CC;
+}
