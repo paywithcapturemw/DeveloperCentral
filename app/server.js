@@ -62,6 +62,5 @@ app.use('/user', User);
 
 var env = process.env.NODE_ENV || 'development';
 if ('development' == env) {
-   // configure stuff here
-   //app.use(errorHandler());
+  
 }
