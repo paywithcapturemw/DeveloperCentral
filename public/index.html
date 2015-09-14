@@ -2,124 +2,124 @@
 <!-- <html ng-app="DeveloperCentral"> -->
 <html>
 
-    <head>
-        <meta charset="utf-8">
-        <title>Developer Central</title>
-        <meta name="viewport" content="width=device-width">
-        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-        <!-- build:css(.) styles/vendor.css -->
-        <!-- bower:css -->
-        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
-        <!-- endbower -->
-        <!-- endbuild -->
-        <!-- build:css(.tmp) styles/main.css -->
-        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="styles/main.css">
-        <link rel="stylesheet" href="styles/header.css">
-        <!-- endbuild -->
-    </head>
+<head>
+    <meta charset="utf-8">
+    <title>Developer Central</title>
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/header.css">
+    <!-- endbuild -->
+</head>
 
-    <body>
-        <div class="container">
-            <div data-ng-controller="HeaderCtrl">
-                <div class="navbar navbar-default" role="navigation">
-                    <div class="navbar-header logo">
-                        <button class="navbar-toggle" type="button" data-ng-click="toggleCollapsibleMenu()" data-toggle="collapse" data-target=".navbar-collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a href="/#!/" class="navbar-brand">
-                            <p>DEVELOPER CENTRAL</p>
-                        </a>
-                    </div>
-                    <div class="collapse navbar-collapse nav-padding" collapse="!isCollapsed" role="navigation">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li class="header">
-                                <a class="nav-border">Services</a>
-                            </li>
-                            <li class="divider-vertical"></li>
-                            <li>
-                                <a class="nav-border">Commuinity</a>
-                            </li>
-                            <li>
-                                <a class="nav-border" href="">Support</a>
-                            </li>
-                            <li>
-                                <a class="navi" href="">Register</a>
-                            </li>
-                        </ul>
-                    </div>
+<body ng-app="DeveloperCentral">
+    <div class="container">
+        <div data-ng-controller="HeaderCtrl">
+            <div class="navbar navbar-default" role="navigation">
+                <div class="navbar-header logo">
+                    <button class="navbar-toggle" type="button" data-ng-click="toggleCollapsibleMenu()" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="/#!/" class="navbar-brand">
+                        <p>DEVELOPER CENTRAL</p>
+                    </a>
                 </div>
-            </div>
-            <!-- <ng-view></ng-view> -->
-        </div>
-        <div class="container-fluid" ng-controller="MainCtrl">
-            <div class="row services-parent-div">
-                <div class="col-md-4">
-                    <div class="service-div">
-                        <div class="service-title purchase">
-                            <h2>Airtime Purchase</h2>
-                        </div>
-                        <img src="../images/purchase-airtime.jpg">
-                        <p>Lorem ipsum dolor sit amet, velit dicunt ocurreret id quo. Decore timeam utamur vel in. Pro no euismod voluptatum, soleat sententiae has te, quo id etiam officiis. Recusabo repudiare adipiscing eum ne, eos ut veniam iisque nusquam.</p>
-                        <a href="/#/airtime">
-                            <p>Learn more about the API here</p>
-                        </a>
-                        <div class="hexagon">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="service-div">
-                        <div class="service-title transfer">
-                            <h2>Transfer</h2>
-                        </div>
-                        <img src="../images/transfer.jpg">
-                        <p>Lorem ipsum dolor sit amet, velit dicunt ocurreret id quo. Decore timeam utamur vel in. Pro no euismod voluptatum, soleat sententiae has te, quo id etiam officiis. Recusabo repudiare adipiscing eum ne, eos ut veniam iisque nusquam.</p>
-                        <a href="">
-                            <p>Learn more about the API here</p>
-                        </a>
-                        <div class="hexagon">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="service-div">
-                        <div class="service-title payment">
-                            <h2>Payment</h2>
-                        </div>
-                        <img src="../images/payment.bmp">
-                        <p>Lorem ipsum dolor sit amet, velit dicunt ocurreret id quo. Decore timeam utamur vel in. Pro no euismod voluptatum, soleat sententiae has te, quo id etiam officiis. Recusabo repudiare adipiscing eum ne, eos ut veniam iisque nusquam.</p>
-                        <a href="">
-                            <p>Learn more about the API here</p>
-                        </a>
-                        <div class="hexagon">
-                        </div>
-                    </div>
+                <div class="collapse navbar-collapse nav-padding" collapse="!isCollapsed" role="navigation">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="header">
+                            <a class="nav-border">Services</a>
+                        </li>
+                        <li class="divider-vertical"></li>
+                        <li>
+                            <a class="nav-border">Commuinity</a>
+                        </li>
+                        <li>
+                            <a class="nav-border" href="">Support</a>
+                        </li>
+                        <li>
+                            <a class="navi" href="">Register</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
-        <!-- build:js(.) scripts/vendor.js -->
-        <!-- bower:js -->
-        <script src="bower_components/jquery/dist/jquery.js"></script>
-        <script src="bower_components/angular/angular.js"></script>
-        <!--   <script type="text/javascript" src="bower_components/angular/angular.min.js"></script> -->
-        <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="bower_components/angular-animate/angular-animate.js"></script>
-        <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-        <script src="bower_components/angular-resource/angular-resource.js"></script>
-        <script src="bower_components/angular-route/angular-route.js"></script>
-        <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-        <script src="bower_components/angular-touch/angular-touch.js"></script>
-        <!-- endbower -->
-        <!-- endbuild -->
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/header.js"></script>
-    </body>
+        <!-- <ng-view></ng-view> -->
+    </div>
+    <div class="container-fluid" ng-controller="MainCtrl">
+        <div class="row services-parent-div">
+            <div class="col-md-4">
+                <div class="service-div">
+                    <div class="service-title purchase">
+                        <h2>Airtime Purchase</h2>
+                    </div>
+                    <img src="../images/purchase-airtime.jpg">
+                    <p>Lorem ipsum dolor sit amet, velit dicunt ocurreret id quo. Decore timeam utamur vel in. Pro no euismod voluptatum, soleat sententiae has te, quo id etiam officiis. Recusabo repudiare adipiscing eum ne, eos ut veniam iisque nusquam.</p>
+                    <a href="/#/airtime">
+                        <p>Learn more about the API here</p>
+                    </a>
+                    <div class="hexagon">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="service-div">
+                    <div class="service-title transfer">
+                        <h2>Transfer</h2>
+                    </div>
+                    <img src="../images/transfer.jpg">
+                    <p>Lorem ipsum dolor sit amet, velit dicunt ocurreret id quo. Decore timeam utamur vel in. Pro no euismod voluptatum, soleat sententiae has te, quo id etiam officiis. Recusabo repudiare adipiscing eum ne, eos ut veniam iisque nusquam.</p>
+                    <a href="">
+                        <p>Learn more about the API here</p>
+                    </a>
+                    <div class="hexagon">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="service-div">
+                    <div class="service-title payment">
+                        <h2>Payment</h2>
+                    </div>
+                    <img src="../images/payment.bmp">
+                    <p>Lorem ipsum dolor sit amet, velit dicunt ocurreret id quo. Decore timeam utamur vel in. Pro no euismod voluptatum, soleat sententiae has te, quo id etiam officiis. Recusabo repudiare adipiscing eum ne, eos ut veniam iisque nusquam.</p>
+                    <a href="">
+                        <p>Learn more about the API here</p>
+                    </a>
+                    <div class="hexagon">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <!--   <script type="text/javascript" src="bower_components/angular/angular.min.js"></script> -->
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/header.js"></script>
+</body>
 
 </html>
