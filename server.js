@@ -7,7 +7,7 @@ var bodyParser     = require('body-parser');
 var methodOverride = require('method-override');
 var session = require('express-session');
 var multer =require('multer');
-var errorHandler = require('errorHandler');
+// var errorHandler = require('errorHandler');
 
 var app = express();
 var jwt        = require("jsonwebtoken");
