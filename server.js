@@ -35,10 +35,10 @@ app.use(session({ resave: true,
 app.use(bodyParser.json())    // parse application/json
 app.use(methodOverride());                  // simulate DELETE and PUT
 // app.use(multer());
-app.use(express.static(path.join(__dirname, '../public'))); 
+app.use(express.static(path.join(__dirname, './public'))); 
 
 app.get('*', function(req, res) {
-            res.sendfile('../public/index.html'); // load our public/index.html file
+            res.sendfile('./public/index.html'); // load our public/index.html file
         });
 var server = app.listen((process.env.PORT || 8000), function(){
  var host = server.address().address;
@@ -53,11 +53,11 @@ var server = app.listen((process.env.PORT || 8000), function(){
 // });
 var router = express.Router();              // get an instance of the express Router
 
-var generateToken = require("./controllers/generateToken");
-var User = require('./controllers/user');
+var generateToken = require("./app/controllers/generateToken");
+var User = require('./app/controllers/user');
 
-app.use('/generateToken', generateToken);
-app.use('/user', User);
+app.use('./app/controllers/generateToken', generateToken);
+app.use('./app/controllers/user', User);
 
 
 var env = process.env.NODE_ENV || 'development';
