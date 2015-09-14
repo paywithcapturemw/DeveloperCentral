@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html ng-app="DeveloperCentral">
+<!-- <html ng-app="DeveloperCentral"> -->
+<html>
 
     <head>
         <meta charset="utf-8">
@@ -31,46 +32,32 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a href="/#!/" class="navbar-brand">
-                            <p><img src="">DEVELOPER CENTRAL</p>
+                            <p>DEVELOPER CENTRAL</p>
                         </a>
                     </div>
                     <div class="collapse navbar-collapse nav-padding" collapse="!isCollapsed" role="navigation">
-                        <ul class="nav navbar-nav" data-ng-if="menu.shouldRender(authentication.user);">
-                            <li data-ng-repeat="item in menu.items | orderBy: 'position'" data-ng-if="item.shouldRender(authentication.user);" ng-switch="item.menuItemType" ui-route="{{item.uiRoute}}" class="{{item.menuItemClass}}" ng-class="{active: ($uiRoute)}" dropdown="item.menuItemType === 'dropdown'">
-                                <a ng-switch-when="dropdown" class="dropdown-toggle">
-                                    <span data-ng-bind="item.title"></span>
-                                    <b class="caret"></b>
-                                </a>
-                                <ul ng-switch-when="dropdown" class="dropdown-menu">
-                                    <li data-ng-repeat="subitem in item.items | orderBy: 'position'" data-ng-if="subitem.shouldRender(authentication.user);" ui-route="{{subitem.uiRoute}}" ng-class="{active: $uiRoute}">
-                                        <a href="/#!/{{subitem.link}}" data-ng-bind="subitem.title"></a>
-                                    </li>
-                                </ul>
-                                <a ng-switch-default href="/#!/{{item.link}}" data-ng-bind="item.title"></a>
-                            </li>
-                        </ul>
                         <ul class="nav navbar-nav navbar-right">
-                            <li class=="header" ui-route="" ng-class="{active: $uiRoute}">
-                                <a class="nav-border" href="">Services</a>
+                            <li class="header">
+                                <a class="nav-border">Services</a>
                             </li>
                             <li class="divider-vertical"></li>
-                            <li ui-route="" ng-class="{active: $uiRoute}">
-                                <a class="nav-border" href="">Commuinity</a>
+                            <li>
+                                <a class="nav-border">Commuinity</a>
                             </li>
-                            <li ui-route="" ng-class="{active: $uiRoute}">
+                            <li>
                                 <a class="nav-border" href="">Support</a>
                             </li>
-                            <li ui-route="" ng-class="{active: $uiRoute}">
+                            <li>
                                 <a class="navi" href="">Register</a>
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
-            <ng-view></ng-view>
+            <!-- <ng-view></ng-view> -->
         </div>
         <div class="container-fluid" ng-controller="MainCtrl">
-            <div class="row" "services-parent-div">
+            <div class="row services-parent-div">
                 <div class="col-md-4">
                     <div class="service-div">
                         <div class="service-title purchase">
