@@ -1,7 +1,5 @@
 var express = require('express');
 var router = express.Router();
-
-console.log('in comtroller')
 var randtoken = require('rand-token');
 
 
