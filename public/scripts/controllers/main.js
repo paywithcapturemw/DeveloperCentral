@@ -1,4 +1,4 @@
-app.controller('MainCtrl',function($scope){
+app.controller('MainCtrl',function($scope, $modal){
   $scope.services = [
     {
      title: "Airtime Purchase",
@@ -17,6 +17,9 @@ app.controller('MainCtrl',function($scope){
      moreInfoLink:"" 
     }
   ];
+
+ 
+
  
 });
 

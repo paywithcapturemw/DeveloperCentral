@@ -54,13 +54,17 @@ var server = app.listen((process.env.PORT || 8000), function(){
 var router = express.Router();              // get an instance of the express Router
 
 var generateToken = require("./app/controllers/generateToken");
-var User = require('./app/controllers/user');
+var routes = require('./app/controllers/user');
+routes(app);
 
-app.use('./app/controllers/generateToken', generateToken);
-app.use('./app/controllers/user', User);
+// app.use('./app/controllers/generateToken', generateToken);
+// app.use('./app/controllers/user', user);
 
 
 var env = process.env.NODE_ENV || 'development';
 if ('development' == env) {
   
 }
+
+// routes = require('./api/routes'),
+//   routes(app, config);

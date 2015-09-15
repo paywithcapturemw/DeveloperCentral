@@ -14,6 +14,7 @@
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="../bower_components/angular-ui/angular-ui.css"> -->
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/header.css">
     <!-- endbuild -->
@@ -45,23 +46,27 @@
                             <a class="nav-border">Community</a>
                         </li>
                         <li>
-                            <a class="nav-border" href="">Support</a>
+                            <!-- <a class="nav-border" href="">Support</a> -->
+                              <button type="button" class="btn btn-default" ng-click="open('lg')">Large modal</button>
+
                         </li>
                         <li>
-                            <a class="navi" href="">Register</a>
+                            <button ng-click="openRegistrationModal()">Register</button>
                         </li>
                     </ul>
                 </div>
             </div>
+            <script type="text/javascript"></script>
+
         </div>
         <ng-view></ng-view>
     </div>
-
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
     <!-- <link rel="stylesheet" type="text/css" href=""> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular.js"></script>
+    <!--     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js"></script>
+ -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular-animate.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular-cookies.js"></script>
@@ -69,21 +74,28 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular-route.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular-sanitize.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular-touch.js"></script>
- <!--    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/angular-touch/angular-touch.js"></script> -->
+    <script type="bower_components/angular-ui/build/angular-ui.min.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.0.js"></script> -->
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <!-- <script src="../bower_components/angular/angular.js"></script> -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular.js"></script>
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="../bower_components/angular-animate/angular-animate.js"></script>
+    <script src="../bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="../bower_components/angular-resource/angular-resource.js"></script>
+    <script src="../bower_components/angular-route/angular-route.js"></script>
+    <script src="../bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="../bower_components/angular-touch/angular-touch.js"></script>                        
+    <script src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/controllers/header.js"></script>
+    <script src="scripts/controllers/authentication-controller.js"></script>
+    <script src="scripts/services/authentication-service.js"></script>
 </body>
 
 </html>
