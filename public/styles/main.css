@@ -17,7 +17,8 @@ div.introduction{
 }
 div.service-div{
   /*position: absolute;*/
-  margin: 0 22px 0 15px;
+  padding-bottom: 20px;
+  margin: 0px 22px 50px 15px;
   /*border: 1px solid transparent;*/
   border-radius: 3px;
   background-color: #fff;
@@ -42,23 +43,81 @@ div.service-title.purchase, div.service-title.transfer, div.service-title.paymen
 }
 
 div.service-title.purchase h2, div.service-title.transfer h2, div.service-title.payment h2{
-    color: #FFFFFF;
+    color: #fff;
     font-weight: bold;
     text-align: center;
     font-size: 20px;
+    margin: 10px 0 !important;
+    /*text-shadow: 0px 1px 0px #fff;*/
 }
 .service-div img{
   width: 100%;
   height: 250px;
   margin-bottom: 15px;
 }
-.service-div a p{
+/*.service-div a p{
   padding-bottom: 30px;
   margin-top: 30px;
-  font-size: 12px;
-}
-.service-div p{
+  
+}*/
+/*.service-div p{
   padding: 0 20px;
+} */
+.service-text{
+   padding: 0 20px;
 }
+.service-text a{
+   text-decoration:none;
+}
+.purchase-link p{
+ color: #00CDCD;
+/*   color: #fff;
+  font-size: 12px;*/
+}
+.transfer-link p{
+  color: #2A68C9;
+/*    color: #fff;
+  font-size: 12px;*/
+}
+.payment-link p{
+ /* color: #fff;
+  font-size: 12px;*/
+  color: #63D1F4;
+}
+
+/*.payment-link, .transfer-link, .purchase-link{
+  -moz-border-radius:28px;
+  -webkit-border-radius:28px;
+  border-radius:28px;
+  display:inline-block;
+  cursor:pointer;
+  color:#ffffff;
+  font-family:Arial;
+  font-size:17px;
+  padding: 16px 67px;
+}
+.payment-link:hover {
+  background-color: #63D1F4;
+}
+
+.purchase-link {
+  background-color: #00CDCD;
+  border:1px solid  #00CDCD;
+  text-shadow:0px 1px 0px #00CDCD;
+}
+
+.transfer-link {
+  background-color: #2A68C9;
+  border:1px solid  #2A68C9;
+  text-shadow:0px 1px 0px #2A68C9;
+}
+
+.payment-link{
+  background-color: #63D1F4;
+  border:1px solid  #63D1F4;
+  text-shadow:0px 1px 0px #63D1F4;
+}*/
+
+
 
 
