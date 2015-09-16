@@ -36,10 +36,14 @@ app.use(bodyParser.json())    // parse application/json
 app.use(methodOverride());                  // simulate DELETE and PUT
 // app.use(multer());
 app.use(express.static(path.join(__dirname, './public'))); 
+// // ROUTES FOR HTML/JS
+// var serveDir = path.normalize("../node_server/angularjs");
+// console.log(serveDir);
+// app.use(express.static(serveDir));
 
-app.get('*', function(req, res) {
-            res.sendfile('./public/index.html'); // load our public/index.html file
-        });
+// app.get('*', function(req, res) {
+//             res.sendfile(__dirname,'./public/index.html'); // load our public/index.html file
+//         });
 var server = app.listen((process.env.PORT || 8000), function(){
  var host = server.address().address;
  var port = server.address().port;
