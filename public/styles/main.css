@@ -90,3 +90,12 @@ div.service-title.purchase h2, div.service-title.transfer h2, div.service-title.
 .register-form .controls .input-xlarge{
   background-image: none !important;
 }
+.single-service-page{
+  margin-top: 40px;
+  border: 1px solid transparent;
+}
+.single-service-page p{
+  margin-top: 348px;
+  font-size: 20px;
+}
+
