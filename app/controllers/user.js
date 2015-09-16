@@ -14,7 +14,7 @@ var SECRET = 'shhhhhhared-secret';
 // };
 
 module.exports = function(app, config) {
-    app.route('/user/signUp').post(function(req, res) {
+    app.route('/user/signup').post(function(req, res) {
         console.log('usw route');
         User.findOne({
                 email: req.body.email,

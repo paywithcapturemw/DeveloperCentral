@@ -30,11 +30,11 @@ app.controller('AuthenticationCtrl',
 
         // $scope.authentication = Authentication;
         $scope.signup = function(user) {
-            $http.post('/user', user).success(function(response) {
+            $http.post('/user/signup', user).success(function(response) {
                 //If successful we assign the response to the global user model
                 $scope.user = response;
-            }).error(function(response) {
-                $scope.error = response.message;
+            }).error(function(error) {
+                $scope.error = error;
             });
         };
 

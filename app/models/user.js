@@ -2,13 +2,17 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
-    email: String,
+    email: 
+        {
+            type: String,
+            trim: true,
+            default: '',
+            match: [/.+\@.+\..+/, 'Please fill a valid email address']
+        },
     password: {
         type: String,
         trim: true,
-        default: '',
-        // validate: [validateLocalStrategyProperty, 'Please fill in your email'],
-        match: [/.+\@.+\..+/, 'Please fill a valid email address']
+        default: ''
     },
     username: {
         type: String,

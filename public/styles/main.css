@@ -84,40 +84,9 @@ div.service-title.purchase h2, div.service-title.transfer h2, div.service-title.
   font-size: 12px;*/
   color: #63D1F4;
 }
-
-/*.payment-link, .transfer-link, .purchase-link{
-  -moz-border-radius:28px;
-  -webkit-border-radius:28px;
-  border-radius:28px;
-  display:inline-block;
-  cursor:pointer;
-  color:#ffffff;
-  font-family:Arial;
-  font-size:17px;
-  padding: 16px 67px;
+.register-form{
+   color: #2A68C9;
 }
-.payment-link:hover {
-  background-color: #63D1F4;
+.register-form .controls .input-xlarge{
+  background-image: none !important;
 }
-
-.purchase-link {
-  background-color: #00CDCD;
-  border:1px solid  #00CDCD;
-  text-shadow:0px 1px 0px #00CDCD;
-}
-
-.transfer-link {
-  background-color: #2A68C9;
-  border:1px solid  #2A68C9;
-  text-shadow:0px 1px 0px #2A68C9;
-}
-
-.payment-link{
-  background-color: #63D1F4;
-  border:1px solid  #63D1F4;
-  text-shadow:0px 1px 0px #63D1F4;
-}*/
-
-
-
-
