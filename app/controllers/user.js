@@ -50,15 +50,14 @@ var SECRET = 'shhhhhhared-secret';
 //     });
 // });
 
-// router.get('/signin', function(req, res) {
-
-
-
-// });
+self.parseJwt = function(token) {
+  var base64Url = token.split('.')[1];
+  var base64 = base64Url.replace('-', '+').replace('_', '/');
+  return JSON.parse($window.atob(base64));
+}
 
 module.exports = function(app, config) {
-    app.route('/user')
-        .post(function(req, res) {
+    app.route('/user/signUp').post(function(req, res) {
             console.log('usw route');
             User.findOne({
                     email: req.body.email,
@@ -101,6 +100,17 @@ module.exports = function(app, config) {
                 });
 
         });
+
+    app.route('/user/signIn').get(function (req, res) {
+        if (err || !user) {
+                        res.json({
+                            type: false,
+                            data: "Error occured: " + err
+                        });
+            } else{
+
+            }
+    });
 };
 // 
 // 

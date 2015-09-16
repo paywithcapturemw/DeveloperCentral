@@ -27,6 +27,11 @@ app.config(function ($routeProvider) {
         controller: 'MainCtrl',
         controllerAs: 'main'
       })
+      .when('/services', {
+        templateUrl: 'views/services-list.html',
+        controller: 'MainCtrl',
+        controllerAs: 'main'
+      })
       .otherwise({
         redirectTo: '/'
       });
