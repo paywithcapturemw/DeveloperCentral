@@ -23,41 +23,8 @@
 
 <body ng-app="DeveloperCentral">
     <div class="container">
-        <div data-ng-controller="HeaderCtrl">
-            <div class="navbar navbar-default" role="navigation">
-                <div class="navbar-header logo">
-                    <button class="navbar-toggle" type="button" data-ng-click="toggleCollapsibleMenu()" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a href="/#!/" class="navbar-brand">
-                        <p>DEVELOPER CENTRAL</p>
-                    </a>
-                </div>
-                <div class="collapse navbar-collapse nav-padding" collapse="!isCollapsed" role="navigation">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="header">
-                            <a class="nav-border" href="/#/services">Services</a>
-                        </li>
-                        <li class="divider-vertical"></li>
-                        <li>
-                            <a class="nav-border" href="/#!">API Showcase</a>
-                        </li>
-                        <li>
-                            <a class="nav-border" href="">Login</a>
-                        </li>
-                        <li>
-                            <a ng-click="openRegistrationModal()">Register</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <script type="text/javascript"></script>
-
-        </div>
+        <div data-ng-include="'views/nav.html'"></div>
+       
         <ng-view></ng-view>
     </div>
     <!-- build:js(.) scripts/vendor.js -->
