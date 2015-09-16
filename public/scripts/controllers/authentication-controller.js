@@ -1,37 +1,41 @@
 // app.controller('AuthenticationCtrl', ['$scope', '$http', '$location', 'Authentication',
 app.controller('AuthenticationCtrl',
     function($scope, $modalInstance, $http) {
-
+        // $scope.registered= false;
 
         // $scope.details = details;
-        $scope.register = function() {
-            $modalInstance.close({user: $scope.user});
-            $scope.signup($scope.user);
+        // $scope.register = function(user) {
+        //     var user = user;
+        //     console.log('uswe', $modalInstance);
+        //     // $scope.closeModal();
+        //     $scope.registered= true;
+        // };
+
+        // $scope.closeModal = function(){
+        //      $modalInstance.close({user: $scope.user});
+        //                  console.log('uswe', $scope.user);
+
+        //     // $scope.signup($scope.user);
+
+        // };
+        
+        $scope.register = function(user) {
+            // $modalInstance.close({user: $scope.user});
+            $scope.signup(user);
         };
- // $modalInstance.close({ changeRows : $scope.rows, changeType : $scope.typeFormatted, changeValue : $scope.newValue,  batchData: $scope.batchData, reason: $scope.reason });
         $scope.cancel = function() {
             $modalInstance.dismiss('cancel');
         };
 
-
-        // $scope.items = items;
-        // $scope.selected = {
-        //     item: $scope.items[0]
-        // };
-
-        // $scope.ok = function() {
-        //     $modalInstance.close($scope.selected.item);
-        // };
-
-        // $scope.cancel = function() {
-        //     $modalInstance.dismiss('cancel');
-        // };
+       
 
 
-        // $scope.authentication = Authentication;
         $scope.signup = function(user) {
+            console.log('ysefejdfjfd', user);
             $http.post('/user/signup', user).success(function(response) {
+                console.log('response', response);
                 //If successful we assign the response to the global user model
+                $scope.message = response.message;
                 $scope.user = response;
             }).error(function(error) {
                 $scope.error = error;
@@ -39,13 +43,23 @@ app.controller('AuthenticationCtrl',
         };
 
 
-        // $scope.signin = function() {
-        //     $http.post('/auth/signin', $scope.credentials).success(function(response) {
-        //         //If successful we assign the response to the global user model
-        //         $scope.authentication.user = response;
-        //     }).error(function(response) {
-        //         $scope.error = response.message;
-        //     });
-        // };
+
+        $scope.loginuser = function(user){
+            console.log('login first',user );
+            // $modalInstance.close({user: $scope.user});
+            // $scope.signin($scope.user);
+        };
+        $scope.signin = function(user) {
+            $scope.credentials = user;
+            $http.post('/user/signin', $scope.credentials).success(function(response) {
+                //If successful we assign the response to the global user model
+                $scope.user = response;
+                $scope.errorPresent = false;
+                return "User logged in";
+            }).error(function(response) {
+                $scope.errorPresent = true;
+                $scope.error = response.data;
+            });
+        };
     }
 );

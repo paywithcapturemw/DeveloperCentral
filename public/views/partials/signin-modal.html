@@ -1,0 +1,47 @@
+<div class="modal-header">
+    <h3 class="modal-title"></h3>
+    <div class="close-btn pull-right">
+        <a ng-click="cancel()">
+            <h3 class="glyphicon glyphicon-remove"></h3>
+        </a>
+    </div>
+</div>
+<div class="modal-body register-form">
+    <form class="form-horizontal" name="signinForm" novalidate data-ng-submit="signin(user)">
+        <fieldset>
+            <div id="legend">
+                <legend class="">Login</legend>
+            </div>
+            <div class="control-group">
+                <!-- Username -->
+                <label class="control-label" for="username">Username</label>
+                <div class="controls">
+                    <input type="text" id="username" name="username" placeholder="" class="input-xlarge" required ng-model="user.username">
+                    <!-- <p class="help-block">Username can contain any letters or numbers, without spaces</p> -->
+                </div>
+            </div>
+            <div class="control-group">
+                <!-- Password-->
+                <label class="control-label" for="password">Password</label>
+                <div class="controls">
+                    <input type="password" id="password" name="password" placeholder="" required class="input-xlarge" ng-model="user.password">
+                </div>
+            </div>
+
+            <div class="error" data-ng-messages="signinForm.$error" data-ng-show="signinForm.$submitted" data-ng-cloak>
+                <p ng-if="errorPresent" data-ng-message="required" class="text-danger">Either your username or your password is invalid.</p>
+                <p ng-if="!errorPresent" data-ng-message="required">User Sucessfully Logged in.</p>
+            </div>
+
+            <div class="control-group">
+                <!-- Button -->
+                <div class="controls">
+                    <button class="btn">Signin</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn" ng-click="cancel()">CANCEL</button>
+</div>

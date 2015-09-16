@@ -1,42 +1,43 @@
-<div class="modal-header">
-    <h3 class="modal-title"></h3>
-    <div class="close-btn pull-right">
-        <a ng-click="cancelBatch()">
-            <h3 class="glyphicon glyphicon-remove"></h3>
-        </a>
+<div ng-if="!registered">
+    <div class="modal-header">
+        <h3 class="modal-title"></h3>
+        <div class="close-btn pull-right">
+            <a ng-click="cancel()">
+                <h3 class="glyphicon glyphicon-remove"></h3>
+            </a>
+        </div>
     </div>
-</div>
-<div class="modal-body register-form">
-    <form class="form-horizontal">
-        <fieldset>
-            <div id="legend">
-                <legend class="">Register</legend>
-            </div>
-            <div class="control-group">
-                <!-- Username -->
-                <label class="control-label" for="username">Username</label>
-                <div class="controls">
-                    <input type="text" id="username" name="username" placeholder="" class="input-xlarge" ng-model="user.username">
-                    <!-- <p class="help-block">Username can contain any letters or numbers, without spaces</p> -->
+    <div class="modal-body register-form">
+        <form class="form-horizontal" name="registerForm" novalidate data-ng-submit="register(user)">
+            <fieldset>
+                <div id="legend">
+                    <legend class="">Register</legend>
                 </div>
-            </div>
-            <div class="control-group">
-                <!-- E-mail -->
-                <label class="control-label" for="email">E-mail</label>
-                <div class="controls">
-                    <input type="text" id="email" name="email" placeholder="" class="input-xlarge" ng-model="user.email">
-                    <!-- <p class="help-block">Please provide your E-mail</p> -->
+                <div class="control-group">
+                    <!-- Username -->
+                    <label class="control-label" for="username">Username</label>
+                    <div class="controls">
+                        <input type="text" id="username" name="username" placeholder="" class="input-xlarge" ng-model="user.username" required>
+                        <!-- <p class="help-block">Username can contain any letters or numbers, without spaces</p> -->
+                    </div>
                 </div>
-            </div>
-            <div class="control-group">
-                <!-- Password-->
-                <label class="control-label" for="password">Password</label>
-                <div class="controls">
-                    <input type="password" id="password" name="password" placeholder="" class="input-xlarge" ng-model="user.password">
-                    <!-- <p class="help-block">Password should be at least 4 characters</p> -->
+                <div class="control-group">
+                    <!-- E-mail -->
+                    <label class="control-label" for="email">E-mail</label>
+                    <div class="controls">
+                        <input type="text" id="email" name="email" placeholder="" class="input-xlarge" ng-model="user.email" required>
+                        <!-- <p class="help-block">Please provide your E-mail</p> -->
+                    </div>
                 </div>
-            </div>
-            <!-- <div class="control-group"> -->
+                <div class="control-group">
+                    <!-- Password-->
+                    <label class="control-label" for="password">Password</label>
+                    <div class="controls">
+                        <input type="password" id="password" name="password" placeholder="" class="input-xlarge" ng-model="user.password" required>
+                        <!-- <p class="help-block">Password should be at least 4 characters</p> -->
+                    </div>
+                </div>
+                <!-- <div class="control-group"> -->
                 <!-- Password -->
                 <!-- <label class="control-label" for="password_confirm">Password (Confirm)</label>
                 <div class="controls">
@@ -44,16 +45,27 @@
                     <p class="help-block">Please confirm password</p>
                 </div>
             </div> -->
-            <div class="control-group">
-                <!-- Button -->
-                <!-- <div class="controls">
-                    <button class="btn btn-success">Register</button>
-                </div> -->
-            </div>
-        </fieldset>
-    </form>
+                <div class="control-group">
+                    <!-- Button -->
+                    <div class="controls">
+                        <button class="btn">Register</button>
+                    </div>
+                </div>
+                <div class="error" data-ng-messages="registerForm.$error" data-ng-show="registerForm.$submitted" data-ng-cloak>
+                    <p data-ng-message="required">{{message}}</p>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <!-- <button class="btn" ng-click="register(user)">REGISTER</button> -->
+        <button class="btn" ng-click="cancel()">CANCEL</button>
+    </div>
 </div>
-<div class="modal-footer">
-    <button class="btn" ng-click="register()">REGISTER</button>
-    <button class="btn" ng-click="cancel()">CANCEL</button>
+<!-- <div ng-if="registered" class="modal-body">
+    <p>You have been registered successfully</p>
+    <div class="modal-footer">
+        <button class="btn" ng-click="cancel()">CANCEL</button>
+    </div>
 </div>
+ -->
