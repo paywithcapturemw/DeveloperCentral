@@ -6,7 +6,6 @@ var express = require('express'),
     User = require('../models/user'),
     jwt = require('jsonwebtoken'),
     bcrypt = require('bcryptjs'),
-    slugid = require('slugid'),
     bcryptjs = require('bcrypt-nodejs'),
     nodemailer = require('nodemailer');
 
