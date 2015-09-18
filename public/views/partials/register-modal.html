@@ -1,71 +1,41 @@
-<div ng-if="!registered">
-    <div class="modal-header">
-        <h3 class="modal-title"></h3>
-        <div class="close-btn pull-right">
-            <a ng-click="cancel()">
-                <h3 class="glyphicon glyphicon-remove"></h3>
-            </a>
+<div class="login-box">
+    <div class="login-logo login-header">
+        <div class="row">
+            <div class="col-xs-2"></div>
+            <!--  <div class="col-xs-8">
+            <a ui-sref="home" class="logo-link"><img class="header-logo" src="assets/img/andela-forum-logo.png"></a>
+          </div> -->
+            <div class="col-xs-2"></div>
         </div>
     </div>
-    <div class="modal-body register-form">
-        <form class="form-horizontal" name="registerForm" novalidate data-ng-submit="register(user)">
-            <fieldset>
-                <div id="legend">
-                    <legend class="">Register</legend>
+    <!-- /.login-logo -->
+    <div class="login-box-body">
+        <p class="login-box-msg">Sign Up</p>
+        <form ng-submit="register()">
+            <div class="form-group has-feedback">
+                <input type="text" class="form-control login-input" placeholder="Username (min 5 characters)" ng-model="username" />
+                <span class="glyphicon glyphicon-user form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <input type="text" class="form-control login-input" placeholder="Email" ng-model="email" />
+                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <input type="password" class="form-control login-input" placeholder="Password (must be between 7 to 9 characters)" ng-model="password" />
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 text-center" ng-show="promiseLoader"><img class="loader" ng-src="{{promiseLoader}}"></div>
+                <div class="col-xs-12 error-message" ng-show="signupMessage">
+                    <div class="col-xs-12" ng-bind="signupMessage"></div>
                 </div>
-                <div class="control-group">
-                    <!-- Username -->
-                    <label class="control-label" for="username">Username</label>
-                    <div class="controls">
-                        <input type="text" id="username" name="username" placeholder="" class="input-xlarge" ng-model="user.username" required>
-                        <!-- <p class="help-block">Username can contain any letters or numbers, without spaces</p> -->
-                    </div>
+                <div class="col-xs-12">
+                    <button class="btn btn-tia-primary btn-block btn-flat">Sign Up</button>
                 </div>
-                <div class="control-group">
-                    <!-- E-mail -->
-                    <label class="control-label" for="email">E-mail</label>
-                    <div class="controls">
-                        <input type="text" id="email" name="email" placeholder="" class="input-xlarge" ng-model="user.email" required>
-                        <!-- <p class="help-block">Please provide your E-mail</p> -->
-                    </div>
-                </div>
-                <div class="control-group">
-                    <!-- Password-->
-                    <label class="control-label" for="password">Password</label>
-                    <div class="controls">
-                        <input type="password" id="password" name="password" placeholder="" class="input-xlarge" ng-model="user.password" required>
-                        <!-- <p class="help-block">Password should be at least 4 characters</p> -->
-                    </div>
-                </div>
-                <!-- <div class="control-group"> -->
-                <!-- Password -->
-                <!-- <label class="control-label" for="password_confirm">Password (Confirm)</label>
-                <div class="controls">
-                    <input type="password" id="password_confirm" name="password_confirm" placeholder="" class="input-xlarge" ng-model="user.password">
-                    <p class="help-block">Please confirm password</p>
-                </div>
-            </div> -->
-                <div class="control-group">
-                    <!-- Button -->
-                    <div class="controls">
-                        <button class="btn">Register</button>
-                    </div>
-                </div>
-                <div class="error" data-ng-messages="registerForm.$error" data-ng-show="registerForm.$submitted" data-ng-cloak>
-                    <p data-ng-message="required">{{message}}</p>
-                </div>
-            </fieldset>
+            </div>
         </form>
+        <span>Already have an account? <a href="/#/signin" class="text-center">Sign In</a></span>
     </div>
-    <div class="modal-footer">
-        <!-- <button class="btn" ng-click="register(user)">REGISTER</button> -->
-        <button class="btn" ng-click="cancel()">CANCEL</button>
-    </div>
+    <!-- /.login-box-body -->
 </div>
-<!-- <div ng-if="registered" class="modal-body">
-    <p>You have been registered successfully</p>
-    <div class="modal-footer">
-        <button class="btn" ng-click="cancel()">CANCEL</button>
-    </div>
-</div>
- -->
+<!-- /.login-box -->

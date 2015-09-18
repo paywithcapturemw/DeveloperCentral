@@ -19,7 +19,7 @@ mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/myWork');
 var db = mongoose.connection;
 //environments
 app.set('port', process.env.PORT || 8000);
-app.set('views', path.join(__dirname, 'views'));
+// app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(logger('dev'));                     // log every request to the console
 app.use(bodyParser.urlencoded({ extended: true }));    // parse application/x-www-form-urlencoded
@@ -36,14 +36,7 @@ app.use(bodyParser.json())    // parse application/json
 app.use(methodOverride());                  // simulate DELETE and PUT
 // app.use(multer());
 app.use(express.static(path.join(__dirname, './public'))); 
-// // ROUTES FOR HTML/JS
-// var serveDir = path.normalize("../node_server/angularjs");
-// console.log(serveDir);
-// app.use(express.static(serveDir));
 
-// app.get('*', function(req, res) {
-//             res.sendfile(__dirname,'./public/index.html'); // load our public/index.html file
-//         });
 var server = app.listen((process.env.PORT || 8000), function(){
  var host = server.address().address;
  var port = server.address().port;
@@ -51,18 +44,11 @@ var server = app.listen((process.env.PORT || 8000), function(){
 });
 
 
-//var server = http.createServer(app);
-// server.listen(app.get('port'), function(){
-//   console.log('Express server listening on port ' + app.get('port'));
-// });
 var router = express.Router();              // get an instance of the express Router
 
 var generateToken = require("./app/controllers/generateToken");
 var routes = require('./app/controllers/user');
 routes(app);
-
-// app.use('./app/controllers/generateToken', generateToken);
-// app.use('./app/controllers/user', user);
 
 
 var env = process.env.NODE_ENV || 'development';
@@ -70,5 +56,3 @@ if ('development' == env) {
   
 }
 
-// routes = require('./api/routes'),
-//   routes(app, config);

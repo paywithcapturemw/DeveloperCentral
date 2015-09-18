@@ -13,36 +13,85 @@ var app = angular.module('DeveloperCentral', [
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'ui.router'
 ]);
-app.config(function($routeProvider) {
-    $routeProvider
-        .when('/', {
+app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
+    $stateProvider
+        .state('/', {
+            url: '/',
             templateUrl: 'views/home.html',
-            controller: 'MainCtrl',
-            controllerAs: 'main'
+            controller: 'MainCtrl'
         })
-        .when('/services', {
+        .state('services', {
+            url: '/services',
             templateUrl: 'views/services-list.html',
-            controller: 'MainCtrl',
-            controllerAs: 'main'
+            controller: 'MainCtrl'
         })
-        .when('/airtime-purchases', {
+        .state('airtime-purchases', {
+            url: '/airtime-purchases',
             templateUrl: 'views/airtime-purchase.html',
-            controller: 'MainCtrl',
-            controllerAs: 'main'
+            controller: 'MainCtrl'
         })
-        .when('/transfers', {
+        .state('transfers', {
+            url: '/transfers',
             templateUrl: 'views/transfer.html',
-            controller: 'MainCtrl',
-            controllerAs: 'main'
+            controller: 'MainCtrl'
         })
-        .when('/payments', {
+        .state('payments', {
+            url: '/payments',
             templateUrl: 'views/payments.html',
-            controller: 'MainCtrl',
-            controllerAs: 'main'
+            controller: 'MainCtrl'
         })
-        .otherwise({
-            redirectTo: '/'
+        .state('signup', {
+            url: '/signup',
+            templateUrl: 'views/partials/register-modal.html',
+            controller: 'AuthenticationCtrl'
+        })
+        .state('signin', {
+            url: '/signin',
+            templateUrl: 'views/partials/signin-modal.html',
+            controller: 'AuthenticationCtrl'
+        })
+        .state('forgotPassword', {
+            url: '/forgotPassword',
+            templateUrl: 'views/forgotpassword.html',
+            controller: 'AuthenticationCtrl'
+        })
+        .state('emailSuccess', {
+            url: '/verify/email/success',
+            templateUrl: 'views/email-success.html',
+            controller: 'AuthenticationCtrl'
+        })
+        .state('invalidResetToken', {
+            url: '/password/reset/invalidToken',
+            templateUrl: 'views/invalid-reset-password.html',
+            controller: 'AuthenticationCtrl'
+        })
+        .state('ResetPassword', {
+            url: '/password/reset/:token',
+            templateUrl: 'views/reset-password.html',
+            controller: 'AuthenticationCtrl'
+        })
+        .state('invalidToken', {
+            url: '/verify/email/invalid',
+            templateUrl: 'views/invalid-email.html'
+        })
+        .state('auth', {
+            url: '/auth/:id',
+            templateUrl: 'views/developer-dashboard.html',
+            controller: 'DashboardCtrl'
+        })
+        .state('userDashboard', {
+            url: '/user/:id',
+            templateUrl: 'views/developer-dashboard.html',
+            controller: 'DashboardCtrl'
         });
-});
+        // .state('userDashboard', {
+        //     url: '/user/:id',
+        //     templateUrl: 'views/developer-dashboard.html',
+        //     controller: 'DashboardCtrl'
+        // });
+    $urlRouterProvider.otherwise('/');
+
+}]);

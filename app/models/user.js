@@ -22,22 +22,43 @@ var UserSchema = new Schema({
         required: 'Please fill in a username',
         trim: true
     },
+    role: {
+        type: String,
+        default: 'developer',
+        enum: ['developer', 'admin']
+    },
+    verifyEmailTokenExpires:{
+        type: String,
+        trim: true,
+        default: ''
+    },
+    verifyEmailToken: {
+        type: String,
+        trim: true,
+        default: ''
+    },
     token: String,
+    resetPasswordToken:{
+        type: String,
+        trim: true,
+        default: ''
+    },
+    resetPasswordExpires:{
+        type: String,
+        trim: true,
+        default: ''
+    },
     hash: String,
-    salt: String
+    salt: String,
+    verified:{
+        type: Boolean,
+        default: false
+    },
+    createdAt:{
+        type: Date,
+        default: Date.now()
+    }
 });
 
-var crypto = require('crypto');
-UserSchema.methods.setPassword = function(password) {
-    this.salt = crypto.randomBytes(16).toString('hex');
-
-    this.hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64).toString('hex');
-};
-
-UserSchema.methods.validPassword = function(password) {
-    var hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64).toString('hex');
-
-    return this.hash === hash;
-};
 
 module.exports = mongoose.model('User', UserSchema);
