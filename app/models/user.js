@@ -32,6 +32,11 @@ var UserSchema = new Schema({
         trim: true,
         default: ''
     },
+    permissions:{
+        type: Array,
+        trim: true,
+        default: ['Payments', 'Airtime Recharges']
+    },
     verifyEmailToken: {
         type: String,
         trim: true,

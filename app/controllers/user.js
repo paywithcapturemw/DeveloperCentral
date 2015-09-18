@@ -143,9 +143,9 @@ module.exports = function(app, config) {
                         });
 
                     } else if (err || !user) {
+                        console.log('!user', !user);
                         var message = !user ? "User not found" : err;
                         var status = !user ? 401 : 500;
-
                         res.status(status).send({
                             type: false,
                             data: "Error occured: " + message
@@ -160,7 +160,7 @@ module.exports = function(app, config) {
      * Signout
      */
     app.route('/user/signout').get(function(req, res) {
-        req.logout();
+        // req.logout();
         res.redirect('/');
     });
 

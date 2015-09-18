@@ -50,7 +50,6 @@ app.controller('AuthenticationCtrl', ['$scope', '$http', '$location', '$statePar
                 $scope.signupMessage = response.message;
                 $scope.user = response;
             }).error(function(error) {
-                console.log('error', error);
                 $scope.signupMessage = "Registration not successful";
                 return false;
             });
@@ -58,17 +57,14 @@ app.controller('AuthenticationCtrl', ['$scope', '$http', '$location', '$statePar
 
 
         $scope.signin = function(user) {
-            console.log('login first', user);
             $scope.credentials = user;
             $http.post('/user/signin', $scope.credentials).success(function(response) {
                 //If successful we assign the response to the global user model
                 $scope.user = response.data;
-                console.log('/user/', $scope.user._id);
-                // $location.url('/user/' + $scope.user._id);
+                $location.url('/user/' + $scope.user._id);
 
             }).error(function(response) {
-                $scope.errorPresent = true;
-                $scope.error = response.data;
+                $scope.message = response.data;
             });
         };
 
@@ -81,7 +77,6 @@ app.controller('AuthenticationCtrl', ['$scope', '$http', '$location', '$statePar
                 $location.url('/verify/email/success');
             }).error(function(error) {
                 $scope.error = error.data;
-                console.log('error', error);
             });
         };
 
@@ -123,6 +118,12 @@ app.controller('AuthenticationCtrl', ['$scope', '$http', '$location', '$statePar
                 $location.url('/signin');
             }).error(function(error) {
                 $scope.error = error.message;
+            });
+        };
+
+        $scope.signout = function(){
+            $http.get('/user/signout').success(function(response){
+                 $location.url('/');
             });
         };
     }

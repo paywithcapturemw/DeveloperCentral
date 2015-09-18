@@ -12,7 +12,7 @@
                 <p>DEVELOPER CENTRAL</p>
             </a>
         </div>
-        <div class="collapse navbar-collapse nav-padding" collapse="!isCollapsed" role="navigation">
+        <div class="collapse navbar-collapse nav-padding" collapse="!isCollapsed" role="navigation" data-ng-controller="DashboardCtrl">
             <ul class="nav navbar-nav navbar-right">
                 <li class="header">
                     <a class="nav-border" href="/#/services">Services</a>
@@ -22,8 +22,12 @@
                     <a class="nav-border" href="/#/">API Showcase</a>
                 </li>
                 <li>
-                    <a href="/#/signin">Login</a>
+                    <a class="nav-border" href="/#/signin">Login</a>
                 </li>
+            <!--      <li ng-if="user">
+                    <a ng-click="signout()">Logout</a>
+                </li> -->
+                <li class="divider-vertical"></li>
                 <li>
                     <a href="/#/signup">Register</a>
                 </li>

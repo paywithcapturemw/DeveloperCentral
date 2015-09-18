@@ -15,7 +15,7 @@ var mongoose   = require("mongoose");
 
 // var mongodb = require('mongodb');
 var mongoose   = require('mongoose');
-mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/myWork');
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/DeveloperCentral');
 var db = mongoose.connection;
 //environments
 app.set('port', process.env.PORT || 8000);
