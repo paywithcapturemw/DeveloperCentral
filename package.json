@@ -13,6 +13,7 @@
   "author": "jumoke",
   "license": "ISC",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "bcryptjs": "^2.2.1",
     "body-parser": "^1.13.3",
     "errorhandler": "^1.4.2",
