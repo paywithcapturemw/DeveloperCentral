@@ -14,7 +14,9 @@ var app = angular.module('DeveloperCentral', [
     'ngSanitize',
     'ngTouch',
     'ui.bootstrap',
-    'ui.router'
+    'ui.router',
+    'ngStorage'
+    // 'angularFileUpload'
 ]);
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
     $stateProvider
@@ -82,8 +84,13 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
             templateUrl: 'views/developer-dashboard.html',
             controller: 'DashboardCtrl'
         })
+        .state('userProfile', {
+            url: '/user/:id/profile',
+            templateUrl: 'views/user-profile.html',
+            controller: 'DashboardCtrl'
+        })
         .state('userDashboard', {
-            url: '/user/:id',
+            url: '/user/:id/dashboard',
             templateUrl: 'views/developer-dashboard.html',
             controller: 'DashboardCtrl'
         });

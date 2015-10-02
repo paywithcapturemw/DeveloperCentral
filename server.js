@@ -2,6 +2,19 @@ var http = require('http');
 var express = require('express');
 var path = require('path');
 
+var fs = require('fs');
+var https = require('https');
+
+// var credentials = {key: privateKey, cert: certificate};
+var express = require('express');
+var app = express();
+var  pem = require('pem');
+
+
+// your express configuration here
+
+
+
 var logger         = require('morgan');
 var bodyParser     = require('body-parser');
 var methodOverride = require('method-override');
@@ -32,7 +45,7 @@ app.use(function(req, res, next) {
 app.use(session({ resave: true,
                   saveUninitialized: true,
                   secret: 'uwotm8' }));
-app.use(bodyParser.json())    // parse application/json
+app.use(bodyParser.json());    // parse application/json
 app.use(methodOverride());                  // simulate DELETE and PUT
 // app.use(multer());
 app.use(express.static(path.join(__dirname, './public'))); 

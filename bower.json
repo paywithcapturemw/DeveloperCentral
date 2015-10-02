@@ -11,6 +11,8 @@
     "angular-sanitize": "^1.4.5",
     "angular-touch": "^1.4.5",
     "angular-bootstrap": "~0.13.4",
-    "angular-ui-router": "~0.2.15"
+    "angular-ui-router": "~0.2.15",
+    "ngstorage": "~0.3.9",
+    "ng-file-upload": "~8.0.1"
   }
 }

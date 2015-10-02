@@ -1,24 +1,68 @@
-<div ng-controller="DashboardCtrl" data-ng-init="getUser()">
-    <div class="row services-parent-div">
-       <!--  <div ng-controller="AuthenticationCtrl">
-            <a ng-click="signout()" class="pull-right">Logout</a>
-        </div> -->
-        <h2><b>APP DETAILS</b></h2>
-        <p>Username: </p>
-        <div class="form-control login-input" data-ng-bind="user.username"> </div>
-        <p>Email: </p>
-        <div class="form-control login-input" data-ng-bind="user.email"> </div>
-        <p>Role:</p>
-        <div class="form-control login-input" data-ng-bind="user.role"> </div>
-        <div class="access-div">
-            <p> List Of Unrestricted Services</p>
-            <!-- <div data-ng-repeat="permission in user.permissions"> -->
-            <div class="form-control login-input" data-ng-repeat="permission in user.permissions">
-                <p data-ng-bind="permission"></p>
+<div ng-controller="DashboardCtrl">
+  <div class="row dashboard-parent-div">
+    <div class="col-md-12">
+      <div class="config-panel">
+        <ul>
+          <li ng-class="{active: $index === selectedIndex}" ng-repeat="tab in tabViews">
+            <a ng-click="switchTab($index)">
+              <h4>{{tab}}</h4>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <br>
+      <div ng-show="selectedIndex === 0" class="row input-form">
+        <div class="col-md-12">
+          <div class="app-tab col-md-2">
+            <ul>
+              <li ng-class="{active: $index === selectedTabForApp}" ng-repeat="tab in tabForAppViews">
+                <a ng-click="switchTabForApp($index)">
+                  <h4>{{tab}}</h4>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-10">
+            <div ng-show="selectedTabForApp === 0">
+              <!-- <div data-ng-repeat="app in user.app"> -->
+                <div>
+                  <h2 class="app-name">Name</h2>
+                  <em class="app-owner">Owner</em>
+                  <hr>
+                </div>
+                <div>
+                  Services Calls
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Daily Average</th>
+                        <th>Monthly Total</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>0</td>
+                        <td>0</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              <!-- </div> -->
             </div>
-            <!-- </div> -->
+            <div ng-show="selectedTabForApp === 1">
+              <p>Sample App</p>
+            </div>
+          </div>
         </div>
-        <p>Access Token: </p>
-        <div class="form-control login-input" data-ng-bind="user.token"> </div>
+      </div>
+      <div ng-show="selectedIndex === 1">
+        <div>
+          <h2>MY KEYS</h2>
+          <button class="btn btn-sm btn-default glyphicon glyphicon-plus" type="button" ng-click="addKey()">
+          </button>
+          <div data-ng-repeat="key in user.clientkeys"></div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
