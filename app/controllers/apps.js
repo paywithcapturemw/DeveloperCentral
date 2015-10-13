@@ -38,11 +38,16 @@ module.exports = function(app, config, router) {
           message: err
         });
       } else {
-        User.findById(userId, function(err, user) {
-          if (err) {
-            console.log('error', err);
+        User.findById(userId, function(error, user) {
+          if (error) {
+            return res.send({
+              message: error
+            });
           } else {
             user.apps.push(app._id);
+            return res.status(200).send({
+              data: app
+            });
           }
         });
 
@@ -52,7 +57,7 @@ module.exports = function(app, config, router) {
   });
 
 
-  app.route('/user/:userId/app/getALl').get(function(req, res) {
+  app.route('/user/:userId/app/listApps').get(function(req, res) {
 
     var userId = req.params.userId;
     Apps.find({
@@ -64,6 +69,7 @@ module.exports = function(app, config, router) {
         });
       } else {
         return res.status(200).send({
+          count: apps.length,
           data: apps
         });
       }
@@ -71,21 +77,21 @@ module.exports = function(app, config, router) {
 
   });
 
-  app.route('/user/:userId/app/:appId/getOne').get(function(req, res) {
+  app.route('/user/:userId/app/:appId/getOneApp').get(function(req, res) {
     var userId = req.params.userId;
     var appId = req.params.appId;
 
-    Apps.find({
+    Apps.findOne({
       user: userId,
       app: appId
-    }, function(err, apps) {
+    }, function(err, app) {
       if (err) {
         return res.send({
           message: err
         });
       } else {
         return res.status(200).send({
-          data: apps
+          data: app
         });
       }
     });
@@ -108,10 +114,10 @@ module.exports = function(app, config, router) {
           message: err
         });
       } else {
-        app.remove(function(err) {
-          if (err) {
+        app.remove(function(error) {
+          if (error) {
             return res.status(400).send({
-              message: 'Error deleting your app' + err
+              message: 'Error deleting your app' + error
             });
           } else {
             return res.status(200).send({
@@ -131,7 +137,7 @@ module.exports = function(app, config, router) {
       user: userId,
       _id: appId
     }, function(err, app) {
-        //TODO
+      //TODO
     });
   };
   module.exports.hasAuthorization = function(req, res, next) {

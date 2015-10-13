@@ -24,13 +24,43 @@ app.controller('DashboardCtrl', function($scope, $stateParams, $http, $localStor
     $scope.selectedTabForApp = index;
   };
 
-  $scope.addKey = function(){
-    $http.get('').success(function(response){
-      $scope.newKey = response.data;
-    }).error(function(error){
+  $scope.newApp = function() {
+    $http.get('/user/:userId/app/create').success(function(response) {
+      $scope.newApp = response.data;
+    }).error(function(error) {
       $scope.error = error;
     });
   };
+
+  $scope.listApps = function() {
+    $http.get('/user/:userId/app/listApps').success(function(response) {
+      $scope.apps = response.data;
+    }).error(function(error) {
+      $scope.error = error;
+    });
+  };
+
+  // /user/:userId/app/:appId/getOneApp
+  // /user/:userId/app/:appId/update
+  // /user/:userId/app/:appId/delete
+  $scope.addKey = function() {
+    $http.get('/user/:userId/addKey').success(function(response) {
+      $scope.newKey = response.data;
+    }).error(function(error) {
+      $scope.error = error;
+    });
+  };
+
+
+
+  $scope.listKeys = function() {
+    $http.get('/user/:userId/Keys').success(function(response) {
+      $scope.newKey = response.data;
+    }).error(function(error) {
+      $scope.error = error;
+    });
+  };
+
 
   // $scope.onFileSelect = function($files) {
   //   $scope.files = $files;

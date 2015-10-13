@@ -36,16 +36,14 @@ module.exports = function(app) {
               else {
                 user.keys.push(key._id);
                 user.save();
+                return res.send({data: key})
               }
             });
           }
-          console.log('key save', key);
-
-
         });
 
       } else {
-        res.status(500).send({
+        return res.status(500).send({
           error: err
         });
       }
@@ -55,7 +53,7 @@ module.exports = function(app) {
     // newKey.app = req.app;
   });
 
-   app.route('/user/:userId/Key').get(function(req, res) {
+   app.route('/user/:userId/Keys').get(function(req, res) {
       var userId = req.params.userId;
       ApiKey.find({user: userId}, function(err, keys){
         if(err){ return res.send({message: err});}
