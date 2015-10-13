@@ -76,8 +76,8 @@ module.exports = function(app, config, router) {
     var appId = req.params.appId;
 
     Apps.find({
-      user: userId
-        // app: appID
+      user: userId,
+      app: appId
     }, function(err, apps) {
       if (err) {
         return res.send({
@@ -93,8 +93,7 @@ module.exports = function(app, config, router) {
   });
 
 
-  module.exports.deleteApp = function(req, res, next) {
-    console.log('about to delete app');
+  module.exports.deleteApp = function(req, res) {
     var userId = req.params.userId;
     var appId = req.params.appId;
 
@@ -124,9 +123,31 @@ module.exports = function(app, config, router) {
     });
   };
 
+  module.exports.updateApp = function(req, res) {
+    var userId = req.params.userId;
+    var appId = req.params.appId;
+
+    Apps.findOne({
+      user: userId,
+      _id: appId
+    }, function(err, app) {
+        //TODO
+    });
+  };
   module.exports.hasAuthorization = function(req, res, next) {
-    console.log('checking token before delete app function');
-    next();
+    User.findOne({
+      token: req.headers.token
+    }, function(err, user) {
+      if (err || !user) {
+        return res.status(403).send({
+          message: 'Unauthorised'
+        });
+      }
+      if (user) {
+        next();
+      }
+    });
+
   };
 
 };
