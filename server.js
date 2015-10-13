@@ -9,6 +9,7 @@ var https = require('https');
 var express = require('express');
 var app = express();
 var  pem = require('pem');
+var config = require('./config/config');
 
 
 // your express configuration here
@@ -60,12 +61,33 @@ var server = app.listen((process.env.PORT || 8000), function(){
 var router = express.Router();              // get an instance of the express Router
 
 var generateToken = require("./app/controllers/generateToken");
-var routes = require('./app/controllers/user');
-routes(app);
+require('./app/controllers/user')(app);
+require('./app/controllers/services')(app, config, router);
+require('./app/controllers/apps')(app, config, router);
+require('./app/controllers/apiKey')(app);
+// require('./app/controllers/airtime-recharge')(app);
+// require('./app/controllers/bills-payment')(app);
+// require('./app/controllers/keen')(app);
+require('./app/routes/apps')(app);
+
+
+
+
+
+// routes(app);
 
 
 var env = process.env.NODE_ENV || 'development';
 if ('development' == env) {
   
 }
+
+// Render the dashboard page.
+// router.get('/dashboard', function (req, res) {
+//   if (!req.user || req.user.status !== 'ENABLED') {
+//     return res.redirect('/login');
+//   }
+
+//   res.render('dashboard', {title: 'Dashboard', user: req.user});
+// });
 
