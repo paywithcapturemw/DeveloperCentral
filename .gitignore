@@ -8,5 +8,4 @@ public/bower_components
 npm-debug.log
 .bower-*/
 .idea
-
-
+.env

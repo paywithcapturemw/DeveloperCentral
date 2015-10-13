@@ -13,6 +13,7 @@
   "author": "jumoke",
   "license": "ISC",
   "dependencies": {
+    "async": "^1.4.2",
     "bcrypt-nodejs": "0.0.3",
     "bcryptjs": "^2.2.1",
     "body-parser": "^1.13.3",
@@ -26,6 +27,7 @@
     "http": "0.0.0",
     "jade": "^1.11.0",
     "jsonwebtoken": "^5.0.5",
+    "keen.io": "^0.1.3",
     "method-override": "^2.3.5",
     "mongoose": "^4.1.6",
     "morgan": "^1.6.1",
@@ -34,6 +36,7 @@
     "nodemailer": "^1.4.0",
     "pem": "^1.8.1",
     "piwik-tracker": "^0.1.2",
-    "rand-token": "^0.2.1"
+    "rand-token": "^0.2.1",
+    "request": "^2.64.0"
   }
 }
