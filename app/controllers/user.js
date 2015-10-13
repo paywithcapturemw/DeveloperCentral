@@ -11,8 +11,8 @@ var express = require('express'),
   nodemailer = require('nodemailer'),
   secret = 'secretForUser',
   https = require('https'),
-  pem = require('pem');
-  var fs = require('fs');
+  pem = require('pem'),
+  fs = require('fs');
 
 var key = fs.readFileSync('./key.pem');
 var cert = fs.readFileSync('./cert.pem');
@@ -65,6 +65,7 @@ module.exports = function(app, config, router) {
           error: err
         });
       }
+
     });
   });
   app.route('/user/signup').post(function(req, res) {
@@ -223,7 +224,24 @@ module.exports = function(app, config, router) {
 
     });
   });
+  app.route('/user/me/:userId').get(function(req, res) {
+    User.findOne({
+      _id: req.params.userId
+    }, function(err, user) {
+      if (user) {
+        return res.status(200).json(user);
+      } else if (err || !user) {
+        var message = !user ? "User not found" : err;
+        var status = !user ? 401 : 500;
 
+        res.status(status).send({
+          type: false,
+          data: "Error occured: " + message
+        });
+
+      }
+    });
+  });
 
   app.route('/user/forgotpassword').post(function(req, res) {
     console.log('from password')
@@ -330,35 +348,18 @@ module.exports = function(app, config, router) {
 
   });
 
-  app.route('/user/me/:userId').get(function(req, res) {
-    User.findOne({
-      _id: req.params.userId
-    }, function(err, user) {
-      if (user) {
-        return res.status(200).json(user);
-      } else if (err || !user) {
-        var message = !user ? "User not found" : err;
-        var status = !user ? 401 : 500;
 
-        res.status(status).send({
-          type: false,
-          data: "Error occured: " + message
-        });
 
-      }
-    });
-  });
+  // // Define a middleware function to be used for every secured routes 
+  // var auth = function(req, res, next) {
+  //   if (!req.isAuthenticated()) res.send(401);
+  //   else next();
+  // };
 
-  // Define a middleware function to be used for every secured routes 
-  var auth = function(req, res, next) {
-    if (!req.isAuthenticated()) res.send(401);
-    else next();
-  };
-
-  // router.use() app.get('/users', auth, user.list);
-  app.get('/loggedin', function(req, res) {
-    res.send(req.isAuthenticated() ? req.user : '0');
-  });
+  // // router.use() app.get('/users', auth, user.list);
+  // app.get('/loggedin', function(req, res) {
+  //   res.send(req.isAuthenticated() ? req.user : '0');
+  // });
 
 
 };
