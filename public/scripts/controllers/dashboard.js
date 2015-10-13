@@ -1,9 +1,12 @@
-app.controller('DashboardCtrl', function($scope, $stateParams, $http, $localStorage, Authentication) {
+app.controller('DashboardCtrl', function($scope, $stateParams, $http, $localStorage, $modal,  Authentication) {
   // console.log('ueser', Authentication.getUser());
+  // 
+  $scope.newAppForm = false;
+  var userId = JSON.parse($localStorage.userId).id;
   $scope.getUser = function() {
 
     $scope.signedIn = true;
-    var userId = JSON.parse($localStorage.userId).id;
+
     $http.get('user/me/' + userId).success(function(response) {
       $scope.user = response;
     }).error(function(error) {
@@ -19,21 +22,33 @@ app.controller('DashboardCtrl', function($scope, $stateParams, $http, $localStor
     $scope.selectedIndex = index;
   };
 
-  $scope.tabForAppViews = ['ADD APP', 'SAMPLE APP'];
+  // $scope.tabForAppViews = ['ADD APP', 'SAMPLE APP'];
   $scope.switchTabForApp = function(index) {
     $scope.selectedTabForApp = index;
   };
 
-  $scope.newApp = function() {
-    $http.get('/user/:userId/app/create').success(function(response) {
+  $scope.newApp = function(app) {
+    var postData= {
+      name: app.name,
+      description: app.description,
+      key: app.selectedkey
+    };
+    $http.post('/user/'+ userId + '/app/create', postData).success(function(response) {
+       $scope.newAppForm = false;
+
       $scope.newApp = response.data;
     }).error(function(error) {
       $scope.error = error;
     });
   };
 
+  $scope.addAppPage = function() {
+    $scope.newAppForm = true;
+  };
+
   $scope.listApps = function() {
-    $http.get('/user/:userId/app/listApps').success(function(response) {
+
+    $http.get('/user/' + userId + '/app/listApps').success(function(response) {
       $scope.apps = response.data;
     }).error(function(error) {
       $scope.error = error;
@@ -44,7 +59,7 @@ app.controller('DashboardCtrl', function($scope, $stateParams, $http, $localStor
   // /user/:userId/app/:appId/update
   // /user/:userId/app/:appId/delete
   $scope.addKey = function() {
-    $http.get('/user/:userId/addKey').success(function(response) {
+    $http.post('/user/' + userId + '/addKey').success(function(response) {
       $scope.newKey = response.data;
     }).error(function(error) {
       $scope.error = error;
@@ -54,8 +69,8 @@ app.controller('DashboardCtrl', function($scope, $stateParams, $http, $localStor
 
 
   $scope.listKeys = function() {
-    $http.get('/user/:userId/Keys').success(function(response) {
-      $scope.newKey = response.data;
+    $http.get('/user/' + userId + '/Keys').success(function(response) {
+      $scope.userKeys = response.data;
     }).error(function(error) {
       $scope.error = error;
     });

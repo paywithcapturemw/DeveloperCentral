@@ -1,0 +1,16 @@
+<div class="modal-body" data-ng-controller="DashboardCtrl">
+  <form ng-submit="newApp(app)">
+    <div class="form-group has-feedback">
+      <input type="text" class="form-control login-input" placeholder="App Name" ng-model="app.name "> 
+    </div class="form-group has-feedback">
+      <input type="text" class="form-control login-input" placeholder="App Description" ng-model="app.description">
+    </div>
+    <select ng-model="app.selectedkey" data-ng-init="listKeys()" class="select-key">
+      <option ng-repeat="singleKey in userKeys" value="{{singleKey.key}}">{{singleKey.key}}</option>
+    </select>
+    <div class="col-xs-12">
+      <button class="btn btn-tia-primary btn-block btn-flat">Create App</button>
+    </div>
+    <!--select the key for the app from the users keys-->
+  </form>
+</div>

@@ -36,7 +36,7 @@ module.exports = function(app) {
               else {
                 user.keys.push(key._id);
                 user.save();
-                return res.send({data: key})
+                return res.send({data: key});
               }
             });
           }

@@ -13,7 +13,7 @@ var AppSchema = new Schema({
     trim: true,
     default: ''
   },
-   keys: {
+   key: {
     type: Schema.ObjectId,
     ref: 'ApiKey'
   },
@@ -21,8 +21,26 @@ var AppSchema = new Schema({
     type: Schema.ObjectId,
     ref: 'User'
   },
+   rechargeCount: {
+    type: Number,
+    trim: true,
+    default: 0
+  },
+   transferCount: {
+    type: Number,
+    trim: true,
+    default: 0
+  },
+   paymentCount: {
+    type: Number,
+    trim: true,
+    default: 0
+  },
   // serviceCalls:{
-    
+    //put the counts here
+    //payment count
+    //transfer count
+    //recharge count
   // },
   createdAt: {
     type: Date,
