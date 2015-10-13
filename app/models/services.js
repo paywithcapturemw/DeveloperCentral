@@ -1,33 +1,22 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var ServiceSchema = new Schema({
-amount:{
+var ServiceCountSchema = new Schema({
+  type: {
     type: String,
     trim: true,
     default: ''
   },
-phone:{
-    type: String,
+  count: {
+    type: Number,
     trim: true,
-    default: ''
+    default: 0
   },
-  email:{
-    type: String,
-    trim: true,
-    default: ''
-  },
-  paymentcode:{
-    type: String,
-    trim: true,
-    default: ''
-  },
-  customerid:{
-    type: String,
-    trim: true,
-    default: ''
+  createdAt: {
+    type: Date,
+    default: Date.now()
   }
 
 });
 
-module.exports = mongoose.model('Service', ServiceSchema);
+module.exports = mongoose.model('ServiceCount', ServiceCountSchema);
