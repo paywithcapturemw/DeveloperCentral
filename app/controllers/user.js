@@ -168,14 +168,18 @@ module.exports = function(app, config, router) {
         function(err, user) {
           if (user) {
             if (bcrypt.compareSync(userPassword, user.password)) {
-
-              var token = jwt.sign(user, secret, {
+              userObject= {
+                username: user.username
+              };
+              var token = jwt.sign(userObject, secret, {
                 expiresInMinutes: 1440
               });
-              // jwt.sign(user, process.env.JWT_SECRET);
+              var decoded = jwt.decode(token);
+
               res.status(200).send({
                 data: user,
-                signintoken: token
+                signintoken: token,
+                expiresInMinutes: 1
               });
             } else {
               res.status(401).send({

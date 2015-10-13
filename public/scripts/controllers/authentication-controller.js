@@ -1,5 +1,5 @@
-app.controller('AuthenticationCtrl', ['$scope', '$http', '$location', '$stateParams', '$rootScope', '$localStorage', 'Authentication',
-  function($scope, $http, $location, $stateParams, $rootScope, $localStorage, Authentication) {
+app.controller('AuthenticationCtrl', ['$scope', '$http', '$location', '$stateParams', '$rootScope', '$localStorage', 'Authentication', 'jwtHelper',
+  function($scope, $http, $location, $stateParams, $rootScope, $localStorage, Authentication, jwtHelper) {
     var token = $localStorage.token;
 
     $scope.register = function() {
@@ -26,7 +26,7 @@ app.controller('AuthenticationCtrl', ['$scope', '$http', '$location', '$statePar
       }).error(function(error) {
         $scope.error = error;
       });
-   
+
       // var neuser = Authentication.getUser();
       // 
       // Authentication.getUser(function(){
@@ -36,7 +36,7 @@ app.controller('AuthenticationCtrl', ['$scope', '$http', '$location', '$statePar
       // console.log('myuser', $rootScope.myuser);
 
     }
- 
+
     // console.log('rootScope.user', $rootScope.user);
 
     $scope.validate = function() {
@@ -83,26 +83,26 @@ app.controller('AuthenticationCtrl', ['$scope', '$http', '$location', '$statePar
 
     $scope.signin = function(user) {
       $scope.credentials = user;
-      console.log('user', user);
       $http.post('/user/signin', $scope.credentials).success(function(response) {
         //If successful we assign the response to the global user model
-        console.log('in signin');
         $rootScope.user = response.data;
         $rootScope.isloggedin = true;
         var userObj = {
           id: response.data._id,
           token: response.signintoken
-        }
+        };
 
+
+        $scope.user.username = '';
+        $scope.user.password = '';
         $localStorage.token = response.signintoken;
         $localStorage.userId = JSON.stringify(userObj);
-        console.log('$localStorage.token', $localStorage.token, 'id', JSON.parse($localStorage.userId));
-        // console.log('user successful sign in');)
         $location.url('/user/' + $rootScope.user._id + '/dashboard');
 
       }).error(function(response) {
         $scope.message = response.data;
       });
+
     };
     $scope.getUser = function() {
       $scope.signedIn = true;
@@ -113,15 +113,15 @@ app.controller('AuthenticationCtrl', ['$scope', '$http', '$location', '$statePar
       });
     };
 
-    var checkLoggedin = function() {
-      $http.get('/loggedin').success(function(user) {
-        // if (user !== '0') deferred.resolve();  
-        // else {
-        //   $rootScope.message = 'You need to log in.';
-        //   $location.url('/login');
-        // }
-      });
-    };
+    // var checkLoggedin = function() {
+    //   $http.get('/loggedin').success(function(user) {
+    //     // if (user !== '0') deferred.resolve();  
+    //     // else {
+    //     //   $rootScope.message = 'You need to log in.';
+    //     //   $location.url('/login');
+    //     // }
+    //   });
+    // };
 
 
     $scope.resetpassword = function() {
@@ -177,13 +177,25 @@ app.controller('AuthenticationCtrl', ['$scope', '$http', '$location', '$statePar
       });
     };
 
+
     $scope.signout = function() {
       $http.get('/user/signout').success(function(response) {
         $rootScope.isloggedin = false;
         delete $localStorage.token;
+        delete $localStorage.userId;
+
         $location.url('/');
       });
     };
+
+    if (token) {
+      var bool = jwtHelper.isTokenExpired(token);
+      var date = jwtHelper.getTokenExpirationDate(token);
+      if (bool || (date <= new Date())) {
+        $scope.signout();
+      }
+    }
+
 
 
   }

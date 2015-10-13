@@ -141,8 +141,6 @@ module.exports = function(app, config, router) {
       var finalResponse;
       var finalError;
       needle.post(url, postBody, function(error, response) {
-        console.log('response errors', response.body.message, 'errors', response.body.errors, 'status', response.body.status_code);
-
         if (error || (response.body.message === 'Invalid Parameters.')) {
           var errorMessage = response.body.message;
           res.status(500).send({
@@ -150,7 +148,6 @@ module.exports = function(app, config, router) {
           });
         }
         if (!error && response.body.ResponseCode === 90000) {
-          console.log('suceess get dta', response.body);
           responseObject = JSON.stringify(response.body.PaymentItemList);
           try {
             finalResponse = JSON.parse(responseObject);
@@ -197,18 +194,6 @@ module.exports = function(app, config, router) {
       var finalError;
       needle.post(url, postBody, function(error, response) {
         if (error || response.body.errors === 'Invalid Parameters') {
-          // console.log('error message passed');
-          // var errorBody = JSON.stringify(response.body.errors);
-          // try {
-          //   finalError = JSON.parse(errorBody);
-
-          // } catch (e) {
-          //   console.log(e);
-          // }
-          // res.status(500).send({
-          //   error: finalError,
-          //   message: 'Error Recharging.'
-          // });
           res.send({
             message: 'Error Recharging.'
           });

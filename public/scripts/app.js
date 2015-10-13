@@ -15,7 +15,8 @@ var app = angular.module('DeveloperCentral', [
     'ngTouch',
     'ui.bootstrap',
     'ui.router',
-    'ngStorage'
+    'ngStorage',
+    'angular-jwt'
     // 'angularFileUpload'
 ]);
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {

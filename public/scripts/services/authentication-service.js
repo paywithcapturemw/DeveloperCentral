@@ -1,8 +1,9 @@
 app.factory('Authentication', ['$resource', '$rootScope', '$http', '$localStorage',
   function($resource, $rootScope, $http, $localStorage) {
     var token = $localStorage.token;
-    var userId = JSON.parse($localStorage.userId).id;
     if (token) {
+      var userId = JSON.parse($localStorage.userId).id;
+
       $rootScope.isloggedin = true;
 
     }
