@@ -82,7 +82,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
         })
         .state('auth', {
             url: '/auth/:id',
-            templateUrl: 'views/developer-dashboard.html',
+            templateUrl: 'views/register-success.html',
             controller: 'DashboardCtrl'
         })
         .state('userProfile', {

@@ -2,9 +2,12 @@ app.controller('DashboardCtrl', function($scope, $stateParams, $http, $localStor
   // console.log('ueser', Authentication.getUser());
   // 
   $scope.newAppForm = false;
+  var userId;
   var token = $localStorage.token;
   if (token) {
-    var userId = JSON.parse($localStorage.userId).id;
+    userId = JSON.parse($localStorage.userId).id;
+  }else{
+    userId = $stateParams.id;
   }
 
   $scope.getUser = function() {

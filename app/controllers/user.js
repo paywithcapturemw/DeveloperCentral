@@ -137,13 +137,13 @@ module.exports = function(app, config, router) {
           if (err) {
             return res.status(400).json(err);
           } else {
-            var filteredUser = {
-              _id: user._id,
-              username: user.username,
-              email: user.email,
-              createdAt: user.createdAt,
-              verified: user.verified
-            };
+            // var filteredUser = {
+            //   _id: user._id,
+            //   username: user.username,
+            //   email: user.email,
+            //   createdAt: user.createdAt,
+            //   verified: user.verified
+            // };
             res.redirect('/#/auth/' + user._id);
           }
         });
@@ -155,7 +155,6 @@ module.exports = function(app, config, router) {
    */
 
   app.route('/user/signin').post(function(req, res) {
-    console.log('user sign in ');
     if (!req.body.username || !req.body.password) {
       return res.status(400).json({
         message: 'Please fill out all fields'
@@ -175,7 +174,6 @@ module.exports = function(app, config, router) {
                 expiresInMinutes: 1440
               });
               var decoded = jwt.decode(token);
-
               res.status(200).send({
                 data: user,
                 signintoken: token,
@@ -193,7 +191,6 @@ module.exports = function(app, config, router) {
               type: false,
               data: "Error occured: " + message
             });
-
           }
         });
     }

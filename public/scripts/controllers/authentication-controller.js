@@ -2,7 +2,20 @@ app.controller('AuthenticationCtrl', ['$scope', '$http', '$location', '$statePar
   function($scope, $http, $location, $stateParams, $rootScope, $localStorage, Authentication, jwtHelper) {
     var token = $localStorage.token;
 
-    $scope.register = function() {
+   
+    if (token) {
+    
+      $scope.signedIn = true;
+      var userId = JSON.parse($localStorage.userId).id;
+      $http.get('user/me/' + userId).success(function(response) {
+        $scope.user = response;
+      }).error(function(error) {
+        $scope.error = error;
+      });
+
+    }
+
+     $scope.register = function() {
       $scope.signupMessage = '';
       if (!$scope.validate()) {
         return;
@@ -14,31 +27,8 @@ app.controller('AuthenticationCtrl', ['$scope', '$http', '$location', '$statePar
       };
       $scope.signup(user);
     };
-    // var getuserToken = Authentication.currentUser();
-    if (token) {
-      // console.log('rootScope.isloggedin', $rootScope.isloggedin);
-      // $scope.getUser = function() {
-      // 
-      $scope.signedIn = true;
-      var userId = JSON.parse($localStorage.userId).id;
-      $http.get('user/me/' + userId).success(function(response) {
-        $scope.user = response;
-      }).error(function(error) {
-        $scope.error = error;
-      });
 
-      // var neuser = Authentication.getUser();
-      // 
-      // Authentication.getUser(function(){
-      //   $rootScope.myuser =  response;
-      // }, function() {
-      // });
-      // console.log('myuser', $rootScope.myuser);
-
-    }
-
-    // console.log('rootScope.user', $rootScope.user);
-
+    
     $scope.validate = function() {
 
       // check for empty registration params
