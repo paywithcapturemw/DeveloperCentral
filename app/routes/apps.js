@@ -12,8 +12,12 @@ var express = require('express'),
   
 module.exports = function(app) {
      app.route('/user/:userId/app/:appId/delete')
-      .delete(apps.hasAuthorization, apps.deleteApp);
+      // .delete(apps.hasAuthorization, apps.deleteApp);
+      .delete(apps.deleteApp);
+
       app.route('/user/:userId/app/:appId/update')
-      .put(apps.hasAuthorization, apps.updateApp);
+      // .put(apps.hasAuthorization, apps.updateApp);
+      .put(apps.updateApp);
+
 };
 

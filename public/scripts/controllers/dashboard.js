@@ -58,6 +58,16 @@ app.controller('DashboardCtrl', function($scope, $stateParams, $http, $localStor
   // /user/:userId/app/:appId/getOneApp
   // /user/:userId/app/:appId/update
   // /user/:userId/app/:appId/delete
+  // 
+  $scope.deleteApp = function(app, index){
+    console.log('app', index, app);
+
+    $http.delete('/user/' + userId + '/app/' + app._id + '/delete').success(function(response) {
+      $scope.newKey = response.data;
+    }).error(function(error) {
+      $scope.error = error;
+    });
+  };
   $scope.addKey = function() {
     $http.post('/user/' + userId + '/addKey').success(function(response) {
       $scope.newKey = response.data;
