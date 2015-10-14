@@ -2,7 +2,7 @@ var express = require('express'),
   mongoose = require('mongoose'),
   User = require('../models/user'),
   Apps = require('../models/apps'),
-  ApiKey = require('../models/apikey'),
+  ApiKey = require('../models/apiKey'),
 
   config = require('../../config/config'),
   jwt = require('jsonwebtoken'),
