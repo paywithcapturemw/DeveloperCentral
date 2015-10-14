@@ -1,8 +1,12 @@
-app.controller('DashboardCtrl', function($scope, $stateParams, $http, $localStorage, $modal,  Authentication) {
+app.controller('DashboardCtrl', function($scope, $stateParams, $http, $localStorage, $modal, Authentication) {
   // console.log('ueser', Authentication.getUser());
   // 
   $scope.newAppForm = false;
-  var userId = JSON.parse($localStorage.userId).id;
+  var token = $localStorage.token;
+  if (token) {
+    var userId = JSON.parse($localStorage.userId).id;
+  }
+
   $scope.getUser = function() {
 
     $scope.signedIn = true;
@@ -28,13 +32,13 @@ app.controller('DashboardCtrl', function($scope, $stateParams, $http, $localStor
   };
 
   $scope.newApp = function(app) {
-    var postData= {
+    var postData = {
       name: app.name,
       description: app.description,
       key: app.selectedkey
     };
-    $http.post('/user/'+ userId + '/app/create', postData).success(function(response) {
-       $scope.newAppForm = false;
+    $http.post('/user/' + userId + '/app/create', postData).success(function(response) {
+      $scope.newAppForm = false;
 
       $scope.newApp = response.data;
     }).error(function(error) {
@@ -59,7 +63,7 @@ app.controller('DashboardCtrl', function($scope, $stateParams, $http, $localStor
   // /user/:userId/app/:appId/update
   // /user/:userId/app/:appId/delete
   // 
-  $scope.deleteApp = function(app, index){
+  $scope.deleteApp = function(app, index) {
     console.log('app', index, app);
 
     $http.delete('/user/' + userId + '/app/' + app._id + '/delete').success(function(response) {
