@@ -67,7 +67,7 @@
                   <div class="form-group has-feedback">
                     <input type="text" class="form-control login-input" placeholder="App Description" ng-model="app.description">
                   </div class="form-group has-feedback">
-                  <select ng-model="app.selectedkey" data-ng-init="listKeys()">
+                  <select ng-model="app.selectedkey" data-ng-init="listKeys()" class="select-key">
                     <option ng-repeat="singleKey in userKeys" value="{{singleKey.key}}" style="overflow:hidden;">{{singleKey.key}}</option>
                   </select>
                   <div class="col-xs-12">
