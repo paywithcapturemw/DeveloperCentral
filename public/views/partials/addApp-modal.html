@@ -5,9 +5,9 @@
     </div class="form-group has-feedback">
       <input type="text" class="form-control login-input" placeholder="App Description" ng-model="app.description">
     </div>
-    <select ng-model="app.selectedkey" data-ng-init="listKeys()" class="select-key">
-      <option ng-repeat="singleKey in userKeys" value="{{singleKey.key}}">{{singleKey.key}}</option>
-    </select>
+    <button class="btn btn-sm btn-default glyphicon glyphicon-plus" type="button" ng-click="addKey()">
+      New Key
+    </button>
     <div class="col-xs-12">
       <button class="btn btn-tia-primary btn-block btn-flat">Create App</button>
     </div>

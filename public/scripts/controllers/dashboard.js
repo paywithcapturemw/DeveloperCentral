@@ -6,7 +6,7 @@ app.controller('DashboardCtrl', function($scope, $stateParams, $http, $localStor
   var token = $localStorage.token;
   if (token) {
     userId = JSON.parse($localStorage.userId).id;
-  }else{
+  } else {
     userId = $stateParams.id;
   }
 
@@ -35,18 +35,45 @@ app.controller('DashboardCtrl', function($scope, $stateParams, $http, $localStor
   };
 
   $scope.newApp = function(app) {
-    var postData = {
-      name: app.name,
-      description: app.description,
-      key: app.selectedkey
-    };
-    $http.post('/user/' + userId + '/app/create', postData).success(function(response) {
-      $scope.newAppForm = false;
+    $scope.emptyDataMessage = "";
+    console.log('app', app, $scope.app);
+    if (!$scope.checkData(app)) {
+      return;
+    } else {
 
-      $scope.newApp = response.data;
-    }).error(function(error) {
-      $scope.error = error;
-    });
+
+      var postData = {
+        name: app.name,
+        description: app.description,
+        key: app.selectedkey
+      };
+      $http.post('/user/' + userId + '/app/create', postData).success(function(response) {
+        $scope.newAppForm = false;
+
+        $scope.newApp = response.data;
+
+        //delete key so it does not display in select box for 
+        // $http.delete('/user/' + userId + '/app/' + app._id + '/delete').success(function(response) {
+        //   $scope.newKey = response.data;
+        // }).error(function(error) {
+        //   $scope.error = error;
+        // });
+      }).error(function(error) {
+        $scope.error = error;
+      });
+    }
+
+
+
+  };
+
+  $scope.checkData = function(app) {
+    // check for empty fields
+    if (!app.name || !app.description || !app.selectedkey) {
+      $scope.emptyDataMessage = 'All fields are required.';
+      return false;
+    }
+    return true;
   };
 
   $scope.addAppPage = function() {
@@ -66,9 +93,8 @@ app.controller('DashboardCtrl', function($scope, $stateParams, $http, $localStor
   // /user/:userId/app/:appId/update
   // /user/:userId/app/:appId/delete
   // 
-  $scope.deleteApp = function(app, index) {
-    console.log('app', index, app);
-
+  $scope.deleteApp = function(app, apps, index) {
+    apps.splice(index, 1);
     $http.delete('/user/' + userId + '/app/' + app._id + '/delete').success(function(response) {
       $scope.newKey = response.data;
     }).error(function(error) {

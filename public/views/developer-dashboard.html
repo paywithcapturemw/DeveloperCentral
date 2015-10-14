@@ -33,7 +33,7 @@
                 <div class="app-div">
                   <!-- <a> -->
                   <h2 class="app-name">Name: {{app.name}}</h2>
-                  <button class="btn btn-sm btn-default glyphicon glyphicon-trash pull-right" type="button" ng-click="deleteApp(app, $index)">
+                  <button class="btn btn-sm btn-default glyphicon glyphicon-trash pull-right" type="button" ng-click="deleteApp(app, apps, $index)">
                   </button>
                   <p>Description: {{app.description}}</p>
                   <em class="app-owner">Key: {{app.key}}</em>
@@ -70,6 +70,7 @@
                   <select ng-model="app.selectedkey" data-ng-init="listKeys()" class="select-key">
                     <option ng-repeat="singleKey in userKeys" value="{{singleKey.key}}" style="overflow:hidden;">{{singleKey.key}}</option>
                   </select>
+                  {{emptyDataMessage}}
                   <div class="col-xs-12">
                     <button class="btn btn-tia-primary btn-block btn-flat">Create App</button>
                   </div>
