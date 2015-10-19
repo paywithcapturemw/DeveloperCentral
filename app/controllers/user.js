@@ -254,11 +254,12 @@ module.exports = function(app, config, router) {
       }, function(err, user) {
         if (err) {
           console.log('err', err);
-          return res.status(400).json(err);
+          return res.status(400).json({data: err});
         }
         if (!user) {
+          console.log('No account with that email has been found');
           return res.status(400).send({
-            message: 'No account with that email has been found'
+            data: 'No account with that email has been found'
           });
         } else {
           user.resetPasswordToken = token;
@@ -281,10 +282,10 @@ module.exports = function(app, config, router) {
               };
               transporter.sendMail(mailBody, function(err, message) {
                 if (err) {
-                  return res.status(400).json(err);
+                  return res.status(400).json({data: err});
                 } else {
                   res.status(200).send({
-                    msg: 'success'
+                    data: 'success'
                   });
 
                 }
