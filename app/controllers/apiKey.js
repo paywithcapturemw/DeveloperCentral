@@ -15,6 +15,8 @@ var express = require('express'),
   fs = require('fs');
 
 module.exports = function(app) {
+
+  // change to createKey
   app.route('/user/:userId/addKey').post(function(req, res) {
     // a key can be created without an app but if created with an app?
     // 

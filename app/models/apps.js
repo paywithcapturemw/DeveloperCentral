@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var AppSchema = new Schema({
-  name:{
+  name: {
     type: String,
     trim: true,
     unique: true,
@@ -13,34 +13,39 @@ var AppSchema = new Schema({
     trim: true,
     default: ''
   },
-   key: {
+  key: [{
     type: Schema.ObjectId,
     ref: 'ApiKey'
-  },
-   user: {
+  }],
+  user: {
     type: Schema.ObjectId,
     ref: 'User'
   },
-   rechargeCount: {
+  rechargeCount: {
     type: Number,
     trim: true,
     default: 0
   },
-   transferCount: {
+  transferCount: {
     type: Number,
     trim: true,
     default: 0
   },
-   paymentCount: {
+  paymentCount: {
     type: Number,
     trim: true,
     default: 0
+  },
+  services: {
+    type: Array,
+    trim: true,
+    default: ['Payments', 'Airtime Recharges']
   },
   // serviceCalls:{
-    //put the counts here
-    //payment count
-    //transfer count
-    //recharge count
+  //put the counts here
+  //payment count
+  //transfer count
+  //recharge count
   // },
   createdAt: {
     type: Date,

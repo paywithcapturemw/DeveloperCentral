@@ -14,12 +14,6 @@ var express = require('express'),
   pem = require('pem'),
   fs = require('fs');
 
-var key = fs.readFileSync('./key.pem');
-var cert = fs.readFileSync('./cert.pem');
-var https_options = {
-  key: key,
-  cert: cert
-};
 
 var genToken = function() {
   var regex = new RegExp('/', 'g');

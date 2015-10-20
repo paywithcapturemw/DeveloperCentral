@@ -2,12 +2,12 @@ app.controller('AuthenticationCtrl', ['$scope', '$http', '$location', '$statePar
   function($scope, $http, $location, $stateParams, $rootScope, $localStorage, Authentication, jwtHelper) {
     var token = $localStorage.token;
 
-   
+
     if (token) {
-    
+
       $scope.signedIn = true;
-      var userId = JSON.parse($localStorage.userId).id;
-      $http.get('user/me/' + userId).success(function(response) {
+      $scope.userId = JSON.parse($localStorage.userId).id;
+      $http.get('user/me/' + $scope.userId).success(function(response) {
         $scope.user = response;
       }).error(function(error) {
         $scope.error = error;
@@ -15,7 +15,7 @@ app.controller('AuthenticationCtrl', ['$scope', '$http', '$location', '$statePar
 
     }
 
-     $scope.register = function() {
+    $scope.register = function() {
       $scope.signupMessage = '';
       if (!$scope.validate()) {
         return;
@@ -28,7 +28,7 @@ app.controller('AuthenticationCtrl', ['$scope', '$http', '$location', '$statePar
       $scope.signup(user);
     };
 
-    
+
     $scope.validate = function() {
 
       // check for empty registration params
@@ -172,7 +172,7 @@ app.controller('AuthenticationCtrl', ['$scope', '$http', '$location', '$statePar
       $http.get('/user/signout').success(function(response) {
         $rootScope.isloggedin = false;
         delete $localStorage.token;
-        delete $localStorage.userId;
+        delete $localStorage.$scope.userId;
 
         $location.url('/');
       });
@@ -184,7 +184,7 @@ app.controller('AuthenticationCtrl', ['$scope', '$http', '$location', '$statePar
       if (bool || (date <= new Date())) {
         $scope.signout();
       }
-    }
+    } 
 
 
 

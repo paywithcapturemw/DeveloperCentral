@@ -1,20 +1,18 @@
-app.controller('DashboardCtrl', function($scope, $stateParams, $http, $localStorage, $modal, Authentication) {
-  // console.log('ueser', Authentication.getUser());
+app.controller('DashboardCtrl', function($rootScope, $scope, $stateParams, $http, $localStorage, $modal, $location, Authentication) {
   // 
   $scope.newAppForm = false;
-  var userId;
   var token = $localStorage.token;
   if (token) {
-    userId = JSON.parse($localStorage.userId).id;
+    $scope.userId = JSON.parse($localStorage.userId).id;
   } else {
-    userId = $stateParams.id;
+    $scope.userId = $stateParams.id;
   }
 
   $scope.getUser = function() {
 
     $scope.signedIn = true;
 
-    $http.get('user/me/' + userId).success(function(response) {
+    $http.get('user/me/' + $scope.userId).success(function(response) {
       $scope.user = response;
     }).error(function(error) {
       $scope.error = error;
@@ -29,47 +27,36 @@ app.controller('DashboardCtrl', function($scope, $stateParams, $http, $localStor
     $scope.selectedIndex = index;
   };
 
-  // $scope.tabForAppViews = ['ADD APP', 'SAMPLE APP'];
   $scope.switchTabForApp = function(index) {
     $scope.selectedTabForApp = index;
   };
 
   $scope.newApp = function(app) {
     $scope.emptyDataMessage = "";
-    console.log('app', app, $scope.app);
+
     if (!$scope.checkData(app)) {
       return;
     } else {
-
-
       var postData = {
         name: app.name,
-        description: app.description,
-        key: app.selectedkey
+        description: app.description
       };
-      $http.post('/user/' + userId + '/app/create', postData).success(function(response) {
-        $scope.newAppForm = false;
 
-        $scope.newApp = response.data;
+      $http.post('/user/' + $scope.userId + '/app/create', postData).success(function(response) {
+        $location.url('/user/' + $scope.userId + '/dashboard');
 
-        //delete key so it does not display in select box for 
-        // $http.delete('/user/' + userId + '/app/' + app._id + '/delete').success(function(response) {
-        //   $scope.newKey = response.data;
-        // }).error(function(error) {
-        //   $scope.error = error;
-        // });
       }).error(function(error) {
-        $scope.error = error;
+        $scope.error = error.data;
+        if (error.data === 'Duplicate Name') {
+          $scope.message = 'Duplicate Name';
+        }
       });
     }
-
-
-
   };
 
   $scope.checkData = function(app) {
     // check for empty fields
-    if (!app.name || !app.description || !app.selectedkey) {
+    if (!app.name || !app.description) {
       $scope.emptyDataMessage = 'All fields are required.';
       return false;
     }
@@ -82,10 +69,10 @@ app.controller('DashboardCtrl', function($scope, $stateParams, $http, $localStor
 
   $scope.listApps = function() {
 
-    $http.get('/user/' + userId + '/app/listApps').success(function(response) {
+    $http.get('/user/' + $scope.userId + '/app/listApps').success(function(response) {
       $scope.apps = response.data;
     }).error(function(error) {
-      $scope.error = error;
+      $scope.error = error.data;
     });
   };
 
@@ -95,27 +82,27 @@ app.controller('DashboardCtrl', function($scope, $stateParams, $http, $localStor
   // 
   $scope.deleteApp = function(app, apps, index) {
     apps.splice(index, 1);
-    $http.delete('/user/' + userId + '/app/' + app._id + '/delete').success(function(response) {
+    $http.delete('/user/' + $scope.userId + '/app/' + app._id + '/delete').success(function(response) {
       $scope.newKey = response.data;
     }).error(function(error) {
-      $scope.error = error;
+      $scope.error = error.data;
     });
   };
   $scope.addKey = function() {
-    $http.post('/user/' + userId + '/addKey').success(function(response) {
+    $http.post('/user/' + $scope.userId + '/addKey').success(function(response) {
       $scope.newKey = response.data;
     }).error(function(error) {
-      $scope.error = error;
+      $scope.error = error.data;
     });
   };
 
 
 
   $scope.listKeys = function() {
-    $http.get('/user/' + userId + '/Keys').success(function(response) {
+    $http.get('/user/' + $scope.userId + '/Keys').success(function(response) {
       $scope.userKeys = response.data;
     }).error(function(error) {
-      $scope.error = error;
+      $scope.error = error.data;
     });
   };
 

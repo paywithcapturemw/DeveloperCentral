@@ -12,10 +12,10 @@ var ApiKeySchema = new Schema({
   //   trim: true,
   //   default: 0
   // },
-  app: {
-    type: Schema.ObjectId,
-    ref: 'App'
-  },
+  // app: {
+  //   type: Schema.ObjectId,
+  //   ref: 'App'
+  // },
   user: {
     type: Schema.ObjectId,
     ref: 'User'

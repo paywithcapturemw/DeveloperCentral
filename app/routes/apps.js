@@ -4,14 +4,15 @@
  * Module dependencies.
  */
 var apps = require('../../app/controllers/apps'),
-    apiKey = require('../../app/controllers/apiKey');
+  apiKey = require('../../app/controllers/apiKey');
 
 var express = require('express'),
   mongoose = require('mongoose');
 
-  
+
 module.exports = function(app) {
-     app.route('/user/:userId/app/:appId/delete')
+    app.route('/user/:userId/app/create').post(apps.createApp);
+      app.route('/user/:userId/app/:appId/delete')
       // .delete(apps.hasAuthorization, apps.deleteApp);
       .delete(apps.deleteApp);
 
@@ -19,5 +20,5 @@ module.exports = function(app) {
       // .put(apps.hasAuthorization, apps.updateApp);
       .put(apps.updateApp);
 
-};
+    };
 
