@@ -1,0 +1,35 @@
+<div ng-controller="DashboardCtrl">
+  <div class="row dashboard-parent-div" data-ng-init="getApp()">
+    <div class="col-md-12">
+      <div class="single-app">
+        <h4 class="app-title">APP DETAILS</h4>
+        <div class="row">
+          <div class="col-md-10 ">
+            <P><b>NAME: </b> {{app.name}}</P>
+            <p><b>DESCRIPTION: </b> {{app.description}}</p>
+            <div class="service-table">
+              <p><b>SERVICE CALLS</b></p>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Payments</th>
+                    <th>Transfers</th>
+                    <th>Recharges</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td data-ng-bind="app.paymentCount"></td>
+                    <td data-ng-bind="app.transferCount"></td>
+                    <td data-ng-bind="app.rechargeCount"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- {"_id":"562657f9ccdd7f692faeaa8d","user":"560955b42a6456d2153e69f3","__v":0,"createdAt":"2015-10-20T15:03:24.083Z","services":["Payments","Airtime Recharges"],"paymentCount":0,"transferCount":0,"rechargeCount":0,"key":["562657f9ccdd7f692faeaa8c"],"description":"An app for rides","name":"Uber"} -->

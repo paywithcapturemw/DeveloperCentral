@@ -99,7 +99,14 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
       url: '/user/:id/dashboard/create-app',
       templateUrl: 'views/partials/addApp-modal.html',
       controller: 'DashboardCtrl'
+    })
+    .state('singleApp', {
+      url: '/user/:id/dashboard/app/:appId',
+      templateUrl: 'views/single-app.html',
+      controller: 'DashboardCtrl'
     });
+
+  // /user/{{user._id}}/dashboard/app/{{app._id}}
   // .state('userDashboard', {
   //     url: '/user/:id',
   //     templateUrl: 'views/developer-dashboard.html',

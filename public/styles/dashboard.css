@@ -1,0 +1,93 @@
+.dashboard-parent-div {
+  padding-top: 100px;
+}
+
+.config-panel,
+.app-tab {
+  background-color: #fff;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+.config-panel ul li,
+.app-tab ul li {
+  text-align: center;
+  list-style: none;
+  display: inline-block;
+  line-height: 1.2em;
+  border-bottom: 5px solid transparent;
+}
+
+.config-panel ul li {
+  width: 25%;
+}
+
+.config-panel a h4,
+.single-app h4 {
+  color: #2A68C9
+}
+
+.config-panel ul li a,
+.app-tab ul li a {
+  /*color: #1d3663 !important;*/
+  padding-top: 18px;
+  padding-bottom: 12px;
+}
+
+.config-panel ul .active {
+  border-bottom-color: #337ab7;
+}
+
+.app-tab ul .active {
+  border-right: 5px solid #337ab7;
+}
+
+.app-tab ul {
+  display: flex;
+  flex-direction: column;
+  /*border-right: 2px solid #ccc;*/
+}
+
+.new-app {
+  color: #2A68C9;
+}
+
+.single-app {
+  padding: 10px 45px;
+  background-color: #fff;
+}
+
+.app-div {
+  border: 2px solid #ccbbcc;
+  margin-top: 30px;
+  background-color: #fff;
+  padding: 0 35px;
+}
+
+.app-div h2 {
+  color: #2A68C9;
+}
+
+.app-div:hover {
+  background-color: #E3F2FD;
+  text-decoration: none;
+}
+
+.select-key {
+  width: 100%;
+}
+
+div.app-div a {
+  text-decoration: none;
+}
+
+.app-details{
+  padding: 50px;
+  background-color: #fff;
+}
+.service-table{
+  padding-top: 38px;
+}
+/*h4.app-title{
+  color: #2A68C9; 
+}*/
+

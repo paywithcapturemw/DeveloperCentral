@@ -198,6 +198,25 @@ module.exports = function(app, config, router) {
       //TODO
     });
   };
+
+  module.exports.singleApp = function(req, res) {
+    var userId = req.params.userId;
+    var appId = req.params.appId;
+
+    Apps.findOne({
+      user: userId,
+      _id: appId
+    }, function(err, app) {
+      if (err || !app) {
+        return res.status(403).send({
+          data: err
+        });
+      }else{
+        return res.status(200).send({data: app});
+      }
+      
+    });
+  };
   module.exports.hasAuthorization = function(req, res, next) {
     User.findOne({
       token: req.headers.token

@@ -1,17 +1,8 @@
-
 .services-list .list-group-item.col-md-6 {
   border: 1px solid #2A68C9;
 }
 
-.api-key{
+.api-key {
   padding-top: 30px;
 }
 
-.app-div{ 
-  border: 2px solid #ccbbcc;
-  margin-top: 30px;
-}
-
-.select-key{
-  width: 100%;
-}

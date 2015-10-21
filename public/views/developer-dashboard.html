@@ -13,71 +13,36 @@
       <br>
       <div ng-show="selectedIndex === 0" class="row input-form">
         <div class="col-md-12">
-          <div class="col-md-2">
-            <p>ADD APP
-              <a href="/#/user/{{userId}}/dashboard/create-app">
-                <button class="btn btn-sm btn-default glyphicon glyphicon-plus" type="button">
-                </button>
-              </a>
-            </p>
+          <div class="col-md-2 new-app">
+            <a href="/#/user/{{userId}}/dashboard/create-app">
+              <button class="btn btn-sm btn-default glyphicon glyphicon-plus" type="button">
+              </button>
+            </a>
+            NEW APP
+            <!-- </p> -->
           </div>
           <div class="col-md-10">
             <div ng-show="selectedTabForApp === 0" data-ng-init="listApps()">
               <div data-ng-repeat="app in apps" ng-if="!newAppForm">
                 <div class="row">
-                  <div class="col-md-8">
-                    <div class="app-div">
+                  <!-- <div class="col-md-8"> -->
+                  <div class="app-div">
+                    <a href="/#/user/{{user._id}}/dashboard/app/{{app._id}}">
                       <h2 class="app-name">Name: {{app.name}}</h2>
-                      <button class="btn btn-sm btn-default glyphicon glyphicon-trash pull-right" type="button" ng-click="deleteApp(app, apps, $index)">
+                      <button style="color:#2A68C9;" class="btn btn-sm btn-default glyphicon glyphicon-trash pull-right" type="button" ng-click="deleteApp(app, apps, $index)">
                       </button>
-                      <p>Description: {{app.description}}</p>
                       <hr>
-                      <div>
-                        Services Calls
-                        <table class="table">
-                          <thead>
-                            <tr>
-                              <th>Payments</th>
-                              <th>Transfers</th>
-                              <th>Recharges</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td data-ng-bind="app.paymentCount"></td>
-                              <td data-ng-bind="app.transferCount"></td>
-                              <td data-ng-bind="app.rechargeCount"></td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
+                      <p>Description: {{app.description}}</p>
+                    </a>
+                    <!-- </div> -->
                   </div>
-                  <div class="col-md-4">
+                  <!-- <div class="col-md-4">
                     <div class="app-div">
                       <h3 class="app-owner">My Key(s)</h3>
                       <p data-ng-repeat="key in app.key">{{key}}</p>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
-              </div>
-              <div ng-if="newAppForm">
-                <form ng-submit="newApp(app)">
-                  <div class="form-group has-feedback">
-                    <input type="text" class="form-control login-input" placeholder="App Name" ng-model="app.name ">
-                  </div class="form-group has-feedback">
-                  <div class="form-group has-feedback">
-                    <input type="text" class="form-control login-input" placeholder="App Description" ng-model="app.description">
-                  </div class="form-group has-feedback">
-                  <select ng-model="app.selectedkey" data-ng-init="listKeys()" class="select-key">
-                    <option ng-repeat="singleKey in userKeys" value="{{singleKey.key}}" style="overflow:hidden;">{{singleKey.key}}</option>
-                  </select>
-                  <p style="color:#F00;">{{emptyDataMessage}}</p>
-                  <div class="col-xs-12">
-                    <button class="btn btn-tia-primary btn-block btn-flat">Create App</button>
-                  </div>
-                  <!--select the key for the app from the users keys-->
-                </form>
               </div>
             </div>
             <!-- <div ng-show="selectedTabForApp === 1">
@@ -86,7 +51,7 @@
           </div>
         </div>
       </div>
-    <!--   <div ng-show="selectedIndex === 1">
+      <!--   <div ng-show="selectedIndex === 1">
         <div data-ng-init="listKeys()">
           <h2>MY KEYS</h2>
           <button class="btn btn-sm btn-default glyphicon glyphicon-plus" type="button" ng-click="addKey()">

@@ -1,25 +1,13 @@
 body {
   padding-top: 30px;
   background-color: #ebebeb;
-  /*background: url(../images/grey.jpg) center center no-repeat;*/
 }
-
-
-/*ul{
-  list-style: none;
-}*/
 
 a {
   text-decoration: none;
 }
 
 
-/*div.row.services-parent-div{
-  position: relative;
-  /*margin-bottom: 50px;*/
-
-
-/*}*/
 
 div.introduction {
   color: #2A68C9;
@@ -43,7 +31,7 @@ div.service-main {
 }
 
 div.service-title.purchase {
-  background-color: #00CDCD;
+  background-color: #48284d;
 }
 
 div.service-title.transfer {
@@ -51,7 +39,7 @@ div.service-title.transfer {
 }
 
 div.service-title.payment {
-  background-color: #63D1F4;
+  background-color: #2196F3;
 }
 
 div.service-title.purchase,
@@ -100,7 +88,7 @@ div.service-title.payment h2 {
 }
 
 .purchase-link p {
-  color: #00CDCD;
+  color: #48284d;
   /*   color: #fff;
   font-size: 12px;*/
 }
@@ -114,7 +102,7 @@ div.service-title.payment h2 {
 .payment-link p {
   /* color: #fff;
   font-size: 12px;*/
-  color: #63D1F4;
+  color: #2196F3;
 }
 
 .register-form {
@@ -134,59 +122,4 @@ div.service-title.payment h2 {
   margin-top: 348px;
   font-size: 20px;
 }
-
-
-
-.dashboard-parent-div{
-  padding-top: 100px;
-}
-.config-panel,
-.app-tab {
-  background-color: #fff;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-}
-
-.config-panel ul {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 2px solid #ccc;
-  padding-left: 0;
-}
-
-.config-panel ul li,
-.app-tab ul li {
-  text-align: center;
-  list-style: none;
-  display: inline-block;
-  line-height: 1.2em;
-  border-bottom: 5px solid transparent;
-}
-
-.config-panel ul li{
-  width: 25%;
-}
-.config-panel ul li a,
-.app-tab ul li a {
-  /*color: #1d3663 !important;*/
-  padding-top: 18px;
-  padding-bottom: 12px;
-}
-
-.config-panel ul .active{
-  border-bottom-color: #337ab7;
-}
-
-
-.app-tab ul .active {
-  border-right: 5px solid #337ab7;
-}
-.app-tab ul {
-  display: flex;
-  flex-direction: column;
-  /*border-right: 2px solid #ccc;*/
-}
-
 

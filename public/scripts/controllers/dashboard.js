@@ -7,7 +7,8 @@ app.controller('DashboardCtrl', function($rootScope, $scope, $stateParams, $http
   } else {
     $scope.userId = $stateParams.id;
   }
-
+  //for single app page
+  $scope.appId = $stateParams.appId;
   $scope.getUser = function() {
 
     $scope.signedIn = true;
@@ -75,11 +76,6 @@ app.controller('DashboardCtrl', function($rootScope, $scope, $stateParams, $http
       $scope.error = error.data;
     });
   };
-
-  // /user/:userId/app/:appId/getOneApp
-  // /user/:userId/app/:appId/update
-  // /user/:userId/app/:appId/delete
-  // 
   $scope.deleteApp = function(app, apps, index) {
     apps.splice(index, 1);
     $http.delete('/user/' + $scope.userId + '/app/' + app._id + '/delete').success(function(response) {
@@ -88,6 +84,30 @@ app.controller('DashboardCtrl', function($rootScope, $scope, $stateParams, $http
       $scope.error = error.data;
     });
   };
+
+  $scope.getApp = function() {
+
+    $http.get('/user/' + $scope.userId + '/app/' + $scope.appId).success(function(response) {
+      $scope.app = response.data;
+    }).error(function(error) {
+      $scope.error = error.data;
+    });
+  };
+
+  $scope.editApp = function(app) {
+   
+      var postData = {
+      
+      };
+        // /user/:userId/app/:appId/update
+      $http.post('/user/' + $scope.userId + '/app/'+ $scope.appId + '/update' , postData).success(function(response) {
+        // $location.url('/user/' + $scope.userId + '/dashboard');
+
+      }).error(function(error) {
+        $scope.error = error.data;
+      });
+  };
+
   $scope.addKey = function() {
     $http.post('/user/' + $scope.userId + '/addKey').success(function(response) {
       $scope.newKey = response.data;
