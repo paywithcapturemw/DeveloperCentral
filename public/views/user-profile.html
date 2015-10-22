@@ -3,46 +3,26 @@
     <!--  <div ng-controller="AuthenticationCtrl">
             <a ng-click="signout()" class="pull-right">Logout</a>
         </div> -->
-    <h2><b>APP DETAILS</b></h2>
+    <!-- <h2 class="introduction"><b>APP DETAILS</b></h2> -->
+    <div class="col-md-12 introduction">
+      <h2 class="text-uppercase text-center"><b>USER DETAILS</b></h2>
+    </div>
     <p>Username: </p>
-    <div class="form-control login-input" data-ng-bind="user.username"> </div>
+    <div class="form-control login-input blue-box" data-ng-bind="user.username"> </div>
     <p>Email: </p>
-    <div class="form-control login-input" data-ng-bind="user.email"> </div>
+    <div class="form-control login-input blue-box" data-ng-bind="user.email"> </div>
+    <a href="/#/user/{{user._id}}/profile/edit"><i class="fa fa-pencil-square-o fa-2x pull-right"></i></a>
     <p>Role:</p>
-    <div class="form-control login-input" data-ng-bind="user.role"> </div>
+    <div class="form-control login-input blue-box" data-ng-bind="user.role"> </div>
     <div class="access-div">
       <p> List Of Unrestricted Services</p>
       <!-- <div data-ng-repeat="permission in user.permissions"> -->
-      <div class="form-control login-input" data-ng-repeat="permission in user.permissions">
+      <div class="form-control login-input blue-box" data-ng-repeat="permission in user.permissions">
         <p data-ng-bind="permission"></p>
       </div>
       <!-- </div> -->
     </div>
     <p>Access Token: </p>
-    <div class="form-control login-input" data-ng-bind="user.token"> </div>
-    <!-- <div>
-      <p class="text-center"><a href="/#!">SUBMIT YOUR RESUME HERE</a>
-        <div>
-          <form data-ng-submit="uploadResume()">
-            <div style="margin-bottom: 25px" class="form-group">
-              <label for="namefield">
-              </label>
-              <input type="text" ng-model="name" placeholder="Enter your name">
-              <label class="control-label col-xs-2">Upload CV, in .pdf or .doc</label>
-              <div class="col-xs-10">
-                <input type="file" class="form-control" data-ng-file-select="onFileSelect($files)" accept="application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/pdf" required/>
-                <span class="text text-danger" ng-show="files && !correctFormat">File formats allowed are doc, docx and pdf</span>
-              </div>
-            </div>
-            <div class="form-group">
-              <input type="submit" class="btn btn-default" ng-disabled="name.length<5">
-            </div>
-            <div data-ng-show="error" class="text-danger">
-              <strong data-ng-bind="error"></strong>
-            </div>
-          </form>
-        </div>
-      </p>
-    </div> -->
+    <div class="form-control login-input blue-box" data-ng-bind="user.token"> </div>
   </div>
 </div>

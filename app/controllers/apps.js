@@ -128,10 +128,10 @@ module.exports = function(app, config, router) {
       app.name = editedApp.name;
       app.description = editedApp.description;
 
-      app.save(function(err, savedApp) {
-        if (err) {
+      app.save(function(error, savedApp) {
+        if (error) {
           return res.status(500).send({
-            data: err
+            data: error
           });
         } else {
           return res.status(200).send({

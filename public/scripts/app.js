@@ -107,6 +107,11 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
       templateUrl: 'views/user-profile.html',
       controller: 'DashboardCtrl'
     })
+    .state('userProfileEdit', {
+      url: '/user/:id/profile/edit',
+      templateUrl: 'views/user-profile-edit.html',
+      controller: 'DashboardCtrl'
+    })
     .state('userDashboard', {
       url: '/user/:id/dashboard',
       templateUrl: 'views/developer-dashboard.html',

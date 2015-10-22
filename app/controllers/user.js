@@ -237,9 +237,43 @@ module.exports = function(app, config, router) {
       }
     });
   });
+  app.route('/user/me/:userId/edit').put(function(req, res) {
+    var userId = req.params.userId;
+    var editedUserObj = req.body;
 
+    User.findOne({
+      _id: req.params.userId
+    }, function(err, user) {
+      if (user) {
+        user.username = editedUserObj.username;
+        user.email = editedUserObj.email;
+
+        user.save(function(error, savedUser) {
+          if (error) {
+            return res.status(500).send({
+              data: error
+            });
+          } else {
+            return res.status(200).send({
+              data: savedUser
+            });
+
+          }
+        });
+
+      } else if (err || !user) {
+        var message = !user ? "User not found" : err;
+        var status = !user ? 401 : 500;
+
+        res.status(status).send({
+          type: false,
+          data: "Error occured: " + message
+        });
+
+      }
+    });
+  });
   app.route('/user/forgotpassword').post(function(req, res) {
-    console.log('from password')
     var userEmail = req.body.email;
     var token = genToken();
     if (userEmail) {

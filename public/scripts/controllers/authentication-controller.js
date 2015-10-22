@@ -1,7 +1,7 @@
 app.controller('AuthenticationCtrl', ['$scope', '$http', '$location', '$stateParams', '$rootScope', '$localStorage', 'Authentication', 'jwtHelper',
   function($scope, $http, $location, $stateParams, $rootScope, $localStorage, Authentication, jwtHelper) {
     var token = $localStorage.token;
-   
+
     if (token) {
 
       $scope.signedIn = true;
@@ -101,7 +101,14 @@ app.controller('AuthenticationCtrl', ['$scope', '$http', '$location', '$statePar
         $scope.error = error;
       });
     };
-
+    $scope.editUser = function(user) {
+      $http.put('/user/me/' + $stateParams.id + '/edit', user)
+        .success(function(response) {
+          $location.url('/user/' + $stateParams.id + '/profile');
+        }).error(function(error) {
+          $scope.error = error.data;
+        });
+    };
     // var checkLoggedin = function() {
     //   $http.get('/loggedin').success(function(user) {
     //     // if (user !== '0') deferred.resolve();  
@@ -183,7 +190,7 @@ app.controller('AuthenticationCtrl', ['$scope', '$http', '$location', '$statePar
       if (bool || (date <= new Date())) {
         $scope.signout();
       }
-    } 
+    }
 
 
 

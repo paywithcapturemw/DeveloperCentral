@@ -1,0 +1,38 @@
+<div ng-controller="DashboardCtrl" data-ng-init="getUser()">
+  <div class="row services-parent-div">
+    <!--  <div ng-controller="AuthenticationCtrl">
+            <a ng-click="signout()" class="pull-right">Logout</a>
+        </div> -->
+    <!-- <h2 class="introduction"><b>APP DETAILS</b></h2> -->
+    <div class="col-md-12 introduction">
+      <h2 class="text-uppercase text-center"><b>EDIT USER DETAILS</b></h2>
+    </div>
+    <div ng-controller="AuthenticationCtrl">
+      <form ng-submit="editUser(user)">
+        <p>Username: </p>
+        <div class="form-group has-feedback">
+          <input type="text" class="form-control login-input" placeholder="Username" ng-model="user.username">
+        </div>
+        <p>Email: </p>
+        <div class="form-group has-feedback">
+          <input type="text" class="form-control login-input" placeholder="Email" ng-model="user.email">
+        </div>
+        <p>Role:</p>
+        <div class="form-control login-input blue-box" data-ng-bind="user.role"> </div>
+        <div class="access-div">
+          <p> List Of Unrestricted Services</p>
+          <!-- <div data-ng-repeat="permission in user.permissions"> -->
+          <div class="form-control login-input blue-box" data-ng-repeat="permission in user.permissions">
+            <p data-ng-bind="permission"></p>
+          </div>
+          <!-- </div> -->
+        </div>
+        <p>Access Token: </p>
+        <div class="form-control login-input blue-box" data-ng-bind="user.token"> </div>
+        <div class="col-xs-12">
+          <button class="btn btn-tia-primary btn-block btn-flat">Update User Details</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
