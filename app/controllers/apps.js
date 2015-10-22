@@ -16,21 +16,6 @@ var express = require('express'),
   async = require('async');
 
 
-
-//2 options
-//first async fucntion
-//if (generateKey){
-// 1.generate key
-//}else{
-// 1. delete key from key document
-//
-// }
-// second async fucntion
-//  2. add key to user's app object
-// 3. save new app to app doocument
-// 4. save app to user doc(update it)
-// 
-//}
 module.exports = function(app, config, router) {
   // createApp
   //use bycrypt and crypto
@@ -45,7 +30,7 @@ module.exports = function(app, config, router) {
     }, function(err, existingApp) {
       if (existingApp) {
         var message = 'Duplicate Name';
-        return res.status(400).send({
+        return res.status(500).send({
           data: message
         });
       } else {
@@ -56,22 +41,10 @@ module.exports = function(app, config, router) {
               //add key to user array
               var keyToken = genToken();
 
-              var apikey = new ApiKey({
+              var apikey = {
                 user: userId,
                 key: keyToken
-              });
-
-              apikey.save(function(err, newkey) {
-                if (err) {
-                  return res.status(400).send({
-                    data: err
-                  });
-                }
-                callback(null, newkey._id);
-
-              });
-            },
-            function(keyId, cb) {
+              };
 
               // add app to app database
               var newApp = new Apps({
@@ -79,16 +52,20 @@ module.exports = function(app, config, router) {
                 description: req.body.description,
                 user: userId
               });
-              newApp.key.push(keyId);
-
+              newApp.key.unshift(apikey);
               newApp.save(function(err, app) {
                 if (err) {
-                  return res.status(400).send({
+                  return res.status(500).send({
                     data: err
                   });
                 }
-                cb(null, app);
+                callback(null, app);
               });
+            },
+            function(app, cb) {
+
+              console.log('app created', app);
+              cb(null, app);
             }
           ], function(err, app) {
 
@@ -135,32 +112,10 @@ module.exports = function(app, config, router) {
 
   });
 
-  app.route('/user/:userId/app/:appId/getOneApp').get(function(req, res) {
-    var userId = req.params.userId;
-    var appId = req.params.appId;
-
-    Apps.findOne({
-      user: userId,
-      app: appId
-    }, function(err, app) {
-      if (err) {
-        return res.send({
-          data: err
-        });
-      } else {
-        return res.status(200).send({
-          data: app
-        });
-      }
-    });
-
-  });
-
 
   module.exports.deleteApp = function(req, res) {
     var userId = req.params.userId;
     var appId = req.params.appId;
-
 
     Apps.findOne({
       user: userId,
@@ -174,13 +129,14 @@ module.exports = function(app, config, router) {
       } else {
         app.remove(function(error) {
           if (error) {
-            return res.status(400).send({
+            return res.status(500).send({
               data: 'Error deleting your app' + error
             });
           } else {
             return res.status(200).send({
               data: 'App Successfully Deleted.'
             });
+
           }
         });
       }
@@ -190,31 +146,44 @@ module.exports = function(app, config, router) {
   module.exports.updateApp = function(req, res) {
     var userId = req.params.userId;
     var appId = req.params.appId;
+    var app = req.body;
 
-    Apps.findOne({
-      user: userId,
-      _id: appId
-    }, function(err, app) {
-      //TODO
+    app.save(function() {
+      if (err || !app) {
+        return res.status(500).send({
+          data: err
+        });
+      } else {
+        return res.status(200).send({
+          data: app
+        });
+      }
     });
+    // Apps.findOne({
+    //   user: userId,
+    //   _id: appId
+    // }, function(err, app) {
+    //   //TODO
+    // });
   };
 
   module.exports.singleApp = function(req, res) {
     var userId = req.params.userId;
     var appId = req.params.appId;
-
     Apps.findOne({
       user: userId,
       _id: appId
-    }, function(err, app) {
+    }).sort('-created').populate('key').exec(function(err, app) {
       if (err || !app) {
-        return res.status(403).send({
+        return res.status(500).send({
           data: err
         });
-      }else{
-        return res.status(200).send({data: app});
+      } else {
+        return res.status(200).send({
+          data: app
+        });
       }
-      
+
     });
   };
   module.exports.hasAuthorization = function(req, res, next) {

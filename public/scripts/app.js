@@ -104,6 +104,10 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
       url: '/user/:id/dashboard/app/:appId',
       templateUrl: 'views/single-app.html',
       controller: 'DashboardCtrl'
+    }).state('editApp', {
+      url: '/user/:id/dashboard/app/:appId/edit',
+      templateUrl: 'views/edit-app.html',
+      controller: 'DashboardCtrl'
     });
 
   // /user/{{user._id}}/dashboard/app/{{app._id}}

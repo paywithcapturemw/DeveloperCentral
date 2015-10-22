@@ -1,6 +1,25 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+var ApiKeySchema = new Schema({
+  key: {
+    type: String,
+    trim: true,
+    default: ''
+  },
+  user: {
+    type: Schema.ObjectId,
+    ref: 'User'
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now()
+  }
+
+});
+
+module.exports = mongoose.model('ApiKey', ApiKeySchema);
+
 var AppSchema = new Schema({
   name: {
     type: String,
@@ -13,10 +32,7 @@ var AppSchema = new Schema({
     trim: true,
     default: ''
   },
-  key: [{
-    type: Schema.ObjectId,
-    ref: 'ApiKey'
-  }],
+  key: [ApiKeySchema],
   user: {
     type: Schema.ObjectId,
     ref: 'User'
@@ -41,12 +57,6 @@ var AppSchema = new Schema({
     trim: true,
     default: ['Payments', 'Airtime Recharges']
   },
-  // serviceCalls:{
-  //put the counts here
-  //payment count
-  //transfer count
-  //recharge count
-  // },
   createdAt: {
     type: Date,
     default: Date.now()

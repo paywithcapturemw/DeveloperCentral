@@ -21,5 +21,8 @@ module.exports = function(app) {
   app.route('/user/:userId/app/:appId/update')
     // .put(apps.hasAuthorization, apps.updateApp);
     .put(apps.updateApp);
-
+  app.route('/user/:userId/app/:appId/addKey')
+  .post(apiKey.createKey);
+  app.route('/user/:userId/app/:appId/key/:keyId/deleteKey')
+  .delete(apiKey.deleteKey);
 };

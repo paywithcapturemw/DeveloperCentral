@@ -1,8 +1,7 @@
 app.controller('AuthenticationCtrl', ['$scope', '$http', '$location', '$stateParams', '$rootScope', '$localStorage', 'Authentication', 'jwtHelper',
   function($scope, $http, $location, $stateParams, $rootScope, $localStorage, Authentication, jwtHelper) {
     var token = $localStorage.token;
-
-
+   
     if (token) {
 
       $scope.signedIn = true;
@@ -172,8 +171,8 @@ app.controller('AuthenticationCtrl', ['$scope', '$http', '$location', '$statePar
       $http.get('/user/signout').success(function(response) {
         $rootScope.isloggedin = false;
         delete $localStorage.token;
-        delete $localStorage.$scope.userId;
-
+        delete $localStorage.userId;
+        console.log('signed you out');
         $location.url('/');
       });
     };

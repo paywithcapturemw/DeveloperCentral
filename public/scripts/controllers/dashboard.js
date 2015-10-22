@@ -79,7 +79,7 @@ app.controller('DashboardCtrl', function($rootScope, $scope, $stateParams, $http
   $scope.deleteApp = function(app, apps, index) {
     apps.splice(index, 1);
     $http.delete('/user/' + $scope.userId + '/app/' + app._id + '/delete').success(function(response) {
-      $scope.newKey = response.data;
+      $scope.response = response.data;
     }).error(function(error) {
       $scope.error = error.data;
     });
@@ -87,36 +87,44 @@ app.controller('DashboardCtrl', function($rootScope, $scope, $stateParams, $http
 
   $scope.getApp = function() {
 
-    $http.get('/user/' + $scope.userId + '/app/' + $scope.appId).success(function(response) {
-      $scope.app = response.data;
-    }).error(function(error) {
-      $scope.error = error.data;
-    });
-  };
-
-  $scope.editApp = function(app) {
-   
-      var postData = {
-      
-      };
-        // /user/:userId/app/:appId/update
-      $http.post('/user/' + $scope.userId + '/app/'+ $scope.appId + '/update' , postData).success(function(response) {
-        // $location.url('/user/' + $scope.userId + '/dashboard');
-
+    $http.get('/user/' + $scope.userId + '/app/' + $scope.appId)
+      .success(function(response) {
+        $scope.app = response.data;
       }).error(function(error) {
         $scope.error = error.data;
       });
   };
 
-  $scope.addKey = function() {
-    $http.post('/user/' + $scope.userId + '/addKey').success(function(response) {
-      $scope.newKey = response.data;
-    }).error(function(error) {
-      $scope.error = error.data;
-    });
+  $scope.updateApp = function(app) {
+    // /user/:userId/app/:appId/update
+    $http.post('/user/' + $scope.userId + '/app/' + $scope.appId + '/update', app)
+      .success(function(response) {
+        $location.url('/user/' + $scope.userId + '/dashboard/app/' + $scope.appId);
+      }).error(function(error) {
+        $scope.error = error.data;
+      });
   };
 
+  $scope.addKey = function(app) {
+    $http.post('/user/' + $scope.userId + '/app/' + $scope.appId + '/addKey')
+      .success(function(response) {
+        // $scope.key = response.data;
+      app.key.unshift(response.data);
+        // return app.key;
+      }).error(function(error) {
+        $scope.error = error.data;
+      });
+  };
 
+  $scope.deleteKey = function(key, keys, index) {
+    keys.splice(index, 1);
+    $http.delete('/user/' + $scope.userId + '/app/' + $scope.appId + '/key/' + key._id + '/deleteKey')
+      .success(function(response) {
+        $scope.response = response.data;
+      }).error(function(error) {
+        $scope.error = error.data;
+      });
+  };
 
   $scope.listKeys = function() {
     $http.get('/user/' + $scope.userId + '/Keys').success(function(response) {
@@ -126,23 +134,4 @@ app.controller('DashboardCtrl', function($rootScope, $scope, $stateParams, $http
     });
   };
 
-
-  // $scope.onFileSelect = function($files) {
-  //   $scope.files = $files;
-  //   $scope.imageFiles = [];
-  //   $scope.stringFiles = [];
-  //   if ($scope.files) {
-  //     for (var i in $scope.files) {
-  //       if ($scope.files[0].type === 'application/pdf' || $scope.files[0].type === 'application/msword' || $scope.files[0].type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' || $scope.files[i].size < 600000) {
-  //         $scope.correctFormat = true;
-  //       } else {
-  //         alert('error');
-  //         alert('Wrong file format...');
-  //         $scope.correctFormat = false;
-  //       }
-  //       $scope.start(i);
-
-  //     }
-  //   }
-  // };
 });

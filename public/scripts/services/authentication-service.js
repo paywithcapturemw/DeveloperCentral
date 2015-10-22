@@ -31,6 +31,7 @@ app.factory('Authentication', ['$resource', '$rootScope', '$http', '$localStorag
         logOut: function(success) {
           // changeUser({});
           delete $localStorage.token;
+          delete $localStorage.userId;
           success();
         },
         currentUser: function() {
