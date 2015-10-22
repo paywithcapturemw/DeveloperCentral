@@ -146,25 +146,28 @@ module.exports = function(app, config, router) {
   module.exports.updateApp = function(req, res) {
     var userId = req.params.userId;
     var appId = req.params.appId;
-    var app = req.body;
+    var editedApp = req.body;
+   
+    Apps.findOne({
+      user: userId,
+      _id: appId
+    }, function(err, app) {
 
-    app.save(function() {
-      if (err || !app) {
-        return res.status(500).send({
-          data: err
-        });
-      } else {
-        return res.status(200).send({
-          data: app
-        });
-      }
+      app.name = editedApp.name;
+      app.description = editedApp.description;
+
+      app.save(function(err, savedApp) {
+        if (err) {
+          return res.status(500).send({
+            data: err
+          });
+        } else {
+          return res.status(200).send({
+            data: savedApp
+          });
+        }
+      });
     });
-    // Apps.findOne({
-    //   user: userId,
-    //   _id: appId
-    // }, function(err, app) {
-    //   //TODO
-    // });
   };
 
   module.exports.singleApp = function(req, res) {

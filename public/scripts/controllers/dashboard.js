@@ -96,8 +96,7 @@ app.controller('DashboardCtrl', function($rootScope, $scope, $stateParams, $http
   };
 
   $scope.updateApp = function(app) {
-    // /user/:userId/app/:appId/update
-    $http.post('/user/' + $scope.userId + '/app/' + $scope.appId + '/update', app)
+    $http.put('/user/' + $scope.userId + '/app/' + $scope.appId + '/update', app)
       .success(function(response) {
         $location.url('/user/' + $scope.userId + '/dashboard/app/' + $scope.appId);
       }).error(function(error) {
@@ -108,9 +107,7 @@ app.controller('DashboardCtrl', function($rootScope, $scope, $stateParams, $http
   $scope.addKey = function(app) {
     $http.post('/user/' + $scope.userId + '/app/' + $scope.appId + '/addKey')
       .success(function(response) {
-        // $scope.key = response.data;
       app.key.unshift(response.data);
-        // return app.key;
       }).error(function(error) {
         $scope.error = error.data;
       });

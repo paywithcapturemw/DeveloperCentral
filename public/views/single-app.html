@@ -6,8 +6,9 @@
         <hr>
         <div class="row list-group">
           <div class="col-md-8">
-            <P class="list-group-item"><b>NAME: </b> {{app.name}}</P>
-            <p class="list-group-item"><b>DESCRIPTION: </b> {{app.description}}</p>
+            <P><b>NAME: </b> {{app.name}}</P>
+            <p><b>DESCRIPTION: </b> {{app.description}}</p>
+            <a href="/#/user/{{user._id}}/dashboard/app/{{app._id}}/edit"><i class="fa fa-pencil fa"></i></a>
             <div class="service-table">
               <p><b>SERVICE CALLS</b></p>
               <table class="table">
@@ -27,7 +28,6 @@
                 </tbody>
               </table>
             </div>
-            <a class="pull-right" href="/#/user/{{user._id}}/dashboard/app/{{app._id}}/edit"><i class="fa fa-pencil-square-o fa-2x"></i></a>
           </div>
           <!-- <div class="col-md-3" ng-if="app.key.length !== 0"> -->
           <div class="col-md-4">
