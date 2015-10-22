@@ -6,3 +6,24 @@
   padding-top: 30px;
 }
 
+.blue-box {
+  padding: 0.7em 2em;
+  background-color: #E3F2FD;
+  margin-top: 24px;
+}
+
+.documentation a{
+  text-decoration: none;
+}
+
+.documentation-side-bar a{
+  color: #2A68C9;
+  /*background-color: #000;*/
+}
+
+
+.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover{
+  background-color: #ccc !important;
+  border-color: transparent;
+  color: #000;
+}

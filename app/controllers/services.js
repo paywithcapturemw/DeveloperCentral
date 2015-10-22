@@ -28,6 +28,8 @@ module.exports = function(app, config, router) {
     return;
   };
 
+
+  //user should send token and a key for authorization
   // in documentation, let it be known that the token should be sent from the front end
   // Also use APP token?
   //get list of billers

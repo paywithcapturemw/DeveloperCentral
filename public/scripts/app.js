@@ -46,6 +46,23 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
       templateUrl: 'views/payments.html',
       controller: 'MainCtrl'
     })
+    // /#/transfers-APIdocumentation
+     .state('airtimePurchasesDocumentation', {
+      url: '/airtime-purchases-APIdocumentation',
+      templateUrl: 'views/airtime-purchase-documentation.html',
+      controller: 'MainCtrl'
+    })
+    .state('transfersDocumentation', {
+      url: '/transfers-APIdocumentation',
+      templateUrl: 'views/transfers-documentation.html',
+      controller: 'MainCtrl'
+    })
+    .state('paymentsDocumentation', {
+      url: '/payments-APIdocumentation',
+      templateUrl: 'views/payments-documentation.html',
+      controller: 'MainCtrl'
+    })
+    // 
     .state('signup', {
       url: '/signup',
       templateUrl: 'views/partials/register-modal.html',

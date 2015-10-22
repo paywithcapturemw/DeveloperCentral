@@ -161,7 +161,7 @@ module.exports = function(app, config, router) {
         function(err, user) {
           if (user) {
             if (bcrypt.compareSync(userPassword, user.password)) {
-              userObject= {
+              userObject = {
                 username: user.username
               };
               var token = jwt.sign(userObject, secret, {
@@ -248,7 +248,9 @@ module.exports = function(app, config, router) {
       }, function(err, user) {
         if (err) {
           console.log('err', err);
-          return res.status(400).json({data: err});
+          return res.status(400).json({
+            data: err
+          });
         }
         if (!user) {
           console.log('No account with that email has been found');
@@ -276,7 +278,9 @@ module.exports = function(app, config, router) {
               };
               transporter.sendMail(mailBody, function(err, message) {
                 if (err) {
-                  return res.status(400).json({data: err});
+                  return res.status(400).json({
+                    data: err
+                  });
                 } else {
                   res.status(200).send({
                     data: 'success'
@@ -344,18 +348,41 @@ module.exports = function(app, config, router) {
 
   });
 
+  // route middleware to verify a token
+  // app.route.use(function(req, res, next) {
 
+  //   // check header or url parameters or post parameters for token
+  //   var token = req.body.token || req.query.token || req.headers['x-access-token'];
 
-  // // Define a middleware function to be used for every secured routes 
-  // var auth = function(req, res, next) {
-  //   if (!req.isAuthenticated()) res.send(401);
-  //   else next();
-  // };
+  //   // decode token
+  //   if (token) {
 
-  // // router.use() app.get('/users', auth, user.list);
-  // app.get('/loggedin', function(req, res) {
-  //   res.send(req.isAuthenticated() ? req.user : '0');
+  //     // verifies secret and checks exp
+  //     jwt.verify(token, app.get('superSecret'), function(err, decoded) {
+  //       if (err) {
+  //         return res.json({
+  //           success: false,
+  //           message: 'Failed to authenticate token.'
+  //         });
+  //       } else {
+  //         // if everything is good, save to request for use in other routes
+  //         req.decoded = decoded;
+  //         next();
+  //       }
+  //     });
+
+  //   } else {
+
+  //     // if there is no token
+  //     // return an error
+  //     return res.status(403).send({
+  //       success: false,
+  //       message: 'No token provided.'
+  //     });
+
+  //   }
   // });
+
 
 
 };
