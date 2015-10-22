@@ -34,59 +34,31 @@ module.exports = function(app, config, router) {
           data: message
         });
       } else {
+        var keyToken = genToken();
 
+        var apikey = {
+          user: userId,
+          key: keyToken
+        };
 
-        async.waterfall([
-            function(callback) {
-              //add key to user array
-              var keyToken = genToken();
-
-              var apikey = {
-                user: userId,
-                key: keyToken
-              };
-
-              // add app to app database
-              var newApp = new Apps({
-                name: req.body.name,
-                description: req.body.description,
-                user: userId
-              });
-              newApp.key.unshift(apikey);
-              newApp.save(function(err, app) {
-                if (err) {
-                  return res.status(500).send({
-                    data: err
-                  });
-                }
-                callback(null, app);
-              });
-            },
-            function(app, cb) {
-
-              console.log('app created', app);
-              cb(null, app);
-            }
-          ], function(err, app) {
-
-
-            User.findById(userId, function(error, user) {
-              if (error) {
-                return res.send({
-                  data: error
-                });
-              } else {
-                user.apps.push(app._id);
-                user.save();
-                return res.status(200).send({
-                  data: app
-                });
-              }
+        // add app to app database
+        var newApp = new Apps({
+          name: req.body.name,
+          description: req.body.description,
+          user: userId
+        });
+        newApp.key.unshift(apikey);
+        newApp.save(function(err, app) {
+          if (err) {
+            return res.status(500).send({
+              data: err
             });
-
           }
+          return res.status(200).send({
+            data: app
+          });
+        });
 
-        );
       }
     });
   };
@@ -147,7 +119,7 @@ module.exports = function(app, config, router) {
     var userId = req.params.userId;
     var appId = req.params.appId;
     var editedApp = req.body;
-   
+
     Apps.findOne({
       user: userId,
       _id: appId
