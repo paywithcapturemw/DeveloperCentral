@@ -2,12 +2,26 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var ServiceCountSchema = new Schema({
-  type: {
+  appId: {
     type: String,
-    trim: true,
-    default: ''
+    trim: true
   },
-  count: {
+  totalCount: {
+    type: Number,
+    trim: true,
+    default: 0
+  },
+  rechargeCount: {
+    type: Number,
+    trim: true,
+    default: 0
+  },
+  transferCount: {
+    type: Number,
+    trim: true,
+    default: 0
+  },
+  paymentCount: {
     type: Number,
     trim: true,
     default: 0

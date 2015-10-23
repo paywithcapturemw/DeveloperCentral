@@ -70,10 +70,12 @@ var UserSchema = new Schema({
   //   type: Number,
   //   default: 0
   // },
-  // apps: [{
-  //   type: Schema.ObjectId,
-  //   ref: 'App'
-  // }],
+  // 
+  // thinking
+  apps: [{
+    type: Schema.ObjectId,
+    ref: 'App'
+  }],
   // keys:[{
   //   type: Schema.ObjectId,
   //   ref: 'ApiKey'

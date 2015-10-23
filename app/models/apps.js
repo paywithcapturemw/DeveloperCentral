@@ -37,25 +37,33 @@ var AppSchema = new Schema({
     type: Schema.ObjectId,
     ref: 'User'
   },
-  rechargeCount: {
-    type: Number,
-    trim: true,
-    default: 0
+  clientId:{
+    type: String,
+    trim: true
   },
-  transferCount: {
-    type: Number,
-    trim: true,
-    default: 0
+  clientSecret:{
+    type: String,
+    trim: true
   },
-  paymentCount: {
-    type: Number,
-    trim: true,
-    default: 0
-  },
+  // rechargeCount: {
+  //   type: Number,
+  //   trim: true,
+  //   default: 0
+  // },
+  // transferCount: {
+  //   type: Number,
+  //   trim: true,
+  //   default: 0
+  // },
+  // paymentCount: {
+  //   type: Number,
+  //   trim: true,
+  //   default: 0
+  // },
   services: {
     type: Array,
     trim: true,
-    default: ['Payments', 'Airtime Recharges']
+    default: ['Payments', 'Airtime Recharges', 'Transfers']
   },
   createdAt: {
     type: Date,

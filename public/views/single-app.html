@@ -5,42 +5,50 @@
         <h4 class="app-title">APP DETAILS</h4>
         <hr>
         <div class="row list-group">
-          <div class="col-md-8">
-            <P><b>NAME: </b> {{app.name}}</P>
-            <p><b>DESCRIPTION: </b> {{app.description}}</p>
-            <a href="/#/user/{{user._id}}/dashboard/app/{{app._id}}/edit"><i class="fa fa-pencil fa"></i></a>
-            <div class="service-table">
-              <p><b>SERVICE CALLS</b></p>
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>Payments</th>
-                    <th>Transfers</th>
-                    <th>Recharges</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td data-ng-bind="app.paymentCount"></td>
-                    <td data-ng-bind="app.transferCount"></td>
-                    <td data-ng-bind="app.rechargeCount"></td>
-                  </tr>
-                </tbody>
-              </table>
+          <!-- <div class="col-md-8"> -->
+          <P><b>NAME: </b> {{appBody.app.name}}</P>
+          <p><b>DESCRIPTION: </b> {{appBody.app.description}}</p>
+          <a href="/#/user/{{user._id}}/dashboard/app/{{appBody.app._id}}/edit"><i class="fa fa-pencil fa"></i></a>
+          <!-- <div class="col-md-3" ng-if="appBody.app.key.length !== 0"> -->
+          <div>
+            <h5 class="appBody.app-title"><b>APP KEYS</b></h5>
+            <div class="blue-box">
+              <p>CLIENT ID</p>
+              <p data-ng-bind="appBody.app.clientId"></p>
             </div>
-          </div>
-          <!-- <div class="col-md-3" ng-if="app.key.length !== 0"> -->
-          <div class="col-md-4">
-            <h5 class="app-title">APP KEYS</h5>
-            <button class="btn btn-sm btn-default glyphicon glyphicon-plus" type="button" ng-click="addKey(app)">
-            </button>
-            <div data-ng-repeat="apiKey in app.key">
+            <div class="blue-box">
+              <p>CLIENT SECRET</p>
+              <p data-ng-bind="appBody.app.clientSecret"></p>
+            </div>
+            <!--    <button class="btn btn-sm btn-default glyphicon glyphicon-plus" type="button" ng-click="addKey(appBody.app)">
+            </button> -->
+            <!--  <div data-ng-repeat="apiKey in appBody.app.key">
               {{apiKey.key}}
-              <span class="btn-default glyphicon glyphicon-plus" ng-click="deleteKey(apiKey, app.key, $index)">
+              <span class="btn-default glyphicon glyphicon-plus" ng-click="deleteKey(apiKey, appBody.app.key, $index)">
               </span>
-            </div>
+            </div> -->
+          </div>
+          <div class="service-table">
+            <p><b>SERVICE CALLS</b></p>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Payments</th>
+                  <th>Transfers</th>
+                  <th>Recharges</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td data-ng-bind="appBody.serviceCount.paymentCount"></td>
+                  <td data-ng-bind="appBody.serviceCount.transferCount"></td>
+                  <td data-ng-bind="appBody.serviceCount.rechargeCount"></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
+        <!-- </div> -->
       </div>
     </div>
   </div>

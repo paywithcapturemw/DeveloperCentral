@@ -3,7 +3,7 @@ var express = require('express'),
   User = require('../models/user'),
   Apps = require('../models/apps'),
   ApiKey = require('../models/apiKey'),
-
+  ServiceCount = require('../models/serviceCount'),
   config = require('../../config/config'),
   jwt = require('jsonwebtoken'),
   bcrypt = require('bcryptjs'),
@@ -35,27 +35,34 @@ module.exports = function(app, config, router) {
         });
       } else {
         var keyToken = genToken();
-
-        var apikey = {
-          user: userId,
-          key: keyToken
-        };
-
         // add app to app database
         var newApp = new Apps({
           name: req.body.name,
           description: req.body.description,
           user: userId
         });
-        newApp.key.unshift(apikey);
-        newApp.save(function(err, app) {
+        newApp.clientSecret = keyToken;
+        newApp.save(function(err, finalApp) {
           if (err) {
             return res.status(500).send({
               data: err
             });
           }
-          return res.status(200).send({
-            data: app
+          var token = jwt.sign(finalApp._id, secret);
+          finalApp.clientId = token;
+          var serviceCount = new ServiceCount({
+            appId: finalApp._id
+          });
+          serviceCount.save();
+          finalApp.save(function(err, app) {
+            if (err) {
+
+            } else {
+              return res.status(200).send({
+                data: app
+              });
+            }
+
           });
         });
 
@@ -93,7 +100,6 @@ module.exports = function(app, config, router) {
       user: userId,
       _id: appId
     }, function(err, app) {
-      console.log("app", app);
       if (err) {
         return res.send({
           data: err
@@ -154,8 +160,22 @@ module.exports = function(app, config, router) {
           data: err
         });
       } else {
-        return res.status(200).send({
-          data: app
+        ServiceCount.findOne({
+          appId: app._id
+        }, function(error, serviceCount) {
+          if (error) {
+            return res.status(500).send({
+              data: error
+            });
+          } else {
+            return res.status(200).send({
+              data: {
+                app: app,
+                serviceCount: serviceCount
+              }
+            });
+          }
+
         });
       }
 

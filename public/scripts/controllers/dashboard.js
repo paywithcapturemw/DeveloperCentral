@@ -89,7 +89,7 @@ app.controller('DashboardCtrl', function($rootScope, $scope, $stateParams, $http
 
     $http.get('/user/' + $scope.userId + '/app/' + $scope.appId)
       .success(function(response) {
-        $scope.app = response.data;
+        $scope.appBody = response.data;
       }).error(function(error) {
         $scope.error = error.data;
       });
@@ -107,7 +107,7 @@ app.controller('DashboardCtrl', function($rootScope, $scope, $stateParams, $http
   $scope.addKey = function(app) {
     $http.post('/user/' + $scope.userId + '/app/' + $scope.appId + '/addKey')
       .success(function(response) {
-      app.key.unshift(response.data);
+        app.key.unshift(response.data);
       }).error(function(error) {
         $scope.error = error.data;
       });

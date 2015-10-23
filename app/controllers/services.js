@@ -4,6 +4,7 @@ var express = require('express'),
   needle = require('needle'),
   BillsPayment = require('../models/bills-payment'),
   User = require('../models/user'),
+  Apps = require('../models/apps'),
   request = require('request'),
   async = require('async');
 _ = require('lodash');
@@ -11,21 +12,19 @@ _ = require('lodash');
 
 module.exports = function(app, config, router) {
 
-  var isAuthorizedMiddleware = function(req, res) {
+  module.exports.hasAuthorization = function(req, res, next) {
     User.findOne({
       token: req.headers.token
     }, function(err, user) {
       if (err || !user) {
-        res.status(403).send({
+        return res.status(403).send({
           message: 'Unauthorised'
         });
       }
       if (user) {
-        console.log('user', user);
-        return user;
+        next();
       }
     });
-    return;
   };
 
 
@@ -35,7 +34,7 @@ module.exports = function(app, config, router) {
   //get list of billers
   //app.route('/api/v1/qt/billers')
       // .get(apps.hasAuthorization, apps.getBillers);
-  app.route('/api/v1/qt/billers').get(function(req, res) {
+   module.exports.listBillers = function(req, res) {
     var url = 'http://pwcproduction.com/api/v1/qt/billers';
     async.waterfall([
       function(callback) {
@@ -44,7 +43,7 @@ module.exports = function(app, config, router) {
           token: req.headers.token
         }, function(err, user) {
           if (err || !user) {
-            res.status(403).send({
+            return res.status(403).send({
               message: 'Unauthorised'
             });
           }
@@ -60,19 +59,20 @@ module.exports = function(app, config, router) {
       needle.get(url, function(error, response) {
         var bodyObj = response.body;
         if (error) {
-          res.status(500).send({
+          return res.status(500).send({
             message: 'Error Getting Billers. Try again later.'
           });
         }
         if (!error || bodyObj.ResponseCode === '90000') {
-          res.status(200).send(response.body.BillerList);
+          return res.status(200).send(response.body.BillerList);
         }
 
       });
     });
 
-  });
-  app.route('/api/v1/qt/billers/:billerId/payitems').get(function(req, res) {
+  };
+
+  module.exports.singleBiller = function(req, res) {
     var biller = req.params.billerId;
     async.waterfall([
       function(callback) {
@@ -81,7 +81,9 @@ module.exports = function(app, config, router) {
           token: req.headers.token
         }, function(err, user) {
           if (err || !user) {
-            res.status(403).send({
+                        console.log('Unauthorised');
+
+            return res.status(403).send({
               message: 'Unauthorised'
             });
           }
@@ -95,15 +97,12 @@ module.exports = function(app, config, router) {
       var responseObject;
       var finalResponse;
       needle.get(url, function(error, response) {
-
         if (error) {
-          res.status(500).send({
+          return res.status(500).send({
             message: 'Error Getting Biller Items. Try again later.'
           });
         }
-        if (!error && response.body.ResponseCode === 90000) {
-          console.log('suceess get dta', response.body);
-
+        if (!error && response.body.ResponseCode === '90000') {
           responseObject = JSON.stringify(response.body.PaymentItemList);
           try {
             finalResponse = JSON.parse(responseObject);
@@ -112,13 +111,14 @@ module.exports = function(app, config, router) {
             console.log(e);
           }
 
-          res.status(200).send(finalResponse);
+          return res.status(200).send(finalResponse);
         }
+        //else if there are other error code 900090 etc 
 
       });
     });
-  });
-  app.route('/api/v1/qt/recharge').post(function(req, res) {
+  };
+  module.exports.recharge = function(req, res) {
     var biller = req.params.billerId;
     var postBody = req.body;
     async.waterfall([
@@ -128,7 +128,7 @@ module.exports = function(app, config, router) {
           token: req.headers.token
         }, function(err, user) {
           if (err || !user) {
-            res.status(403).send({
+            return res.status(403).send({
               message: 'Unauthorised'
             });
           }
@@ -145,7 +145,7 @@ module.exports = function(app, config, router) {
       needle.post(url, postBody, function(error, response) {
         if (error || (response.body.message === 'Invalid Parameters.')) {
           var errorMessage = response.body.message;
-          res.status(500).send({
+          return res.status(500).send({
             message: (response.body.message === 'Invalid Parameters') ? 'Invalid Parameters' :'Error Recharging.'
           });
         }
@@ -163,33 +163,35 @@ module.exports = function(app, config, router) {
             }
           }, function(err, tank) {
             if (err) return handleError(err);
-            res.status(200).send(finalResponse);
+            return res.status(200).send(finalResponse);
           });
         } 
       });
     });
-  });
+  };
 
-  app.route('/api/v1/qt/bills/pay').post(function(req, res) {
+  module.exports.pay = function(req, res) {
     var biller = req.params.billerId;
     var postBody = req.body;
+    // use app key to get app 
     async.waterfall([
       function(callback) {
         // function isAuthorizedMiddleware(req, res) {
-        User.findOne({
-          token: req.headers.token
-        }, function(err, user) {
-          if (err || !user) {
-            res.status(403).send({
-              message: 'Unauthorised'
+        Apps.findOne({
+          //will this work because it is an array of keys
+          // key: req.headers.token
+        }, function(err, app) {
+          if (err || !app) {
+            return res.status(403).send({
+              message: 'Unauthorised App'
             });
           }
-          if (user) {
-            callback(null, user);
+          if (app) {
+            callback(null, app);
           }
         });
       }
-    ], function(err, user) {
+    ], function(err, app) {
       var url = 'http://pwcproduction.com/api/v1/qt/bills/pay';
       var responseObject;
       var finalResponse;
@@ -217,13 +219,13 @@ module.exports = function(app, config, router) {
             }
           }, function(err, tank) {
             if (err) return handleError(err);
-            res.status(200).send(finalResponse);
+            return res.status(200).send(finalResponse);
           });
 
         } else console.log('response errors', response.body);
 
       });
     });
-  });
+  };
 
 };
