@@ -1,10 +1,10 @@
-
 var express = require('express'),
   mongoose = require('mongoose'),
   needle = require('needle'),
   BillsPayment = require('../models/bills-payment'),
   User = require('../models/user'),
   Apps = require('../models/apps'),
+  ServiceCount = require('../models/serviceCount'),
   request = require('request'),
   async = require('async');
 _ = require('lodash');
@@ -18,7 +18,7 @@ module.exports = function(app, config, router) {
     }, function(err, user) {
       if (err || !user) {
         return res.status(403).send({
-          message: 'Unauthorised'
+          message: 'Unauthorised User'
         });
       }
       if (user) {
@@ -33,8 +33,8 @@ module.exports = function(app, config, router) {
   // Also use APP token?
   //get list of billers
   //app.route('/api/v1/qt/billers')
-      // .get(apps.hasAuthorization, apps.getBillers);
-   module.exports.listBillers = function(req, res) {
+  // .get(apps.hasAuthorization, apps.getBillers);
+  module.exports.listBillers = function(req, res) {
     var url = 'http://pwcproduction.com/api/v1/qt/billers';
     async.waterfall([
       function(callback) {
@@ -81,10 +81,10 @@ module.exports = function(app, config, router) {
           token: req.headers.token
         }, function(err, user) {
           if (err || !user) {
-                        console.log('Unauthorised');
+            console.log('Unauthorised');
 
             return res.status(403).send({
-              message: 'Unauthorised'
+              message: 'Unauthorised User'
             });
           }
           if (user) {
@@ -119,25 +119,25 @@ module.exports = function(app, config, router) {
     });
   };
   module.exports.recharge = function(req, res) {
-    var biller = req.params.billerId;
+    // var biller = req.params.billerId;
     var postBody = req.body;
     async.waterfall([
       function(callback) {
-        // function isAuthorizedMiddleware(req, res) {
-        User.findOne({
-          token: req.headers.token
-        }, function(err, user) {
-          if (err || !user) {
+        Apps.findOne({
+          clientId: req.headers.client_id,
+          clientSecret: req.headers.client_secret
+        }, function(err, app) {
+          if (err || !app) {
             return res.status(403).send({
-              message: 'Unauthorised'
+              message: 'Unauthorised App'
             });
           }
-          if (user) {
-            callback(null, user);
+          if (app) {
+            callback(null, app);
           }
         });
       }
-    ], function(err, user) {
+    ], function(err, app) {
       var url = 'http://pwcproduction.com/api/v1/qt/recharge';
       var responseObject;
       var finalResponse;
@@ -146,7 +146,7 @@ module.exports = function(app, config, router) {
         if (error || (response.body.message === 'Invalid Parameters.')) {
           var errorMessage = response.body.message;
           return res.status(500).send({
-            message: (response.body.message === 'Invalid Parameters') ? 'Invalid Parameters' :'Error Recharging.'
+            message: (response.body.message === 'Invalid Parameters.') ? 'Invalid Parameters.' : 'Error Recharging.'
           });
         }
         if (!error && response.body.ResponseCode === 90000) {
@@ -156,30 +156,33 @@ module.exports = function(app, config, router) {
           } catch (e) {
             console.log(e);
           }
-          var count = user.rechargesCount + 1;
-          User.findByIdAndUpdate(user._id, {
-            $set: {
-              rechargesCount: count
+          ServiceCount.findOne({
+            appId: app._id
+          }, function(err, serviceCount) {
+            if (err) {
+              console.log('error incrementing count');
             }
-          }, function(err, tank) {
-            if (err) return handleError(err);
-            return res.status(200).send(finalResponse);
+            if (serviceCount) {
+              serviceCount.rechargeCount += 1;
+              serviceCount.totalCount += 1;
+              serviceCount.save();
+              return res.status(200).send(finalResponse);
+            }
           });
-        } 
+        } else {
+          return res.status(500).send(response.body);
+        }
       });
     });
   };
 
   module.exports.pay = function(req, res) {
-    var biller = req.params.billerId;
     var postBody = req.body;
-    // use app key to get app 
     async.waterfall([
       function(callback) {
-        // function isAuthorizedMiddleware(req, res) {
         Apps.findOne({
-          //will this work because it is an array of keys
-          // key: req.headers.token
+          clientId: req.headers.client_id,
+          clientSecret: req.headers.client_secret
         }, function(err, app) {
           if (err || !app) {
             return res.status(403).send({
@@ -197,9 +200,10 @@ module.exports = function(app, config, router) {
       var finalResponse;
       var finalError;
       needle.post(url, postBody, function(error, response) {
-        if (error || response.body.errors === 'Invalid Parameters') {
-          res.send({
-            message: 'Error Recharging.'
+        if (error || (response.body.message === 'Invalid Parameters.')) {
+          var errorMessage = response.body.message;
+          return res.status(500).send({
+            message: (response.body.message === 'Invalid Parameters.') ? 'Invalid Parameters.' : 'Error Making Payment.'
           });
         }
         if (!error && response.body.ResponseCode === 90000) {
@@ -210,19 +214,22 @@ module.exports = function(app, config, router) {
           } catch (e) {
             console.log(e);
           }
-          // console.log(response.body);
-          var count = user.billPaymentCount + 1;
-          // console.log('count', count);
-          User.findByIdAndUpdate(user._id, {
-            $set: {
-              billPaymentCount: count
+          ServiceCount.findOne({
+            appId: app._id
+          }, function(err, serviceCount) {
+            if (err) {
+              console.log('error incrementing count');
             }
-          }, function(err, tank) {
-            if (err) return handleError(err);
-            return res.status(200).send(finalResponse);
+            if (serviceCount) {
+              serviceCount.paymentCount += 1;
+              serviceCount.totalCount += 1;
+              serviceCount.save();
+              return res.status(200).send(finalResponse);
+            }
           });
-
-        } else console.log('response errors', response.body);
+        } else {
+          return res.status(500).send(response.body);
+        }
 
       });
     });

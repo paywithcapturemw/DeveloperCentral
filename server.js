@@ -69,6 +69,7 @@ require('./app/controllers/apiKey')(app);
 // require('./app/controllers/bills-payment')(app);
 // require('./app/controllers/keen')(app);
 require('./app/routes/apps')(app);
+require('./app/routes/services')(app);
 
 
 
