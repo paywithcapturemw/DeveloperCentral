@@ -1,5 +1,5 @@
 <div class="row" data-ng-controller="DashboardCtrl">
-  <div class="col-md-10">
+  <div class="col-md-10" ng-if="user.role ==='developer'">
     <form ng-submit="newApp(app)">
       <div class="form-group has-feedback">
         <input type="text" class="form-control login-input" placeholder="App Name" ng-model="app.name ">
@@ -7,14 +7,16 @@
       <div class="form-group has-feedback">
         <input type="text" class="form-control login-input" placeholder="App Description" ng-model="app.description">
       </div>
-       {{emptyDataMessage}}
-       <div class="col-xs-12 error-message" ng-show="message">
-          <div class="col-xs-12" style="color:#F00;">{{message}}</div>
+      {{emptyDataMessage}}
+      <div class="col-xs-12 error-message" ng-show="message">
+        <div class="col-xs-12" style="color:#F00;">{{message}}</div>
       </div>
       <div class="col-xs-12">
         <button class="btn btn-tia-primary btn-block btn-flat">Create App</button>
       </div>
     </form>
   </div>
+  <div class="row services-parent-div" ng-if="user.role !=='developer'">
+    You are not a developer. Please sign in as a devloper to view this page
+  </div>
 </div>
-

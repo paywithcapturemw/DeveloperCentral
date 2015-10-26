@@ -34,12 +34,21 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <span data-ng-bind="user.username"></span> <b class="caret"></b>
             </a>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu" ng-if="user.role === 'developer'">
               <li>
                 <a href="/#/user/{{user._id}}/profile">Profile</a>
               </li>
               <li>
                 <a href="/#/user/{{user._id}}/dashboard">Dashboard</a>
+              </li>
+              <li class="divider"></li>
+            </ul>
+            <ul class="dropdown-menu" ng-if="user.role === 'admin'">
+              <li>
+                <a href="/#/admin-user/{{user._id}}/profile">Profile</a>
+              </li>
+              <li>
+                <a href="/#/admin-user/{{user._id}}/dashboard">Dashboard</a>
               </li>
               <li class="divider"></li>
             </ul>

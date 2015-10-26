@@ -45,21 +45,6 @@ var AppSchema = new Schema({
     type: String,
     trim: true
   },
-  // rechargeCount: {
-  //   type: Number,
-  //   trim: true,
-  //   default: 0
-  // },
-  // transferCount: {
-  //   type: Number,
-  //   trim: true,
-  //   default: 0
-  // },
-  // paymentCount: {
-  //   type: Number,
-  //   trim: true,
-  //   default: 0
-  // },
   services: {
     type: Array,
     trim: true,

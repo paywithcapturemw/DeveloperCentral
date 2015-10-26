@@ -47,7 +47,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
       controller: 'MainCtrl'
     })
     // /#/transfers-APIdocumentation
-     .state('airtimePurchasesDocumentation', {
+    .state('airtimePurchasesDocumentation', {
       url: '/airtime-purchases-APIdocumentation',
       templateUrl: 'views/airtime-purchase-documentation.html',
       controller: 'MainCtrl'
@@ -130,14 +130,35 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
       url: '/user/:id/dashboard/app/:appId/edit',
       templateUrl: 'views/edit-app.html',
       controller: 'DashboardCtrl'
+    })
+    .state('verifyAdmin', {
+      url: '/admin-user/verifyAdmin',
+      templateUrl: 'views/admin/verifyAdmin.html',
+      controller: 'AdminCtrl'
+    })
+    // /#/admin-user/' + user._id + '/changeFirstPassword');
+              // }
+    .state('changeFirstPassword', {
+      url: '/admin-user/:id/changeFirstPassword',
+      templateUrl: 'views/admin/changeFirstPassword.html',
+      controller: 'AdminCtrl'
+    })
+    .state('adminDashboard', {
+      url: '/admin-user/:id/dashboard',
+      templateUrl: 'views/admin/adminDashboard.html',
+      controller: 'AdminCtrl'
+    })
+    .state('adminUserProfile', {
+      url: '/admin-user/:id/profile',
+      templateUrl: 'views/admin/admin-user-profile.html',
+      controller: 'DashboardCtrl'
+    })
+    .state('adminUserProfileEdit', {
+      url: '/admin-user/:id/profile/edit',
+      templateUrl: 'views/admin/admin-user-profile-Edit.html',
+      controller: 'DashboardCtrl'
     });
 
-  // /user/{{user._id}}/dashboard/app/{{app._id}}
-  // .state('userDashboard', {
-  //     url: '/user/:id',
-  //     templateUrl: 'views/developer-dashboard.html',
-  //     controller: 'DashboardCtrl'
-  // });
   $urlRouterProvider.otherwise('/');
 
 }]);

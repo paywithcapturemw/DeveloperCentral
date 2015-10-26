@@ -1,0 +1,109 @@
+<div ng-controller="DashboardCtrl" data-ng-init="getUser()">
+  <div class="row dashboard-parent-div" ng-if="user.role==='admin'">
+    <div class="col-md-12">
+      <div class="config-panel">
+        <ul>
+          <li>
+            <a>
+              <h4>ADMIN DASHBOARD</h4>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <br>
+      <div class="row input-form">
+        <div class="col-md-12">
+          <div class="col-md-10">
+            <div data-ng-init="listApps()">
+              <div data-ng-repeat="app in apps" ng-if="!newAppForm">
+                <div class="row">
+                  <!-- <div class="col-md-8"> -->
+                  <div class="app-div">
+                    <a href="/#/user/{{user._id}}/dashboard/app/{{app._id}}">
+                      <h2 class="app-name">Name: {{app.name}}</h2>
+                      <button style="color:#2A68C9;" class="btn btn-sm btn-default glyphicon glyphicon-trash pull-right" type="button" ng-click="deleteApp(app, apps, $index)">
+                      </button>
+                      <hr>
+                      <p>Description: {{app.description}}</p>
+                    </a>
+                    <!-- </div> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 input-form" data-ng-init="getAllDevelopers()">
+        <h4 class="text-center">DEVELOPERS</h4>
+          <div ng-if=allDevelopers.length===0>
+            NO EXISTING DEVELOPER
+          </div>
+          <div data-ng-repeat="developer in allDevelopers">
+            <!-- {{developer}} -->
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Username</th>
+                  <!-- <th>Number Of Apps</th> -->
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{developer.username}}</td>
+                  <!-- <td>{{developer}}</td> -->
+                  <td>{{developer.username}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="col-md-12 input-form" data-ng-init="getAllApps()">
+          <h4 class="text-center">APP DATA</h4>
+          <div ng-if=allApps.length===0>
+            NO APP EXISTS
+          </div>
+          <div data-ng-repeat="app in allApps">
+            <!-- <b></b> {{app}} -->
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>App Name</th>
+                  <th>Description</th>
+                  <!-- CHeck for app id and populate it. if it works-->
+                  <th>Payments</th>
+                  <th>Transfers</th>
+                  <th>Recharges</th>
+                  <th>Total Calls</th>
+                </tr>
+              </thead>
+              <tbody data-ng-init="singleAppService(app._id)">
+                <tr data-ng-repeat="count in appServiceCount">
+                  <td>{{app.name}}</td>
+                  <td>{{app.description}}</td>
+                  <td>{{count.paymentCount}}</td>
+                  <td>{{count.transferCount}}</td>
+                  <td>{{count.rechargeCount}}</td>
+                  <td>{{count.totalCount}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <table>
+      
+        <!-- <div class="col-md-12 input-form" data-ng-init="allServiceCounts()">
+          <div ng-if=allServiceCounts.length===0>
+            NO SERVICE CALLS HAVE BEEN MADE
+          </div>
+          <div data-ng-repeat="count in allServiceCounts">
+            Total Count {{count.}}
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+  <div class="row services-parent-div" ng-if="user.role !== 'admin'">
+    You are not an administrator . Please sign in as an administrator to view this page.
+  </div>
+</div>

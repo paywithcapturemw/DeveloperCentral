@@ -1,5 +1,5 @@
 <div ng-controller="DashboardCtrl" data-ng-init="getUser()">
-  <div class="row services-parent-div">
+  <div class="row services-parent-div" ng-if="user.role ==='developer'">
     <!--  <div ng-controller="AuthenticationCtrl">
             <a ng-click="signout()" class="pull-right">Logout</a>
         </div> -->
@@ -24,5 +24,8 @@
     </div>
     <p>Access Token: </p>
     <div class="form-control login-input blue-box" data-ng-bind="user.token"> </div>
+  </div>
+  <div class="row services-parent-div" ng-if="user.role !=='developer'">
+    You are not a developer. Please sign in as a devloper to view this page
   </div>
 </div>

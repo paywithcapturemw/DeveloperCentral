@@ -65,11 +65,15 @@ require('./app/controllers/user')(app);
 require('./app/controllers/services')(app, config, router);
 require('./app/controllers/apps')(app, config, router);
 require('./app/controllers/apiKey')(app);
+require('./app/controllers/admin')(app);
+
 // require('./app/controllers/airtime-recharge')(app);
 // require('./app/controllers/bills-payment')(app);
 // require('./app/controllers/keen')(app);
 require('./app/routes/apps')(app);
 require('./app/routes/services')(app);
+require('./app/routes/user')(app);
+
 
 
 

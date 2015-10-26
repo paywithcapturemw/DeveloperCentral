@@ -71,6 +71,9 @@ app.controller('AuthenticationCtrl', ['$scope', '$http', '$location', '$statePar
 
 
     $scope.signin = function(user) {
+      if(token || $localStorage.userId){
+
+      }
       $scope.credentials = user;
       $http.post('/user/signin', $scope.credentials).success(function(response) {
         //If successful we assign the response to the global user model
@@ -86,7 +89,18 @@ app.controller('AuthenticationCtrl', ['$scope', '$http', '$location', '$statePar
         $scope.user.password = '';
         $localStorage.token = response.signintoken;
         $localStorage.userId = JSON.stringify(userObj);
-        $location.url('/user/' + $rootScope.user._id + '/dashboard');
+        console.log('usern signedIn',response.data);
+        //if user is developer
+        if(user.role === 'developer'){
+          console.log('developer');
+          $location.url('/user/' + $rootScope.user._id + '/dashboard');
+        }
+        if(user.role === 'admin'){
+          console.log('admin');
+          $location.url('/admin-user/' + $rootScope.user._id + '/dashboard');
+        }
+        //else it shoudl redirect to the admin dashboard
+      
 
       }).error(function(response) {
         $scope.message = response.data;
@@ -141,6 +155,7 @@ app.controller('AuthenticationCtrl', ['$scope', '$http', '$location', '$statePar
 
       if ($scope.password != $scope.confirmPassword) {
         $scope.forgotMessage = 'The two passwords do not match';
+        return false;
       }
 
       return true;

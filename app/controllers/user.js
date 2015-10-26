@@ -159,7 +159,11 @@ module.exports = function(app, config, router) {
           username: req.body.username
         },
         function(err, user) {
-          if (user) {
+          if (user.verified === false) {
+            return res.status(403).json({
+              message: 'Please verify your account.'
+            });
+          } else if (user) {
             if (bcrypt.compareSync(userPassword, user.password)) {
               userObject = {
                 username: user.username
@@ -171,7 +175,7 @@ module.exports = function(app, config, router) {
               res.status(200).send({
                 data: user,
                 signintoken: token,
-                expiresInMinutes: 1
+                expiresInMinutes: 1440
               });
             } else {
               res.status(401).send({

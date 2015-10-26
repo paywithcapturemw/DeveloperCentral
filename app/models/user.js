@@ -72,10 +72,10 @@ var UserSchema = new Schema({
   // },
   // 
   // thinking
-  apps: [{
-    type: Schema.ObjectId,
-    ref: 'App'
-  }],
+  // apps: [{
+  //   type: Schema.ObjectId,
+  //   ref: 'App'
+  // }],
   // keys:[{
   //   type: Schema.ObjectId,
   //   ref: 'ApiKey'
