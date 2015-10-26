@@ -72,7 +72,8 @@ app.controller('AuthenticationCtrl', ['$scope', '$http', '$location', '$statePar
 
     $scope.signin = function(user) {
       if(token || $localStorage.userId){
-
+        $scope.message = '2 users can\'t be logged in at once.';
+        return;
       }
       $scope.credentials = user;
       $http.post('/user/signin', $scope.credentials).success(function(response) {
@@ -123,16 +124,6 @@ app.controller('AuthenticationCtrl', ['$scope', '$http', '$location', '$statePar
           $scope.error = error.data;
         });
     };
-    // var checkLoggedin = function() {
-    //   $http.get('/loggedin').success(function(user) {
-    //     // if (user !== '0') deferred.resolve();  
-    //     // else {
-    //     //   $rootScope.message = 'You need to log in.';
-    //     //   $location.url('/login');
-    //     // }
-    //   });
-    // };
-
 
     $scope.resetpassword = function() {
       var stringedEmail = JSON.stringify({
