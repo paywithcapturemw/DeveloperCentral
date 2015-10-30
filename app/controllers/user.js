@@ -62,6 +62,15 @@ module.exports = function(app, config, router) {
 
     });
   });
+  app.route('/user/signupToken').get(function(req, res) {
+    var userSecret = bcrypt.genSaltSync(20);
+    var preString = "PWC_";
+    var token = preString.concat(userSecret.slice(3));
+    return res.send({
+      secret: token,
+      initial: userSecret
+    });
+  });
   app.route('/user/signup').post(function(req, res) {
     var token = genToken();
     var tokenExpires = Date.now() + 3600000;
@@ -92,7 +101,11 @@ module.exports = function(app, config, router) {
             userModel.email = req.body.email;
             userModel.username = req.body.username;
             userModel.password = bcrypt.hashSync(req.body.password, 12);
-            userModel.token = bcrypt.genSaltSync(20);
+            var userSecret = bcrypt.genSaltSync(20);
+            var preString = "PWC_";
+            userModel.token = preString.concat(userSecret.slice(3));
+
+            // userModel.token = bcrypt.genSaltSync(20);
 
             userModel.save(function(err, user) {
               if (err) {

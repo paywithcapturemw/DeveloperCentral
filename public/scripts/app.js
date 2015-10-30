@@ -16,7 +16,8 @@ var app = angular.module('DeveloperCentral', [
   'ui.bootstrap',
   'ui.router',
   'ngStorage',
-  'angular-jwt'
+  'angular-jwt',
+  // 'underscore'
   // 'angularFileUpload'
 ]);
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
@@ -60,6 +61,11 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
     .state('paymentsDocumentation', {
       url: '/payments-APIdocumentation',
       templateUrl: 'views/payments-documentation.html',
+      controller: 'MainCtrl'
+    })
+      .state('documentation', {
+      url: '/APIdocumentation',
+      templateUrl: 'views/documentation.html',
       controller: 'MainCtrl'
     })
     // 
@@ -136,8 +142,6 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
       templateUrl: 'views/admin/verifyAdmin.html',
       controller: 'AdminCtrl'
     })
-    // /#/admin-user/' + user._id + '/changeFirstPassword');
-              // }
     .state('changeFirstPassword', {
       url: '/admin-user/:id/changeFirstPassword',
       templateUrl: 'views/admin/changeFirstPassword.html',

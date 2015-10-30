@@ -92,11 +92,11 @@ app.controller('AuthenticationCtrl', ['$scope', '$http', '$location', '$statePar
         $localStorage.userId = JSON.stringify(userObj);
         console.log('usern signedIn',response.data);
         //if user is developer
-        if(user.role === 'developer'){
+        if($rootScope.user.role === 'developer'){
           console.log('developer');
           $location.url('/user/' + $rootScope.user._id + '/dashboard');
         }
-        if(user.role === 'admin'){
+        if($rootScope.user.role === 'admin'){
           console.log('admin');
           $location.url('/admin-user/' + $rootScope.user._id + '/dashboard');
         }

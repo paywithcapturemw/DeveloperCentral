@@ -1,0 +1,212 @@
+<div ng-controller="MainCtrl">
+  <div class="row services-parent-div">
+    <div class="col-md-12 introduction">
+      <h2 class="text-uppercase text-center">AIRTIME PURCHASES</h2>
+    </div>
+    <div class="row documentation">
+      <div data-ng-include="'views/partials/documentation-sidebar.html'"></div>
+      <div class="col-md-9" ng-if="selectedRoleIndex === 0">
+        <h3>END POINTS</h3>
+        <div class="blue-box">
+          <b>STEP 1</b>
+          <p><b>METHOD: GET</b></p>
+          <p>https://developer-central.herokuapp.com/api/v1/qt/billers</p>
+        </div>
+        <div class="blue-box">
+          <b>STEP 2</b>
+          <p><b>METHOD: GET</b></p>
+          <p>https://developer-central.herokuapp.com/api/v1/qt/billers/:billerId/payitems</p>
+          <b>QUERY PARAMETERS</b>
+          <p><b>billerId:</b> The Biller Id of the merchant as returned from Step 1</p>
+        </div>
+        <div class="blue-box">
+          <p>STEP 3</p>
+          <b>METHOD: POST</b> https://developer-central.herokuapp.com/api/v1/qt/recharge
+        </div>
+        <h3>AUTHORIZATION</h3>
+        <div class="blue-box">
+          <p>1. User Token</p>
+          <p>2. Client Token</p>
+          <p>3. Client Id</p>
+        </div>
+        <h3>POST PARAMETERS</h3>
+        <div class="blue-box">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Amount</td>
+                <td></td>
+                <td>The amount to recharge <b>(required)</b></td>
+              </tr>
+              <tr>
+                <td>Phone</td>
+                <td></td>
+                <td>The receipient's phone number<b>(required)</b></td>
+              </tr>
+              <tr>
+                <td>Email</td>
+                <td>String</td>
+                <td>The customer's email address<b>(required)</b></td>
+              </tr>
+              <tr>
+                <td>Paycode</td>
+                <td>String</td>
+                <td>The paycode of the sunscriber network as returned from the GetBillerPaymentItems response from Step 2 <b>(required)</b></td>
+              </tr>
+            </tbody>
+          </table>
+          <!--  <p><b>amount : </b>The amount to recharge <b>(required)</b></p>
+          <p><b>phone : </b>The receipient's phone number<b>(required)</b></p>
+          <p><b>email : </b>The customers email address<b>(required)</b></p>
+          <p><b>paycode : </b>The paycode of the sunscriber network as returned from the GetBillerPaymentItems response from Step 2<b>(required)</b></p> -->
+        </div>
+        <h3>RESPONSE</h3>
+        <em>Status-Code: 200 OK</em>
+        <div class="blue-box">
+          <p></p>
+        </div>
+        <h3>ERROR RESPONSE</h3>
+        <em>Status-Code: 500 SERVER ERROR</em>
+        <div class="blue-box">
+          <p></p>
+        </div>
+      </div>
+      <div class="col-md-9" ng-if="selectedRoleIndex === 1">
+        <h3>END POINTS</h3>
+        <div class="blue-box">
+          <b>STEP 1</b>
+          <p><b>METHOD: GET</b></p>
+          <p>https://developer-central.herokuapp.com/api/v1/qt/billers</p>
+        </div>
+        <div class="blue-box">
+          <b>STEP 2</b>
+          <p><b>METHOD: GET</b></p>
+          <p>https://developer-central.herokuapp.com/api/v1/qt/billers/:billerId/payitems</p>
+          <b>QUERY PARAMETERS</b>
+          <p><b>billerId:</b> The Biller Id of the merchant as returned from Step 1</p>
+        </div>
+        <div class="blue-box">
+          <p>STEP 3</p>
+          <b>METHOD: POST</b>
+          <p>https://developer-central.herokuapp.com/api/v1/qt/funds/transfer/account</p>
+        </div>
+        <h3>AUTHORIZATION</h3>
+        <div class="blue-box">
+          <p>1. User Token</p>
+          <p>2. Client Token</p>
+          <p>3. Client Id</p>
+        </div>
+        <h3>PARAMETERS</h3>
+        <div class="blue-box row">
+          <div class="post-requirement col-md-6 blue-box">
+            <b>Sender</b> { "firstname": XXXXXXX, "lastname": XXXXXXXX, "email": XXXXXXXX@yahoo.com, "phone": xxxxxxxxxx, "accountnumber": xxxyxyxxyx, "accounttype": "20", "bankcode": "XXXXXX" }
+          </div>
+          <div class="post-requirement col-md-6 blue-box">
+            Receiver { "firstname": XXXXXXX, "lastname": XXXXXXXX, "email": XXXXXXXX@yahoo.com, "phone": xxxxxxxxxx}
+          </div>
+        </div>
+        <h3>RESPONSE</h3>
+        <em>Status-Code: 200 OK</em>
+        <div class="blue-box">
+          <p></p>
+        </div>
+        <h3>ERROR RESPONSE</h3>
+        <em>Status-Code: 500 SERVER ERROR</em>
+        <div class="blue-box">
+          <p></p>
+        </div>
+      </div>
+      <div class="col-md-9" ng-if="selectedRoleIndex === 2">
+        <h3>END POINTS</h3>
+        <div class="blue-box">
+          <b>STEP 1</b>
+          <b>METHOD: GET</b>
+          <p>https://developer-central.herokuapp.com/api/v1/qt/billers</p>
+        </div>
+        <div class="blue-box">
+          <b>STEP 2</b>
+          <p><b>METHOD: GET</b></p>
+          <p>https://developer-central.herokuapp.com/api/v1/qt/billers/:billerId/payitems</p>
+          <b>QUERY PARAMETERS</b>
+          <p><b>billerId:</b> The Biller Id of the merchant as returned from Step 1</p>
+        </div>
+        <!-- <h3>QUERY PARAMETERS</h3>
+        <div class="blue-box">
+          <p><b>billerId:</b> The Biller Id of the merchant as returned from Step 1</p>
+        </div> -->
+        <div class="blue-box">
+          <p>STEP 3</p>
+          <b>METHOD: POST</b>
+          <p>https://developer-central.herokuapp.com/api/v1/qt/bills/pay</p>
+        </div>
+        <h3>AUTHORIZATION</h3>
+        <div class="blue-box">
+          <p>1. User Token</p>
+          <p>2. Client Token</p>
+          <p>3. Client Id</p>
+        </div>
+        <h3>POST PARAMETERS</h3>
+        <div class="blue-box">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Amount</td>
+                <td></td>
+                <td>The amount to recharge <b>(required)</b></td>
+              </tr>
+              <tr>
+                <td>Phone</td>
+                <td>String</td>
+                <td>The receipient's phone number<b>(required)</b></td>
+              </tr>
+              <tr>
+                <td>Email</td>
+                <td>String</td>
+                <td>The customer's email address<b>(required)</b></td>
+              </tr>
+              <tr>
+                <td>Paycode</td>
+                <td>String</td>
+                <td>The paycode of the sunscriber network as returned from the GetBillerPaymentItems response from Step 2 <b>(required)</b></td>
+              </tr>
+              <tr>
+                <td>Customerid</td>
+                <td>String</td>
+                <td>The customer Id of the receiving merchant as returned from Step 2 <b>(required)</b></td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- <p><b>Amount: </b>The bill amount to pay<b>(required)</b></p>
+          <p><b>Phone : </b>The customer/user's phone number <b>(required)</b></p>
+          <p><b>Email : </b>The customer/user's email address<b>(required)</b></p>
+          <p><b>Paycode : </b>The paycode of the sunscriber network as returned from the GetBillerPaymentItems response from Step 2<b>(required)</b></p>
+          <p><b>Customerid: </b>The customer Id of the receiving merchant as returned from Step 2<b>(required)</b></p> -->
+        </div>
+        <h3>RESPONSE</h3>
+        <em>Status-Code: 200 OK</em>
+        <div class="blue-box">
+          <p></p>
+        </div>
+        <h3>ERROR RESPONSE</h3>
+        <em>Status-Code: 500 SERVER ERROR</em>
+        <div class="blue-box">
+          <p></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -4,16 +4,12 @@
       <h2 class="text-uppercase text-center">Transfers</h2>
     </div>
     <div class="row documentation">
-      <div class="col-md-3 list-group">
-        <div class="list-group-item documentation-side-bar"><a href="/#/transfers-APIdocumentation">Tranfers</a></div>
-        <div class="list-group-item documentation-side-bar"><a href="/#/payments-APIdocumentation">Bill Payments</a></div>
-        <div class="list-group-item documentation-side-bar"><a href="/#/airtime-purchases-APIdocumentation">Airtime Purchases</a></div>
-      </div>
+      <div data-ng-include="'views/partials/documentation-sidebar.html'"></div>
       <div class="col-md-9">
         <h3>END POINTS</h3>
         <div class="blue-box">
           <b>STEP 1</b>
-           <p><b>METHOD: GET</b></p>
+          <p><b>METHOD: GET</b></p>
           <p>https://developer-central.herokuapp.com/api/v1/qt/billers</p>
         </div>
         <div class="blue-box">
@@ -26,27 +22,33 @@
         <div class="blue-box">
           <p>STEP 3</p>
           <b>METHOD: POST</b>
-       
-      </div>
-
-      <h3>AUTHORIZATION</h3>
-      <p class="blue-box">User Token</p>
-
-      <h3>QUERY PARAMETERS</h3>
-      <div class="blue-box">
-        <p></p>
-      </div>
-
-      <h3>RESPONSE</h3>
-      <em>Status-Code: 200 OK</em>
-      <div class="blue-box">
-        <p></p>
-      </div>
-
-      <h3>ERROR RESPONSE</h3>
-      <em>Status-Code: 500 SERVER ERROR</em>
-      <div class="blue-box">
-        <p></p>
+          <p>https://developer-central.herokuapp.com/api/v1/qt/funds/transfer/account</p>
+        </div>
+        <h3>AUTHORIZATION</h3>
+        <div class="blue-box">
+          <p>1. User Token</p>
+          <p>2. Client Token</p>
+          <p>3. Client Id</p>
+        </div>
+        <h3>PARAMETERS</h3>
+        <div class="blue-box row">
+          <div class="post-requirement col-md-6 blue-box">
+            <b>Sender</b> { "firstname": XXXXXXX, "lastname": XXXXXXXX, "email": XXXXXXXX@yahoo.com, "phone": xxxxxxxxxx, "accountnumber": xxxyxyxxyx, "accounttype": "20", "bankcode": "XXXXXX" }
+          </div>
+          <div class="post-requirement col-md-6 blue-box">
+            Receiver { "firstname": XXXXXXX, "lastname": XXXXXXXX, "email": XXXXXXXX@yahoo.com, "phone": xxxxxxxxxx}
+          </div>
+        </div>
+        <h3>RESPONSE</h3>
+        <em>Status-Code: 200 OK</em>
+        <div class="blue-box">
+          <p></p>
+        </div>
+        <h3>ERROR RESPONSE</h3>
+        <em>Status-Code: 500 SERVER ERROR</em>
+        <div class="blue-box">
+          <p></p>
+        </div>
       </div>
     </div>
   </div>

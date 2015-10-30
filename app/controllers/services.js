@@ -235,4 +235,69 @@ module.exports = function(app, config, router) {
     });
   };
 
+  module.exports.transfer = function(req, res) {
+    var postBody = req.body;
+    // sender, receiver, amount
+    // sender and receiver are objects
+    // 
+    var responseObject;
+    var finalResponse;
+    async.waterfall([
+      function(callback) {
+        Apps.findOne({
+          clientId: req.headers.client_id,
+          clientSecret: req.headers.client_secret
+        }, function(err, app) {
+          if (err || !app) {
+            return res.status(403).send({
+              message: 'Unauthorised App'
+            });
+          }
+          if (app) {
+            callback(null, app);
+          }
+        });
+      }
+    ], function(err, app) {
+      var url = 'http://pwcproduction.com/api/v1/qt/funds/transfer/account';
+      needle.post(url, postBody, function(error, response) {
+        if (error || (response.body.message === 'Invalid Parameters.')) {
+          var errorMessage = response.body.message;
+          return res.status(500).send({
+            message: (response.body.message === 'Invalid Parameters.') ? 'Invalid Parameters.' : 'Error Recharging.',
+            error: (response.body.message === 'Invalid Parameters.') ? response.body.errors : error
+          });
+        }
+
+        // if (!error && response.body.ResponseCode === 90000) {
+        //   responseObject = JSON.stringify(response.body.PaymentItemList);
+        //   try {
+        //     finalResponse = JSON.parse(responseObject);
+
+        //   } catch (e) {
+        //     console.log(e);
+        //   }
+        //   ServiceCount.findOne({
+        //     appId: app._id
+        //   }, function(err, serviceCount) {
+        //     if (err) {
+        //       console.log('error incrementing count');
+        //     }
+        //     if (serviceCount) {
+        //       serviceCount.transferCount += 1;
+        //       serviceCount.totalCount += 1;
+        //       serviceCount.save();
+        //       return res.status(200).send(finalResponse);
+        //     }
+        //   });
+        // } else {
+        //   return res.status(500).send(response.body);
+        // }
+        if (!error) {
+          console.log(response.body);
+        }
+      });
+    });
+  };
+
 };

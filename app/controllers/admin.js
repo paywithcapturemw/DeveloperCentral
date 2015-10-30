@@ -108,7 +108,11 @@ module.exports = function(app) {
         if (user.verified === false) {
           user.verified = true;
           user.password = bcrypt.hashSync(req.body.password, 12);
-          user.token = bcrypt.genSaltSync(20);
+          var userSecret = bcrypt.genSaltSync(20);
+          var preString = "PWC_";
+          user.token = preString.concat(userSecret.slice(3));
+
+          // user.token = bcrypt.genSaltSync(20);
 
           user.save(function(error, savedUser) {
             if (error) {

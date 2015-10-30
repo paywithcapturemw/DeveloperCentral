@@ -4,11 +4,7 @@
       <h2 class="text-uppercase text-center">AIRTIME PURCHASES</h2>
     </div>
     <div class="row documentation">
-      <div class="col-md-3 list-group">
-        <div class="list-group-item documentation-side-bar"><a href="/#/transfers-APIdocumentation">Tranfers</a></div>
-        <div class="list-group-item documentation-side-bar"><a href="/#/payments-APIdocumentation">Bill Payments</a></div>
-        <div class="list-group-item documentation-side-bar"><a href="/#/airtime-purchases-APIdocumentation">Airtime Purchases</a></div>
-      </div>
+      <div data-ng-include="'views/partials/documentation-sidebar.html'"></div>
       <div class="col-md-9">
         <h3>END POINTS</h3>
         <div class="blue-box">
@@ -28,7 +24,11 @@
           <b>METHOD: POST</b> https://developer-central.herokuapp.com/api/v1/qt/recharge
         </div>
         <h3>AUTHORIZATION</h3>
-        <p class="blue-box">User Token</p>
+        <div class="blue-box">
+          <p>1. User Token</p>
+          <p>2. Client Token</p>
+          <p>3. Client Id</p>
+        </div>
         <h3>POST PARAMETERS</h3>
         <div class="blue-box">
           <table class="table">

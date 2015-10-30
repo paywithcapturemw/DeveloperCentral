@@ -15,3 +15,6 @@ ul.nav.navbar-nav.navbar-right{
     content: '| ' !important;
     padding-left: 15px;
 }
+.user-role{
+  margin-right: 35px;
+}

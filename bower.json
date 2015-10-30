@@ -13,6 +13,7 @@
     "angular-bootstrap": "~0.13.4",
     "angular-ui-router": "~0.2.15",
     "ngstorage": "~0.3.9",
-    "ng-file-upload": "~8.0.1"
+    "ng-file-upload": "~8.0.1",
+    "lodash": "~3.10.1"
   }
 }

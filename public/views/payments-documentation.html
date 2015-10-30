@@ -3,12 +3,17 @@
     <div class="col-md-12 introduction">
       <h2 class="text-uppercase text-center">PAYMENTS</h2>
     </div>
+    <!--     <ul>
+            <li ng-class="{active: $index === selectedRoleIndex}" ng-repeat="tab in roleTabs track by $index">
+              <a ng-click="switchRole($index)">
+                <h4>{{initialRoles[tab] | capitalize}}</h4>
+              </a>
+            </li> -->
+    <!-- ng-init="switchDoc($index)"
+ -->
+    <!-- ng-click="switchDoc($index)" -->
     <div class="row documentation">
-      <div class="col-md-3 list-group">
-        <div class="list-group-item documentation-side-bar"><a href="/#/transfers-APIdocumentation" active>Tranfers</a></div>
-        <div class="list-group-item documentation-side-bar"><a href="/#/payments-APIdocumentation">Bill Payments</a></div>
-        <div class="list-group-item documentation-side-bar"><a href="/#/airtime-purchases-APIdocumentation">Airtime Purchases</a></div>
-      </div>
+      <div data-ng-include="'views/partials/documentation-sidebar.html'"></div>
       <div class="col-md-9">
         <h3>END POINTS</h3>
         <div class="blue-box">
@@ -18,7 +23,7 @@
         </div>
         <div class="blue-box">
           <b>STEP 2</b>
-           <p><b>METHOD: GET</b></p>
+          <p><b>METHOD: GET</b></p>
           <p>https://developer-central.herokuapp.com/api/v1/qt/billers/:billerId/payitems</p>
           <b>QUERY PARAMETERS</b>
           <p><b>billerId:</b> The Biller Id of the merchant as returned from Step 1</p>
@@ -33,7 +38,11 @@
           <p>https://developer-central.herokuapp.com/api/v1/qt/bills/pay</p>
         </div>
         <h3>AUTHORIZATION</h3>
-        <p class="blue-box">User Token</p>
+        <div class="blue-box">
+          <p>1. User Token</p>
+          <p>2. Client Token</p>
+          <p>3. Client Id</p>
+        </div>
         <h3>POST PARAMETERS</h3>
         <div class="blue-box">
           <table class="table">
@@ -65,7 +74,7 @@
                 <td>String</td>
                 <td>The paycode of the sunscriber network as returned from the GetBillerPaymentItems response from Step 2 <b>(required)</b></td>
               </tr>
-               <tr>
+              <tr>
                 <td>Customerid</td>
                 <td>String</td>
                 <td>The customer Id of the receiving merchant as returned from Step 2 <b>(required)</b></td>

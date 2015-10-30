@@ -13,7 +13,7 @@
       </a>
     </div>
     <div class="collapse navbar-collapse nav-padding" collapse="!isCollapsed" role="navigation" data-ng-controller="DashboardCtrl">
-      <ul class="nav navbar-nav navbar-right">
+      <ul class="nav navbar-nav navbar-right" ng-init="getUser()">
         <li class="header">
           <a class="nav-border" href="/#/services">Services</a>
         </li>
@@ -34,6 +34,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <span data-ng-bind="user.username"></span> <b class="caret"></b>
             </a>
+            <b class="user-role text-capitalize">Role: {{user.role}}</b>
             <ul class="dropdown-menu" ng-if="user.role === 'developer'">
               <li>
                 <a href="/#/user/{{user._id}}/profile">Profile</a>
