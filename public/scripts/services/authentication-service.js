@@ -3,11 +3,10 @@ app.factory('Authentication', ['$resource', '$rootScope', '$http', '$localStorag
     var token = $localStorage.token;
     if (token) {
       var userId = JSON.parse($localStorage.userId).id;
-
       $rootScope.isloggedin = true;
-
     }
-
+    // var BASE_URL = 'https://developer-central.herokuapp.com';
+    // var BASE_URL = 'http://localhost:8000/';
     var ApiRequest = {
       getUser : function() {
         if(token){
@@ -22,9 +21,6 @@ app.factory('Authentication', ['$resource', '$rootScope', '$http', '$localStorag
         return;
           // $scope.signedIn = true;
         },
-        // signUp: function(user) {
-        //   return $http.post(BASE_URL + 'signup', user);
-        // },
         // signIn: function(user, success, error) {
         //   return $http.post(BASE_URL + 'signin', user);
         // },
@@ -43,32 +39,16 @@ app.factory('Authentication', ['$resource', '$rootScope', '$http', '$localStorag
     };
 
     function getUserFromToken() {
-      var token = $localStorage.token;
-      var user = {};
-      if (typeof token !== 'undefined') {
-        var encoded = token.split('.')[1];
-        // user = JSON.parse(urlBase64Decode(encoded));
+        if(token){
+          $http.get('user/me/' + userId).success(function(response) {
+            // console.log('get user response', response);
+            return response;
+          }).error(function(error) {
+            return error;
+          });
+          
+        }
       }
-      return user;
-    }
-
-    function urlBase64Decode(str) {
-      var output = str.replace('-', '+').replace('_', '/');
-      switch (output.length % 4) {
-        case 0:
-          break;
-        case 2:
-          output += '==';
-          break;
-        case 3:
-          output += '=';
-          break;
-        default:
-          throw 'Illegal base64url string!';
-      }
-      return window.atob(output);
-    }
-
     function changeUser(user) {
       angular.extend(ApiRequest.currentUser, user);
     }

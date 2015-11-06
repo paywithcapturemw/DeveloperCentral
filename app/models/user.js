@@ -62,32 +62,6 @@ var UserSchema = new Schema({
     type: Boolean,
     default: false
   },
-  // billPaymentCount: {
-  //   type: Number,
-  //   default: 0
-  // },
-  // rechargesCount: {
-  //   type: Number,
-  //   default: 0
-  // },
-  // 
-  // thinking
-  // apps: [{
-  //   type: Schema.ObjectId,
-  //   ref: 'App'
-  // }],
-  // keys:[{
-  //   type: Schema.ObjectId,
-  //   ref: 'ApiKey'
-  // }],
-  // billPayments: [{
-  //   type: Schema.ObjectId,
-  //   ref: 'BillsPayment'
-  // }],
-  // recharges: [{
-  //   type: Schema.ObjectId,
-  //   ref: 'AirtimeRecharge'
-  // }],
   createdAt: {
     type: Date,
     default: Date.now()

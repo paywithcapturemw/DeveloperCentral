@@ -39,5 +39,8 @@
     "piwik-tracker": "^0.1.2",
     "rand-token": "^0.2.1",
     "request": "^2.64.0"
+  },
+  "devDependencies": {
+    "gulp-ngdocs": "^0.2.13"
   }
 }

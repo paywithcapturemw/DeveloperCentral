@@ -17,8 +17,6 @@ var express = require('express'),
 
 
 module.exports = function(app, config, router) {
-  // createApp
-  //use bycrypt and crypto
   var genToken = function() {
     var regex = new RegExp('/', 'g');
     return bcryptjs.genSaltSync(10).toString('hex').replace(regex, '');
@@ -34,7 +32,7 @@ module.exports = function(app, config, router) {
           data: message
         });
       } else {
-        var keyToken = genToken();
+        
         // add app to app database
         var newApp = new Apps({
           name: req.body.name,
@@ -151,6 +149,9 @@ module.exports = function(app, config, router) {
   module.exports.singleApp = function(req, res) {
     var userId = req.params.userId;
     var appId = req.params.appId;
+    console.log(req, 'req')
+        console.log(req.uer, 'req.user')
+
     Apps.findOne({
       user: userId,
       _id: appId

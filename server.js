@@ -14,8 +14,6 @@ var config = require('./config/config');
 
 // your express configuration here
 
-
-
 var logger         = require('morgan');
 var bodyParser     = require('body-parser');
 var methodOverride = require('method-override');
@@ -66,20 +64,13 @@ require('./app/controllers/services')(app, config, router);
 require('./app/controllers/apps')(app, config, router);
 require('./app/controllers/apiKey')(app);
 require('./app/controllers/admin')(app);
+require('./app/controllers/blog');
 
-// require('./app/controllers/airtime-recharge')(app);
-// require('./app/controllers/bills-payment')(app);
-// require('./app/controllers/keen')(app);
+
 require('./app/routes/apps')(app);
 require('./app/routes/services')(app);
 require('./app/routes/user')(app);
-
-
-
-
-
-
-// routes(app);
+require('./app/routes/blog')(app);
 
 
 var env = process.env.NODE_ENV || 'development';
@@ -87,12 +78,4 @@ if ('development' == env) {
   
 }
 
-// Render the dashboard page.
-// router.get('/dashboard', function (req, res) {
-//   if (!req.user || req.user.status !== 'ENABLED') {
-//     return res.redirect('/login');
-//   }
-
-//   res.render('dashboard', {title: 'Dashboard', user: req.user});
-// });
-
+// exports = module.exports = app;

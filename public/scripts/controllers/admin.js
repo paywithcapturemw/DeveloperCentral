@@ -74,7 +74,6 @@ app.controller('AdminCtrl', ['$scope', '$http', '$location', '$stateParams', '$r
     };
     $scope.singleAppService = function(appId) {
       $http.get('/user/admin/' + $stateParams.id + '/apps/' + appId + '/singleAppService').success(function(response) {
-        console.log('singleAppService', response);
         $scope.appServiceCount = response.data;
       }).error(function(error) {
         $scope.error = error.message;

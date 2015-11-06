@@ -1,6 +1,5 @@
 .dashboard-parent-div {
-  padding-top: 100px;
-}
+    padding: 100px 0;}
 
 .config-panel,
 .app-tab {
@@ -70,6 +69,10 @@
 .app-div:hover {
   background-color: #E3F2FD;
   text-decoration: none;
+}
+
+.app-div:hover hr{
+  border-color: #2A68C9;
 }
 
 .select-key {

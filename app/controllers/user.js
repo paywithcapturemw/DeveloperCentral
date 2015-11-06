@@ -14,7 +14,6 @@ var express = require('express'),
   pem = require('pem'),
   fs = require('fs');
 
-
 var genToken = function() {
   var regex = new RegExp('/', 'g');
   return bcryptjs.genSaltSync(8).toString('hex').replace(regex, '');
@@ -179,12 +178,14 @@ module.exports = function(app, config, router) {
           } else if (user) {
             if (bcrypt.compareSync(userPassword, user.password)) {
               userObject = {
-                username: user.username
+                username: user.username,
+                userId: user._id
               };
               var token = jwt.sign(userObject, secret, {
                 expiresInMinutes: 1440
               });
-              var decoded = jwt.decode(token);
+
+              var decodedOnSignIn = jwt.decode(token);
               res.status(200).send({
                 data: user,
                 signintoken: token,
@@ -400,40 +401,25 @@ module.exports = function(app, config, router) {
   });
 
   // route middleware to verify a token
-  // app.route.use(function(req, res, next) {
-
-  //   // check header or url parameters or post parameters for token
-  //   var token = req.body.token || req.query.token || req.headers['x-access-token'];
-
-  //   // decode token
-  //   if (token) {
-
-  //     // verifies secret and checks exp
-  //     jwt.verify(token, app.get('superSecret'), function(err, decoded) {
-  //       if (err) {
-  //         return res.json({
-  //           success: false,
-  //           message: 'Failed to authenticate token.'
-  //         });
-  //       } else {
-  //         // if everything is good, save to request for use in other routes
-  //         req.decoded = decoded;
-  //         next();
-  //       }
-  //     });
-
-  //   } else {
-
-  //     // if there is no token
-  //     // return an error
-  //     return res.status(403).send({
-  //       success: false,
-  //       message: 'No token provided.'
-  //     });
-
-  //   }
-  // });
-
-
+  module.exports.requiresLogin = function(req, res, next) {
+    var token = req.body.token || req.headers.token;
+    if (token) {
+      jwt.verify(token, secret, function(err, decoded) {
+        if (err) {
+          return res.json({
+            success: false,
+            message: 'Failed to authenticate token.'
+          });
+        } else {
+          next();
+        }
+      });
+    } else {
+      return res.status(403).send({
+        success: false,
+        message: 'User must be logged in.'
+      });
+    }
+  };
 
 };

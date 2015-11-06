@@ -1,0 +1,30 @@
+<div ng-controller="BlogsCtrl">
+  <div ng-controller="AuthenticationCtrl">
+    <md-content layout-padding>
+      <form name="blogForm">
+        <md-input-container class="md-block">
+          <label>Title</label>
+          <input required name="title" ng-model="blog.title">
+          <div ng-messages="blogForm.title.$error">
+          </div>
+        </md-input-container>
+        <md-input-container class="md-block">
+          <label>Content</label>
+          <input required name="clientName" ng-model="blog.blogContent">
+          <div ng-messages="blogForm.blogContent.$error">
+          </div>
+        </md-input-container>
+        <md-input-container class="md-block">
+          <label>Caption</label>
+          <input required name="caption" ng-model="blog.caption" />
+          <div ng-messages="blogForm.caption.$error" role="alert">
+          </div>
+        </md-input-container>
+        <div data-ng-show="error" class="text-danger">
+          <strong data-ng-bind="error" style="color:#F00;"></strong>
+        </div>
+        <md-button ng-click="newBlog(blog,'Transfers', userId)">New Discussion</md-button>
+      </form>
+    </md-content>
+  </div>
+</div>

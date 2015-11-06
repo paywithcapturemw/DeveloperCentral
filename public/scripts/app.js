@@ -17,6 +17,8 @@ var app = angular.module('DeveloperCentral', [
   'ui.router',
   'ngStorage',
   'angular-jwt',
+  'ng-showdown',
+  'ngMaterial'
   // 'underscore'
   // 'angularFileUpload'
 ]);
@@ -63,12 +65,46 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
       templateUrl: 'views/payments-documentation.html',
       controller: 'MainCtrl'
     })
-      .state('documentation', {
+    .state('documentation', {
       url: '/APIdocumentation',
       templateUrl: 'views/documentation.html',
       controller: 'MainCtrl'
     })
-    // 
+    .state('community', {
+      url: '/community',
+      templateUrl: 'views/community.html',
+      controller: 'MainCtrl'
+    })
+    .state('communityDiscussion', {
+      url: '/community/discussion',
+      templateUrl: 'views/transfers-blog.html',
+      controller: 'MainCtrl'
+    })
+    .state('airtimePurchasesDiscussion', {
+      url: '/airtime-purchases-API-Discussion',
+      templateUrl: 'views/airtime-purchase-blog.html',
+      controller: 'BlogsCtrl'
+    })
+    .state('transfersDiscussion', {
+      url: '/transfers-API-Discussion',
+      templateUrl: 'views/transfers-blog.html',
+      controller: 'BlogsCtrl'
+    })
+    .state('createDiscussion', {
+      url: '/create-API-Discussion',
+      templateUrl: 'views/create-discussion.html',
+      controller: 'BlogsCtrl'
+    })
+    .state('paymentsDiscussion', {
+      url: '/payments-API-Discussion',
+      templateUrl: 'views/payments-blog.html',
+      controller: 'BlogsCtrl'
+    })
+    .state('singleDiscussion', {
+      url: '/discussion/:id',
+      templateUrl: 'views/single-discussion.html',
+      controller: 'BlogsCtrl'
+    })
     .state('signup', {
       url: '/signup',
       templateUrl: 'views/partials/register-modal.html',

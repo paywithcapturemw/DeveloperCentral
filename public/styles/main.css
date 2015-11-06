@@ -1,6 +1,7 @@
-body {
+body, html{
   padding-top: 30px;
-  background-color: #ebebeb;
+  background-color: #ebebeb !important;
+  background: #ebebeb !important;
 }
 
 a {
@@ -10,7 +11,7 @@ a {
 
 
 div.introduction {
-  color: #2A68C9;
+  color: #2A68C9 !important;
   font-weight: bold;
   text-align: center;
   font-size: 20px;
@@ -21,7 +22,7 @@ div.service-div {
   /*position: absolute;*/
   padding-bottom: 20px;
   margin: 0px 22px 50px 15px;
-  /*border: 1px solid transparent;*/
+  border: 1px solid #ccc;
   border-radius: 3px;
   background-color: #fff;
 }
@@ -53,7 +54,7 @@ div.service-title.payment {
 div.service-title.purchase h2,
 div.service-title.transfer h2,
 div.service-title.payment h2 {
-  color: #fff;
+  color: #fff !important;
   font-weight: bold;
   text-align: center;
   font-size: 20px;

@@ -1,6 +1,6 @@
-// var gulp = require('gulp'),
-//     nodemon = require('gulp-nodemon'),
-//     concat = require('gulp-concat');
+var gulp = require('gulp'),
+    nodemon = require('gulp-nodemon'),
+    concat = require('gulp-concat');
 
 // var paths = {
 //   public: 'public/**',
@@ -42,3 +42,10 @@
 // gulp.task('build', ['styles']);
 // gulp.task('production', ['nodemon', 'build']);
 // gulp.task('default', ['nodemon', 'watch']);
+
+gulp.task('ngdocs', [], function () {
+  var gulpDocs = require('gulp-ngdocs');
+  return gulp.src('path/to/src/*.js')
+    .pipe(gulpDocs.process())
+    .pipe(gulp.dest('./docs'));
+});

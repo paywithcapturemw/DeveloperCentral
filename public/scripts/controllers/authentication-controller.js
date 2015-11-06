@@ -3,7 +3,6 @@ app.controller('AuthenticationCtrl', ['$scope', '$http', '$location', '$statePar
     var token = $localStorage.token;
 
     if (token) {
-
       $scope.signedIn = true;
       $scope.userId = JSON.parse($localStorage.userId).id;
       $http.get('user/me/' + $scope.userId).success(function(response) {
@@ -58,6 +57,7 @@ app.controller('AuthenticationCtrl', ['$scope', '$http', '$location', '$statePar
 
 
     $scope.signup = function(user) {
+      // Authentication.signup(user);
       $http.post('/user/signup', user).success(function(response) {
         //If successful we assign the response to the global user model
         $scope.signupMessage = response.message;
@@ -90,14 +90,11 @@ app.controller('AuthenticationCtrl', ['$scope', '$http', '$location', '$statePar
         $scope.user.password = '';
         $localStorage.token = response.signintoken;
         $localStorage.userId = JSON.stringify(userObj);
-        console.log('usern signedIn',response.data);
         //if user is developer
         if($rootScope.user.role === 'developer'){
-          console.log('developer');
           $location.url('/user/' + $rootScope.user._id + '/dashboard');
         }
         if($rootScope.user.role === 'admin'){
-          console.log('admin');
           $location.url('/admin-user/' + $rootScope.user._id + '/dashboard');
         }
         //else it shoudl redirect to the admin dashboard
@@ -143,12 +140,10 @@ app.controller('AuthenticationCtrl', ['$scope', '$http', '$location', '$statePar
         $scope.forgotMessage = 'Password must be between 7 to 9 characters, must contain at least one uppercase letter, one lowercase letter, one special character, one number.';
         return false;
       }
-
       if ($scope.password != $scope.confirmPassword) {
         $scope.forgotMessage = 'The two passwords do not match';
         return false;
       }
-
       return true;
 
     };
@@ -185,7 +180,6 @@ app.controller('AuthenticationCtrl', ['$scope', '$http', '$location', '$statePar
         $rootScope.isloggedin = false;
         delete $localStorage.token;
         delete $localStorage.userId;
-        console.log('signed you out');
         $location.url('/');
       });
     };

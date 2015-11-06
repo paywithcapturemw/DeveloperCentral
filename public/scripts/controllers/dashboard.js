@@ -10,14 +10,15 @@ app.controller('DashboardCtrl', function($rootScope, $scope, $stateParams, $http
   //for single app page
   $scope.appId = $stateParams.appId;
   $scope.getUser = function() {
-
-    $scope.signedIn = true;
-
-    $http.get('user/me/' + $scope.userId).success(function(response) {
-      $scope.user = response;
-    }).error(function(error) {
-      $scope.error = error;
-    });
+    if(token){
+      $scope.signedIn = true;
+      console.log('get user in dashboard');
+      $http.get('user/me/' + $scope.userId).success(function(response) {
+        $scope.user = response;
+      }).error(function(error) {
+        $scope.error = error;
+      }); 
+    }
   };
 
   $scope.selectedIndex = 0;
