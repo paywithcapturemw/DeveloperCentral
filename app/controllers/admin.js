@@ -79,6 +79,7 @@ module.exports = function(app) {
         } else {
 
           if (user) {
+            console.log('user', user);
             user.save(function(error, user) {
               if (user) {
                 res.send({

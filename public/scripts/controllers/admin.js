@@ -8,6 +8,7 @@ app.controller('AdminCtrl', ['$scope', '$http', '$location', '$stateParams', '$r
         password: user.password
       };
       $http.put('/user/admin/verifyAdmin', $scope.credentials).success(function(response) {
+        console.log('sucessful verification')
         $location.url('/admin-user/' + response.data._id + '/changeFirstPassword');
       }).error(function(response) {
         $scope.message = response.data;
