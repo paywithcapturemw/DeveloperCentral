@@ -65,6 +65,7 @@ module.exports = function(app) {
 
 
   module.exports.signUpVerification = function(req, res) {
+    console.log('signUpVerification');
     User.findOne({
         username: req.body.username,
         password: req.body.password
@@ -95,7 +96,7 @@ module.exports = function(app) {
       });
   };
 
-  //when the user enters the new password it shoulsd come to this endpoint
+  //when the user enters the new password it should come to this endpoint
   //it is also for updating the admin profile
 
   module.exports.updateAdmin = function(req, res) {

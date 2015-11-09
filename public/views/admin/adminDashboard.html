@@ -11,7 +11,7 @@
         </ul>
       </div>
       <br>
-      <div class="row input-form">
+      <div class="row input-form" data-ng-controller="AdminCtrl">
         <div class="col-md-12">
           <div class="col-md-10">
             <div data-ng-init="listApps()">
@@ -34,7 +34,7 @@
           </div>
         </div>
         <div class="col-md-12 input-form" data-ng-init="getAllDevelopers()">
-        <h4 class="text-center">DEVELOPERS</h4>
+          <h4 class="text-center">DEVELOPERS</h4>
           <div ng-if=allDevelopers.length===0>
             NO EXISTING DEVELOPER
           </div>
@@ -91,8 +91,7 @@
           </div>
         </div>
         <table>
-      
-        <!-- <div class="col-md-12 input-form" data-ng-init="allServiceCounts()">
+          <!-- <div class="col-md-12 input-form" data-ng-init="allServiceCounts()">
           <div ng-if=allServiceCounts.length===0>
             NO SERVICE CALLS HAVE BEEN MADE
           </div>

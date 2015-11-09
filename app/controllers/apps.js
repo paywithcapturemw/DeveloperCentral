@@ -39,7 +39,7 @@ module.exports = function(app, config, router) {
           description: req.body.description,
           user: userId
         });
-        newApp.clientSecret = keyToken;
+        newApp.clientSecret = genToken();
         newApp.save(function(err, finalApp) {
           if (err) {
             return res.status(500).send({
@@ -149,9 +149,7 @@ module.exports = function(app, config, router) {
   module.exports.singleApp = function(req, res) {
     var userId = req.params.userId;
     var appId = req.params.appId;
-    console.log(req, 'req')
-        console.log(req.uer, 'req.user')
-
+  
     Apps.findOne({
       user: userId,
       _id: appId
