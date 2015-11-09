@@ -9,8 +9,8 @@
   <br>
   <br>
   <!--   <div class="row">
-    <div data-ng-init="displayBlogs()" class="discussion-div">
-      <div data-ng-repeat="blog in blogs">
+    <div data-ng-init="displaydiscussions()" class="discussion-div">
+      <div data-ng-repeat="blog in discussions">
         <div class="text-center discussion-single-div">
           <a href="/#/discussion/{{blog._id}}">
             <h2 class="app-name">Title: {{blog.title}}</h2>
@@ -21,11 +21,14 @@
   </div> -->
   <div ng-cloak class="discussion-div">
     <md-content>
-      <md-list data-ng-init="displayBlogs()">
-        <md-list-item class="md-3-line" ng-repeat="blog in blogs">
+      <md-list data-ng-init="displaydiscussions()">
+        <md-list-item ng-if="discussions.length === 0">
+          <p>There are no posts to view.</p>
+        </md-list-item>
+        <md-list-item class="md-3-line" ng-repeat="blog in discussions">
           <img ng-src="{{item.face}}?{{$index}}" class="face" alt="{{item.who}}">
           <div class="md-list-item-text discussion-div">
-            <a href="/#/discussion/{{blog._id}}">
+            <a href="/#/community/discussion/{{blog._id}}">
               <!-- <h2 class="app-name">Title: {{blog.title}}</h2>
               <em><b>by: </b>{{blog.user.username}}</em></a> -->
             <h3>{{blog.title}}</h3>

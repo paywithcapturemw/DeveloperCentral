@@ -12,7 +12,6 @@ app.controller('DashboardCtrl', function($rootScope, $scope, $stateParams, $http
   $scope.getUser = function() {
     if(token){
       $scope.signedIn = true;
-      console.log('get user in dashboard');
       $http.get('user/me/' + $scope.userId).success(function(response) {
         $scope.user = response;
       }).error(function(error) {

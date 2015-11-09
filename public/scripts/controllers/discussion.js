@@ -1,4 +1,4 @@
-app.controller('BlogsCtrl', ['$scope', '$http', '$location', '$stateParams', '$rootScope', '$localStorage', 'Authentication', 'jwtHelper',
+app.controller('DiscussionsCtrl', ['$scope', '$http', '$location', '$stateParams', '$rootScope', '$localStorage', 'Authentication', 'jwtHelper',
   function($scope, $http, $location, $stateParams, $rootScope, $localStorage, Authentication, jwtHelper) {
     var token = $localStorage.token;
     if (token) {
@@ -10,15 +10,15 @@ app.controller('BlogsCtrl', ['$scope', '$http', '$location', '$stateParams', '$r
       $location.url('/create-API-Discussion');
       $scope.openDiscussionForm = true;
     };
-    $scope.displayBlogs = function() {
-      $http.get('/blogs').success(function(response) {
-          $scope.blogs = response;
+    $scope.displaydiscussions = function() {
+      $http.get('/discussions').success(function(response) {
+          $scope.discussions = response;
         })
         .error(function(errorResponse) {
           $scope.error = errorResponse.data;
         });
     };
-    $scope.newBlog = function(blog, type) {
+    $scope.newDiscussion = function(blog, type) {
       $scope.openDiscussionForm = false;
       var postBody = {
         token: token,
@@ -28,9 +28,9 @@ app.controller('BlogsCtrl', ['$scope', '$http', '$location', '$stateParams', '$r
         serviceType: type,
         user: $scope.userId
       };
-      $http.post('/blogs', postBody).success(function(response) {
+      $http.post('/discussions', postBody).success(function(response) {
           var blogId = response._id;
-          $location.url('/discussion/' + blogId);
+          $location.url('/community/discussions');
         })
         .error(function(errorResponse) {
           $scope.error = errorResponse.message;
@@ -40,10 +40,10 @@ app.controller('BlogsCtrl', ['$scope', '$http', '$location', '$stateParams', '$r
 
 
 
-    $scope.singleBlog = function() {
-      var blogId = $stateParams.id;
-      $http.get('/blogs/' + blogId).success(function(response) {
-          $scope.blog = response;
+    $scope.singleDiscussion = function() {
+      var discussionId = $stateParams.id;
+      $http.get('/discussions/' + discussionId).success(function(response) {
+          $scope.discussion = response;
         })
         .error(function(errorResponse) {
           $scope.error = errorResponse.data;
@@ -64,9 +64,11 @@ app.controller('BlogsCtrl', ['$scope', '$http', '$location', '$stateParams', '$r
           creator: $scope.userId
         }
       };
-
-      $http.post('/blogs/' + blog._id + '/comments', commentBody).success(function(response) {
-        $location.url('/discussion/' + blog._id);
+      $scope.discussion = blog;
+      // console.log('discussion', blog);
+      $http.post('/discussions/' + blog._id + '/comments', commentBody).success(function(response) {
+        $scope.discussion.comments.push(response);
+        $location.url('/community/discussion/' + blog._id);
       }).error(function(errorResponse) {
         $scope.error = errorResponse.message;
       });
@@ -83,11 +85,13 @@ app.controller('BlogsCtrl', ['$scope', '$http', '$location', '$stateParams', '$r
           liker: $scope.userId
         }
       };
-      $http.post('/blogs/' + blog._id + '/like', body).success(function(response) {
+      $scope.discussion = blog;
+
+      $http.post('/discussions/' + blog._id + '/like', body).success(function(response) {
         $scope.liked = true;
-        $scope.blog = response;
+        $scope.discussion.likes.length = $scope.discussion.likes.length +1;
       }).error(function(errorResponse) {
-        $scope.error = errorResponse.message;
+        $scope.error = errorResponse.data;
       });
     };
 
@@ -101,7 +105,7 @@ app.controller('BlogsCtrl', ['$scope', '$http', '$location', '$stateParams', '$r
         }
       };
 
-      $http.post('/blogs/' + blog._id + '/comment/' + comment._id + '/like', postBody).success(function(response) {
+      $http.post('/discussions/' + blog._id + '/comment/' + comment._id + '/like', postBody).success(function(response) {
         $scope.liked = true;
         $scope.blog = response;
       }).error(function(errorResponse) {

@@ -56,7 +56,10 @@ var server = app.listen((process.env.PORT || 8000), function(){
 });
 
 
-var router = express.Router();              // get an instance of the express Router
+var router = express.Router();     // get an instance of the express Router
+
+require('./app/models/discussion');
+// require('./app/routes');
 
 var generateToken = require("./app/controllers/generateToken");
 require('./app/controllers/user')(app);
@@ -64,12 +67,16 @@ require('./app/controllers/services')(app, config, router);
 require('./app/controllers/apps')(app, config, router);
 require('./app/controllers/apiKey')(app);
 require('./app/controllers/admin')(app);
+require('./app/controllers/discussion');
 require('./app/controllers/blog');
+
+
 
 
 require('./app/routes/apps')(app);
 require('./app/routes/services')(app);
 require('./app/routes/user')(app);
+require('./app/routes/discussion')(app);
 require('./app/routes/blog')(app);
 
 

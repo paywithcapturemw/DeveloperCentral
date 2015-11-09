@@ -10,36 +10,36 @@ var mongoose = require('mongoose'),
 /**
  * Like Schema
  */
-var LikeSchema = new Schema({
-  liker: {
-    type: Schema.ObjectId,
-    ref: 'User'
-  },
-  created: {
-    type: Date,
-    default: Date.now
-  }
-});
+// var LikeSchema = new Schema({
+//   liker: {
+//     type: Schema.ObjectId,
+//     ref: 'User'
+//   },
+//   created: {
+//     type: Date,
+//     default: Date.now
+//   }
+// });
 
 /**
  * Comment Schema
  */
-var CommentSchema = new Schema({
-  creator: {
-    type: Schema.ObjectId,
-    ref: 'User'
-  },
-  commentContent:{
-    type: String,
-    default: '',
-    trim: true
-  },
-  created: {
-    type: Date,
-    default: Date.now
-  },
-  commentLikes: [LikeSchema]
-});
+// var CommentSchema = new Schema({
+//   creator: {
+//     type: Schema.ObjectId,
+//     ref: 'User'
+//   },
+//   commentContent: {
+//     type: String,
+//     default: '',
+//     trim: true
+//   },
+//   created: {
+//     type: Date,
+//     default: Date.now
+//   },
+//   commentLikes: [LikeSchema]
+// });
 
 
 /**
@@ -56,16 +56,12 @@ var BlogSchema = new Schema({
     default: '',
     trim: true
   },
-  caption:{
+  caption: {
     type: String,
     default: '',
     trim: true
   },
-  serviceType:{
-    type: String,
-    enum:['Payments', 'Airtime Recharges', 'Transfers']
-  },
-  image:{
+  image: {
     type: String,
     default: ''
   },
@@ -77,8 +73,14 @@ var BlogSchema = new Schema({
     type: Schema.ObjectId,
     ref: 'User'
   },
-  comments: [CommentSchema],
-  likes: [LikeSchema]
+  comments: [{
+    type: Schema.ObjectId,
+    ref: 'Comment'
+  }],
+  likes: [{
+    type: Schema.ObjectId,
+    ref: 'Like'
+  }]
 });
 
 

@@ -1,0 +1,29 @@
+<div ng-controller="BlogsCtrl" ng-cloak>
+  <md-content class="md-padding">
+    <md-card>
+      <!-- <img ng-src="{{imagePath}}" class="md-card-image" alt="Washed Out"> -->
+      <md-card-content>
+        <h3><b>Discussions</b></h3>
+        <div ng-init="singleBlog()" flex>
+          <div>
+            <img src="">
+            <h3>Title: {{blog.title}}</h3>
+            <h4><b>Caption: </b>{{blog.caption}}</h4>
+            <p><b>Content: </b>{{blog.blogContent}}</p>
+            <p><b>By: </b>{{blog.user.username}}</p>
+          </div>
+          <ul class="discussion-icon">
+            <!-- <li class="pull-left"><span class="glyphicon glyphicon-comment"></span>&nbsp;{{discussion.comments.length}}&nbsp;Comments</li> -->
+            <ul ng-repeat="comment in blog.comments">
+              <li>
+                <p>{{comment.commentContent}}</p>
+                <span>By: {{comment.creator.username}}</span>
+              </li>
+            </ul>
+            <li class="pull-left insights-icon-li"><span class=" icon-like"><i class="fa fa-heart"></i>&nbsp;{{blog.likes.length}}&nbsp;<md-button ng-click="likeBlog(blog)">Likes</md-button></span> </li>
+          </ul>
+        </div>
+      </md-card-content>
+    </md-card>
+  </md-content>
+</div>

@@ -76,36 +76,62 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
       controller: 'MainCtrl'
     })
     .state('communityDiscussion', {
-      url: '/community/discussion',
-      templateUrl: 'views/transfers-blog.html',
+      url: '/community/discussions',
+      templateUrl: 'views/discussion.html',
       controller: 'MainCtrl'
     })
-    .state('airtimePurchasesDiscussion', {
-      url: '/airtime-purchases-API-Discussion',
-      templateUrl: 'views/airtime-purchase-blog.html',
+    .state('blogList', {
+      url: '/community/blogs',
+      templateUrl: 'views/blogs.html',
       controller: 'BlogsCtrl'
     })
-    .state('transfersDiscussion', {
-      url: '/transfers-API-Discussion',
-      templateUrl: 'views/transfers-blog.html',
-      controller: 'BlogsCtrl'
+    .state('singleDiscussion', {
+      url: '/community/discussion/:id',
+      templateUrl: 'views/single-discussion.html',
+      controller: 'DiscussionsCtrl'
+    })
+    .state('singleBlog', {
+      url: '/community/blogs/:id',
+      templateUrl: 'views/single-blog.html',
+      controller: 'MainCtrl'
     })
     .state('createDiscussion', {
       url: '/create-API-Discussion',
       templateUrl: 'views/create-discussion.html',
+      controller: 'DiscussionsCtrl'
+    })
+    .state('createBlog', {
+      url: '/create-Blog',
+      templateUrl: 'views/create-blog.html',
       controller: 'BlogsCtrl'
     })
-    .state('paymentsDiscussion', {
-      url: '/payments-API-Discussion',
-      templateUrl: 'views/payments-blog.html',
-      controller: 'BlogsCtrl'
-    })
-    .state('singleDiscussion', {
-      url: '/discussion/:id',
-      templateUrl: 'views/single-discussion.html',
-      controller: 'BlogsCtrl'
-    })
-    .state('signup', {
+    // .state('discussion', {
+    //   url: '/community/discussion',
+    //   templateUrl: 'views/transfers-blog.html',
+    //   controller: 'MainCtrl'
+    // })
+    // .state('airtimePurchasesDiscussion', {
+    //   url: '/airtime-purchases-API-Discussion',
+    //   templateUrl: 'views/airtime-purchase-blog.html',
+    //   controller: 'BlogsCtrl'
+    // })
+    // .state('airtimePurchasesDiscussion', {
+    //   url: '/airtime-purchases-API-Discussion',
+    //   templateUrl: 'views/airtime-purchase-blog.html',
+    //   controller: 'DiscussionsCtrl'
+    // })
+    // .state('transfersDiscussion', {
+    //   url: '/transfers-API-Discussion',
+    //   templateUrl: 'views/transfers-blog.html',
+    //   controller: 'DiscussionsCtrl'
+    // })
+
+  // .state('paymentsDiscussion', {
+  //   url: '/payments-API-Discussion',
+  //   templateUrl: 'views/payments-blog.html',
+  //   controller: 'DiscussionsCtrl'
+  // })
+  .state('signup', {
       url: '/signup',
       templateUrl: 'views/partials/register-modal.html',
       controller: 'AuthenticationCtrl'

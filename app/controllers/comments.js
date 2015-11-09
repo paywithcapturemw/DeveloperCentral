@@ -6,18 +6,18 @@
 // User = require('../models/user'),
 
 var mongoose = require('mongoose'),
-  Blog = require('../models/blog'),
+  Discussion = require('../models/discussion'),
   _ = require('lodash');
-var blogs = require('../../app/controllers/blog');
+var discussions = require('../../app/controllers/discussion');
 
 // /**
 //  * Add a comment
 //  */
 module.exports.addComment = function(req, res) {
-  var blogId = req.params.blogId;
+  var discussionId = req.params.discussionId;
   var comment = req.body.comment;
-  Blog.find({
-    _id: blogId
+  Discussion.find({
+    _id: discussionId
   }, function(err, blog) {
     if (err) {
       return res.status(400).send({
@@ -33,7 +33,7 @@ module.exports.addComment = function(req, res) {
             message: 'comment was not saved'
           });
         } else {
-          res.jsonp(blog);
+          res.jsonp(comment);
         }
       });
     }
@@ -72,9 +72,9 @@ module.exports.addComment = function(req, res) {
 module.exports.likeComment = function(req, res) {
   var index = 0;
 
-  var blogId = req.params.blogId;
-  Blog.find({
-    _id: blogId
+  var discussionId = req.params.discussionId;
+  Discussion.find({
+    _id: discussionId
   }).populate('user').exec(function(err, blog) {
 
     if (err) {
