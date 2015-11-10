@@ -20,8 +20,8 @@ module.exports.create = function(req, res) {
     title: blogBody.title,
     blogContent: blogBody.blogContent
   });
-
-  newBlog.user = req.body.user;
+   console.log('req.body.user', req.params);
+  newBlog.user = req.params.userId;
   newBlog.save(function(error, blog) {
     if (error) {
       console.log('error:', error);

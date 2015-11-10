@@ -24,7 +24,7 @@
           <div data-ng-show="error" class="text-danger">
             <strong data-ng-bind="error" style="color:#F00;"></strong>
           </div>
-          <md-button ng-click="newBlog(blog, userId, user.role)">New Blog</md-button>
+          <md-button ng-click="newBlog(blog, user._id, user.role)">New Blog</md-button>
         </form>
       </md-content>
     </div>
