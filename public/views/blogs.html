@@ -1,31 +1,30 @@
 <div ng-controller="DashboardCtrl" data-ng-init="getUser()">
   <div class="row" ng-if="user.role==='admin'">
-    <div>
-      <a href="/#/create-Blog">
-        <button class="btn btn-sm btn-default glyphicon glyphicon-plus" type="button">
-        </button>Create A Blog
-      </a>
+    <a href="/#/create-Blog">
+      <button class="btn btn-sm btn-default glyphicon glyphicon-plus" type="button">
+      </button>Create A Blog
+    </a>
+  </div>
+  <div ng-contoller="BlogsCtrl">
+    <div ng-cloak class="discussion-div">
+      <md-content>
+        <md-list data-ng-init="displayBlogs()">
+          <md-list-item ng-if="blogs.length === 0">
+            <p>There are no posts to view.</p>
+          </md-list-item>
+          <md-list-item class="md-3-line" ng-repeat="blog in blogs">
+            <img ng-src="{{item.face}}?{{$index}}" class="face" alt="{{item.who}}">
+            <div class="md-list-item-text discussion-div">
+              <!-- <a href="/#/community/blogs/{{blog._id}}"> -->
+              <h3>{{blog.title}}</h3>
+              <em><b>By: </b>{{blog.user.username}}</em>
+              <!-- </a> -->
+            </div>
+          </md-list-item>
+        </md-list>
+      </md-content>
     </div>
-    <div ng-contoller="BlogsCtrl">
-      <div ng-cloak class="discussion-div">
-        <md-content>
-          <md-list data-ng-init="displayBlogs()">
-            <md-list-item ng-if="blogs.length === 0">
-              <p>There are no posts to view.</p>
-            </md-list-item>
-            <md-list-item class="md-3-line" ng-repeat="blog in blogs">
-              <img ng-src="{{item.face}}?{{$index}}" class="face" alt="{{item.who}}">
-              <div class="md-list-item-text discussion-div">
-                <!-- <a href="/#/community/blogs/{{blog._id}}"> -->
-                <h3>{{blog.title}}</h3>
-                <em><b>By: </b>{{blog.user.username}}</em>
-                <!-- </a> -->
-              </div>
-            </md-list-item>
-          </md-list>
-        </md-content>
-      </div>
-      <!-- <div class="page-container">
+    <!-- <div class="page-container">
           <div class="page">
             <h1>Untitled document</h1>
             <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras mattis consectetur purus sit amet fermentum. Nulla vitae elit libero, a pharetra augue. Nullam id dolor id nibh ultricies vehicula ut id elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</p>
@@ -33,7 +32,6 @@
             <p>Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum. Maecenas sed diam eget risus varius blandit sit amet non magna. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
           </div>
         </div> -->
-    </div>
   </div>
 </div>
 <br>

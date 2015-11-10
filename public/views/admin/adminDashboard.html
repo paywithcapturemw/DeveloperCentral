@@ -67,7 +67,7 @@
           </div>
           <div data-ng-repeat="app in allApps">
             <!-- <b></b> {{app}} -->
-            <table class="table">
+            <table class="table" data-ng-init="singleAppService(app._id)">
               <col width="60">
               <col width="150">
               <col width="30">
@@ -85,7 +85,7 @@
                   <th>Total Calls</th>
                 </tr>
               </thead>
-              <tbody data-ng-init="singleAppService(app._id)">
+              <tbody>
                 <tr data-ng-repeat="count in appServiceCount">
                   <td>{{app.name}}</td>
                   <td>{{app.description}}</td>

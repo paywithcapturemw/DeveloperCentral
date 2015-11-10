@@ -226,5 +226,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
     });
 
   $urlRouterProvider.otherwise('/');
-
+  // $locationProvider.html5Mode({
+  //   enabled: true,
+  //   requireBase: false
+  // });
 }]);
