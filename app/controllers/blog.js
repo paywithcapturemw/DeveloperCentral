@@ -43,7 +43,7 @@ module.exports.read = function(req, res) {
   var blogId = req.params.blogId;
   Blog.findOne({
     _id: blogId
-  }).populate('user comments.creator').exec(function(err, blog) {
+  }).populate('user').exec(function(err, blog) {
     if (err) {
       return res.status(400).send({
         data: err

@@ -6,7 +6,7 @@
     </a>
   </div>
   <div ng-contoller="BlogsCtrl">
-    <div ng-cloak class="discussion-div">
+    <div ng-cloak class="discussion-div discussion-single-div">
       <md-content>
         <md-list data-ng-init="displayBlogs()">
           <md-list-item ng-if="blogs.length === 0">
@@ -15,10 +15,10 @@
           <md-list-item class="md-3-line" ng-repeat="blog in blogs">
             <img ng-src="{{item.face}}?{{$index}}" class="face" alt="{{item.who}}">
             <div class="md-list-item-text discussion-div">
-              <!-- <a href="/#/community/blogs/{{blog._id}}"> -->
+              <a href="/#/community/blogs/{{blog._id}}">
               <h3>{{blog.title}}</h3>
               <em><b>By: </b>{{blog.user.username}}</em>
-              <!-- </a> -->
+              </a>
             </div>
           </md-list-item>
         </md-list>

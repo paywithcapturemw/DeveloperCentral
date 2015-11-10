@@ -15,7 +15,6 @@ app.controller('BlogsCtrl', ['$scope', '$http', '$location', '$stateParams', '$r
         });
     };
     $scope.newBlog = function(blog, type, userRole) {
-      console.log('in blog', blog);
       $scope.openblogForm = false;
       var postBody = {
         token: token,
@@ -39,6 +38,7 @@ app.controller('BlogsCtrl', ['$scope', '$http', '$location', '$stateParams', '$r
     $scope.singleBlog = function() {
       var blogId = $stateParams.id;
       $http.get('/blogs/' + blogId).success(function(response) {
+        console.log('get singleBlog response', response);
           $scope.blog = response;
         })
         .error(function(errorResponse) {
