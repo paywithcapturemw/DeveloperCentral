@@ -41,18 +41,20 @@
           <div data-ng-repeat="developer in allDevelopers">
             <!-- {{developer}} -->
             <table class="table">
+              <col width="200">
+              <col width="100">
               <thead>
                 <tr>
                   <th>Username</th>
                   <!-- <th>Number Of Apps</th> -->
-                  <th>Description</th>
+                  <th>Role</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>{{developer.username}}</td>
                   <!-- <td>{{developer}}</td> -->
-                  <td>{{developer.username}}</td>
+                  <td>{{developer.role}}</td>
                 </tr>
               </tbody>
             </table>
@@ -66,6 +68,12 @@
           <div data-ng-repeat="app in allApps">
             <!-- <b></b> {{app}} -->
             <table class="table">
+              <col width="60">
+              <col width="150">
+              <col width="30">
+              <col width="30">
+              <col width="30">
+              <col width="30">
               <thead>
                 <tr>
                   <th>App Name</th>

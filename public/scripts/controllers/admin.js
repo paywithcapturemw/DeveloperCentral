@@ -12,7 +12,7 @@ app.controller('AdminCtrl', ['$scope', '$http', '$location', '$stateParams', '$r
         $location.url('/admin-user/' + response.data._id + '/changeFirstPassword');
       }).error(function(response) {
         $scope.message = response.data;
-        console.log('error', response)
+        
       });
     };
     $scope.validatePassword = function() {
@@ -46,7 +46,9 @@ app.controller('AdminCtrl', ['$scope', '$http', '$location', '$stateParams', '$r
 
     $scope.changePasswordInBackend = function(passwordObject) {
       $http.put('/user/admin/' + $stateParams.id + '/completeRegistration', passwordObject).success(function(response) {
-        $location.url('/admin-user/' + response.data._id + '/profile');
+        // $location.url('/admin-user/' + response.data._id + '/profile');
+        console.log('response fnally', response);
+        $scope.changePasswordMessage = response.message;
       }).error(function(error) {
         $scope.error = error.message;
       });

@@ -40,11 +40,12 @@ module.exports = function(app) {
           } else {
 
             var userModel = new User({
-              email : req.body.email,
-            username : req.body.username,
-             password : token,
-            role : 'admin'});
-              
+              email: req.body.email,
+              username: req.body.username,
+              password: token,
+              role: 'admin'
+            });
+
 
             userModel.save(function(err, user) {
               if (err) {
@@ -66,21 +67,17 @@ module.exports = function(app) {
 
 
   module.exports.signUpVerification = function(req, res) {
-    console.log('signUpVerification', req.body.username, req.body.password);
-
     User.findOne({
         username: req.body.username,
         password: req.body.password
       },
       function(err, user) {
         if (user) {
-          console.log('user', user);
           return res.json({
             data: user
           });
         }
         if (err || !user) {
-          console.log('err', err);
           return res.status(400).send({
             data: "Error occured: " + err
           });
@@ -98,7 +95,6 @@ module.exports = function(app) {
       _id: req.params.userId
     }, function(err, user) {
       if (user) {
-        console.log('user found', user);
         if (user.verified === false) {
           user.verified = true;
           user.password = bcrypt.hashSync(req.body.password, 12);
@@ -115,8 +111,10 @@ module.exports = function(app) {
                 data: "Error occured: " + error
               });
             } else {
+              var url = '/#/signin';
               return res.status(200).send({
-                data: user
+                data: user,
+                message: 'You have completed your registration. Please sign in to continue.'
               });
             }
           });

@@ -143,13 +143,6 @@ module.exports = function(app, config, router) {
           if (err) {
             return res.status(400).json(err);
           } else {
-            // var filteredUser = {
-            //   _id: user._id,
-            //   username: user.username,
-            //   email: user.email,
-            //   createdAt: user.createdAt,
-            //   verified: user.verified
-            // };
             res.redirect('/#/auth/' + user._id);
           }
         });
