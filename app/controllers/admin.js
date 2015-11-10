@@ -39,11 +39,12 @@ module.exports = function(app) {
             });
           } else {
 
-            var userModel = new User();
-            userModel.email = req.body.email;
-            userModel.username = req.body.username;
-            userModel.password = token;
-            userModel.role = 'admin';
+            var userModel = new User({
+              email : req.body.email,
+            username : req.body.username,
+             password : token,
+            role : 'admin'});
+              
 
             userModel.save(function(err, user) {
               if (err) {
@@ -65,33 +66,24 @@ module.exports = function(app) {
 
 
   module.exports.signUpVerification = function(req, res) {
-    console.log('signUpVerification');
+    console.log('signUpVerification', req.body.username, req.body.password);
+
     User.findOne({
         username: req.body.username,
         password: req.body.password
       },
       function(err, user) {
-        if (err) {
-          res.json({
-            type: false,
+        if (user) {
+          console.log('user', user);
+          return res.json({
+            data: user
+          });
+        }
+        if (err || !user) {
+          console.log('err', err);
+          return res.status(400).send({
             data: "Error occured: " + err
           });
-        } else {
-
-          if (user) {
-            console.log('user', user);
-            user.save(function(error, user) {
-              if (user) {
-                res.send({
-                  data: user
-                });
-              } else if (error) {
-                return res.status(400).json({
-                  data: "Error occured: " + error
-                });
-              }
-            });
-          }
         }
 
       });

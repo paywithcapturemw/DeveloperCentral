@@ -349,7 +349,6 @@ module.exports = function(app, config, router) {
 
 
   app.route('/reset/:token').get(function(req, res) {
-    console.log('resettoken check');
     User.findOne({
       resetPasswordToken: req.params.token,
       resetPasswordExpires: {
