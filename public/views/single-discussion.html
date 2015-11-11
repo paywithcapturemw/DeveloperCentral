@@ -1,5 +1,5 @@
 <div ng-controller="DiscussionsCtrl" ng-cloak>
-  <md-content class="md-padding">
+  <md-content class="md-padding" ng-controller="DashboardCtrl" data-ng-init="getUser()">
     <md-card>
       <!-- <img ng-src="{{imagePath}}" class="md-card-image" alt="Washed Out"> -->
       <md-card-content>
@@ -9,18 +9,18 @@
             <img src="">
             <h3>Title: {{discussion.title}}</h3>
             <h4><b>Caption: </b>{{discussion.caption}}</h4>
-            <p><b>Content: </b>{{discussion.discussionContent}}</p>
+            <p><b>Content: </b>{{discussion.blogContent}}</p>
             <p><b>By: </b>{{discussion.user.username}}</p>
           </div>
           <ul class="discussion-icon">
             <!-- <li class="pull-left"><span class="glyphicon glyphicon-comment"></span>&nbsp;{{discussion.comments.length}}&nbsp;Comments</li> -->
-            <ul ng-repeat="comment in discussion.comments">
+            <ul ng-repeat="comment in discussion.discussionComments">
               <li>
                 <p>{{comment.commentContent}}</p>
                 <span>By: {{comment.creator.username}}</span>
               </li>
             </ul>
-            <li class="pull-left insights-icon-li"><span class=" icon-like"><i class="fa fa-heart"></i>&nbsp;{{discussion.likes.length}}&nbsp;<md-button ng-click="likeBlog(discussion)">Likes</md-button></span> </li>
+            <li class="pull-left insights-icon-li"><span class=" icon-like"><i class="fa fa-heart"></i>&nbsp;{{discussion.discussionLikes.length}}&nbsp;<md-button ng-click="likeBlog(discussion)">Likes</md-button></span> </li>
           </ul>
           <!--     <div ng-if="!openDiscussionForm">
       <div>Blog List</div>
@@ -31,7 +31,7 @@
           <br>
           <br>
           <div class="col-md-12">
-            <form class="form-horizontal" data-ng-submit="createComment(discussion)" novalidate>
+            <form class="form-horizontal" data-ng-submit="createComment(discussion, user)" novalidate>
               <fieldset>
                 <div class="form-group">
                   <div data-ng-show="error" class="text-danger">

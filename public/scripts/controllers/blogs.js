@@ -38,7 +38,6 @@ app.controller('BlogsCtrl', ['$scope', '$http', '$location', '$stateParams', '$r
     $scope.singleBlog = function() {
       var blogId = $stateParams.id;
       $http.get('/blogs/' + blogId).success(function(response) {
-        console.log('get singleBlog response', response);
           $scope.blog = response;
         })
         .error(function(errorResponse) {
@@ -48,20 +47,19 @@ app.controller('BlogsCtrl', ['$scope', '$http', '$location', '$stateParams', '$r
 
 
     // Create new Blog
-    $scope.createComment = function(blog) {
+    $scope.createComment = function(blog, user) {
       // Create new Blog object
       var commentBody = {
         token: token,
         comment: {
           commentContent: this.commentContent,
-          creator: $scope.userId
+          creator: user
         }
       };
       $scope.blog = blog;
-      // console.log('blog', blog);
       $http.post('/blogs/' + blog._id + '/comments', commentBody).success(function(response) {
         $scope.blog.comments.push(response);
-        $location.url('/community/blog/' + blog._id);
+        $location.url('/community/blogs/' + blog._id);
       }).error(function(errorResponse) {
         $scope.error = errorResponse.message;
       });
@@ -79,7 +77,6 @@ app.controller('BlogsCtrl', ['$scope', '$http', '$location', '$stateParams', '$r
         }
       };
       $scope.blog = blog;
-
       $http.post('/blogs/' + blog._id + '/like', body).success(function(response) {
         $scope.liked = true;
         $scope.blog.likes.length = $scope.blog.likes.length +1;

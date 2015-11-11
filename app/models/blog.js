@@ -6,42 +6,6 @@
 var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
-
-/**
- * Like Schema
- */
-// var LikeSchema = new Schema({
-//   liker: {
-//     type: Schema.ObjectId,
-//     ref: 'User'
-//   },
-//   created: {
-//     type: Date,
-//     default: Date.now
-//   }
-// });
-
-/**
- * Comment Schema
- */
-// var CommentSchema = new Schema({
-//   creator: {
-//     type: Schema.ObjectId,
-//     ref: 'User'
-//   },
-//   commentContent: {
-//     type: String,
-//     default: '',
-//     trim: true
-//   },
-//   created: {
-//     type: Date,
-//     default: Date.now
-//   },
-//   commentLikes: [LikeSchema]
-// });
-
-
 /**
  * Blog Schema
  */

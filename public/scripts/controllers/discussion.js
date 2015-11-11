@@ -55,24 +55,23 @@ app.controller('DiscussionsCtrl', ['$scope', '$http', '$location', '$stateParams
     };
 
     // Create new Blog
-    $scope.createComment = function(blog) {
+    $scope.createComment = function(blog, user) {
       // Create new Blog object
       var commentBody = {
         token: token,
         comment: {
           commentContent: this.commentContent,
-          creator: $scope.userId
+          creator: user
         }
       };
       $scope.discussion = blog;
-      // console.log('discussion', blog);
       $http.post('/discussions/' + blog._id + '/comments', commentBody).success(function(response) {
-        $scope.discussion.comments.push(response);
+        $scope.discussion.discussionComments.push(response);
         $location.url('/community/discussion/' + blog._id);
       }).error(function(errorResponse) {
         $scope.error = errorResponse.message;
       });
-      // Clear form fields
+      // Clear form fields  
       this.commentContent = '';
     };
 
@@ -86,10 +85,9 @@ app.controller('DiscussionsCtrl', ['$scope', '$http', '$location', '$stateParams
         }
       };
       $scope.discussion = blog;
-
       $http.post('/discussions/' + blog._id + '/like', body).success(function(response) {
         $scope.liked = true;
-        $scope.discussion.likes.length = $scope.discussion.likes.length +1;
+        $scope.discussion.discussionLikes.length = $scope.discussion.discussionLikes.length +1;
       }).error(function(errorResponse) {
         $scope.error = errorResponse.data;
       });

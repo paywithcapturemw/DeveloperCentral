@@ -4,9 +4,11 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-  // Blog = mongoose.model('Blog'),
+  async = require('async'),
   Blog = require('../models/blog'),
   User = mongoose.model('User'),
+  Like = require('../models/like'),
+  Comment = require('../models/comment'),
   _ = require('lodash');
 
 /**
@@ -43,12 +45,14 @@ module.exports.read = function(req, res) {
   var blogId = req.params.blogId;
   Blog.findOne({
     _id: blogId
-  }).populate('user').exec(function(err, blog) {
+  }).populate('user').populate('comments')
+  .exec(function(err, blog) {
     if (err) {
       return res.status(400).send({
         data: err
       });
     } else {
+      console.log('blog', blog);
       return res.jsonp(blog);
     }
   });
@@ -75,7 +79,6 @@ module.exports.update = function(req, res) {
     });
 
   });
-
 
 };
 
@@ -124,54 +127,61 @@ module.exports.likePost = function(req, res) {
   var blogId = req.params.blogId;
   Blog.findOne({
     _id: blogId
-  }).populate('user').exec(function(err, blog) {
+  }).populate('user likes').exec(function(err, blog) {
 
     if (err) {
       return res.status(400).send({
         data: err
       });
     } else {
-
-      // var blog = req.body.blog,
-      like = req.body.like;
-      // like.liker = req.user;
       var hasLiked = false;
-      console.log('blog:', blog);
 
-      if (req.body.userId === blog.user._id.toString()) {
-        console.log('You cannot like your own post');
+      if (req.body.userId === blog.user._id) {
         return res.status(400).send({
-          data: 'You cannot like your own post'
+          data: 'You cannot like your own post.'
         });
       } else {
         for (var i = 0; i < blog.likes.length; i++) {
-          if (req.body.userId === blog.likes[i].liker.toString()) {
+          if (req.body.userId == blog.likes[i].liker) {
             hasLiked = true;
             break;
           }
         }
         if (!hasLiked) {
-          blog.likes.push(like);
+          var newLike = new Like(req.body.like);
 
-          blog.save(function(err) {
-            if (err) {
-              return res.status(400).send({
-                data: err
+          async.waterfall([
+              function(callback) {
+                newLike.save(function(error, savedLike) {
+                  if (error) {
+                    return res.status(400).send({
+                      data: error
+                    });
+                  } else {
+                    callback(null, savedLike);
+                  }
+                });
+              }
+            ],
+            function(err, newLike) {
+
+              blog.likes.push(newLike._id);
+              blog.save(function(err, blog) {
+                if (err) {
+                  return res.status(400).send({
+                    data: err
+                  });
+                } else {
+                  res.jsonp(newLike);
+                }
               });
-            } else {
-              res.jsonp(like);
-            }
-          });
+            });
         } else {
-          console.log('you have already liked this post before');
           return res.status(400).send({
-
-            data: 'you have already liked this post before'
+            data: 'You have liked this post before.'
           });
         }
       }
     }
   });
 };
-
-

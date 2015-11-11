@@ -4,10 +4,10 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
+  async = require('async'),
   Discussion = require('../models/discussion'),
-  // Discussion = mongoose.model('Discussion'),
-
-  // User = require('../models/User'),
+  Like = require('../models/like'),
+  Comment = require('../models/comment'),
   _ = require('lodash');
 
 
@@ -26,7 +26,6 @@ module.exports.create = function(req, res) {
   newBlog.user = req.body.user;
   newBlog.save(function(error, savedBlog) {
     if (error) {
-      console.log('error:', error);
       return res.status(500).send({
         data: error
       });
@@ -46,7 +45,8 @@ module.exports.read = function(req, res) {
   var discussionId = req.params.discussionId;
   Discussion.findOne({
     _id: discussionId
-  }).populate('user comments.creator').exec(function(err, blog) {
+  }).populate('user discussionComments discussionComments.creator').exec(function(err, blog) {
+     console.log('blog', blog);
     if (err) {
       return res.status(400).send({
         data: err
@@ -116,52 +116,60 @@ module.exports.list = function(req, res, next) {
  * Like a Post
  */
 module.exports.likePost = function(req, res) {
-  var discussionId = req.params.discussionId;
-  Discussion.find({
-    _id: discussionId
-  }).populate('user').exec(function(err, blog) {
 
+  var discussionId = req.params.discussionId;
+  Discussion.findOne({
+    _id: discussionId
+  }).populate('user discussionLikes').exec(function(err, blog) {
     if (err) {
       return res.status(400).send({
         data: err
       });
     } else {
-
-      // var blog = req.body.blog,
-      like = req.body.like;
-      // like.liker = req.user;
       var hasLiked = false;
-      console.log('blog:', blog);
-
-      if (req.body.userId === blog[0].user._id.toString()) {
-        console.log('You cannot like your own post');
+      if (req.body.userId === blog.user._id) {
         return res.status(400).send({
-          data: 'You cannot like your own post'
+          data: 'You cannot like your own post.'
         });
       } else {
-        for (var i = 0; i < blog[0].likes.length; i++) {
-          if (req.body.userId === blog[0].likes[i].liker.toString()) {
+        for (var i = 0; i < blog.discussionLikes.length; i++) {
+          if (req.body.userId == blog.discussionLikes[i].liker) {
             hasLiked = true;
             break;
           }
         }
+
         if (!hasLiked) {
-          blog[0].likes.push(like);
-
-          blog[0].save(function(err) {
-            if (err) {
-              return res.status(400).send({
-                data: err
+           async.waterfall([
+              function(callback) {
+                var newLike = new Like(req.body.like);
+                newLike.save(function(error, savedLike) {
+                  if (error) {
+                    return res.status(400).send({
+                      data: error
+                    });
+                  } else {
+                    callback(null, savedLike);
+                  }
+                });
+              }
+            ],
+            function(err, newLike) {
+              blog.discussionLikes.push(newLike);
+              
+              blog.save(function(err, blog) {
+                if (err) {
+                  return res.status(400).send({
+                    data: err
+                  });
+                } else {
+                  res.jsonp(newLike);
+                }
               });
-            } else {
-              res.jsonp(like);
-            }
-          });
+            });
         } else {
-          console.log('you have already liked this post before');
           return res.status(400).send({
-
-            data: 'you have already liked this post before'
+            data: 'You have liked this post before.'
           });
         }
       }

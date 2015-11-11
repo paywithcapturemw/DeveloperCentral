@@ -27,7 +27,7 @@ module.exports = function(app) {
 
   // all users
   app.route('/blogs/:blogId/comments')
-    .post(users.requiresLogin, comments.addComment);
+    .post(users.requiresLogin, comments.addBlogComment);
 
   // admin
   // app.route('/blogs/:blogId/comments/:commentId')
