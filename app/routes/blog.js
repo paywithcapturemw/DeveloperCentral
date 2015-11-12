@@ -30,9 +30,9 @@ module.exports = function(app) {
     .post(users.requiresLogin, comments.addBlogComment);
 
   // admin
-  // app.route('/blogs/:blogId/comments/:commentId')
-  //     // .get(comments.showComment)
-  //     .delete(users.requiresLogin, comments.hasAuthorization, comments.deleteComment);
+  app.route('/blogs/:blogId/comments/:commentId')
+      // .get(comments.showComment)
+      .delete(users.requiresLogin, admin.isAdmin, comments.deleteComment);
 
   // like Comment
   app.route('/blogs/:blogId/comments/:commentId/like')

@@ -50,11 +50,15 @@ app.controller('DiscussionsCtrl', ['$scope', '$http', '$location', '$stateParams
         });
     };
 
-    $scope.deleteBlog = function() {
-
+    $scope.deleteDiscussion = function(discussion, discussions, index) {
+      $http.delete('/admin/' + $scope.userId + '/discussions/' + discussion._id + '?token=' + token).success(function(response) {
+        discussions.splice(index, 1);
+      }).error(function(errorResponse) {
+        $scope.error = errorResponse.message;
+      });
     };
 
-    // Create new Blog
+    // Create new discussion
     $scope.createComment = function(blog, user) {
       // Create new Blog object
       var commentBody = {

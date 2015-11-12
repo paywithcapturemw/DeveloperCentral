@@ -5,7 +5,7 @@ app.controller('BlogsCtrl', ['$scope', '$http', '$location', '$stateParams', '$r
       $scope.signedIn = true;
       $scope.userId = JSON.parse($localStorage.userId).id;
     }
-  
+
     $scope.displayBlogs = function() {
       $http.get('/blogs').success(function(response) {
           $scope.blogs = response;
@@ -67,6 +67,22 @@ app.controller('BlogsCtrl', ['$scope', '$http', '$location', '$stateParams', '$r
       this.commentContent = '';
     };
 
+    $scope.deleteBlog = function(blog, blogs, index) {
+      $http.delete('/admin/' + $scope.userId + '/blogs/' + blog._id + '?token=' + token).success(function(response) {
+        blogs.splice(index, 1);
+      }).error(function(errorResponse) {
+        $scope.error = errorResponse.message;
+      });
+    };
+
+    $scope.updateBlog = function(blog) {
+      $http.put('/admin/' + $scope.userId + '/blogs/' + blog._id).success(function(response) {
+         $location.url('');
+      }).error(function(errorResponse) {
+        $scope.error = errorResponse.message;
+      });
+    };
+
     $scope.likeBlog = function(blog) {
       var body = {
         token: token,
@@ -79,7 +95,7 @@ app.controller('BlogsCtrl', ['$scope', '$http', '$location', '$stateParams', '$r
       $scope.blog = blog;
       $http.post('/blogs/' + blog._id + '/like', body).success(function(response) {
         $scope.liked = true;
-        $scope.blog.likes.length = $scope.blog.likes.length +1;
+        $scope.blog.likes.length = $scope.blog.likes.length + 1;
       }).error(function(errorResponse) {
         $scope.error = errorResponse.data;
       });
@@ -103,13 +119,17 @@ app.controller('BlogsCtrl', ['$scope', '$http', '$location', '$stateParams', '$r
       });
     };
 
+    $scope.deleteBlogComment = function(blog, blogs, comment) {
+      // /blogs/:blogId/comments/:commentId')
+      $http.delete('/blogs/' + blog._id + '/comment/' + comment._id).success(function(response) {
 
-    $scope.deleteBlog = function() {
-
+        blogs.splice(index, 1);
+      }).error(function(errorResponse) {
+        $scope.error = errorResponse.message;
+      });
     };
 
-    $scope.updateBlog = function (){
 
-    };
+
   }
 ]);

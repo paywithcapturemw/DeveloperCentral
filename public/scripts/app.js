@@ -22,7 +22,8 @@ var app = angular.module('DeveloperCentral', [
   // 'underscore'
   // 'angularFileUpload'
 ]);
-app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
+app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
+
   $stateProvider
     .state('/', {
       url: '/',
@@ -226,8 +227,40 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
     });
 
   $urlRouterProvider.otherwise('/');
+  // $locationProvider.html5Mode(true);
+
   // $locationProvider.html5Mode({
   //   enabled: true,
   //   requireBase: false
   // });
 }]);
+
+// app.config(['$httpProvider', function($httpProvider) {
+//   var interceptor = ['$resource', '$rootScope', '$http', '$localStorage', '$q',
+//     function($resource, $rootScope, $http, $localStorage, $q) {
+//       var token = $localStorage.token;
+//       if (token) {
+//         var userId = JSON.parse($localStorage.userId).id;
+//         $rootScope.isloggedin = true;
+//       }
+//       return {
+//         request: function(config) {
+//           if (token) {
+//             console.log('in config request');
+//             config.headers['X-Access-Token'] = token;
+//             // config.headers['X-Key'] = $localStorage.userId;
+//             config.headers['Content-Type'] = "application/json";
+//           }
+//           return config || $q.when(config);
+//         },
+
+//         response: function(response) {
+//           return response || $q.when(response);
+//         }
+//       };
+//     }
+//   ];
+
+//   $httpProvider.interceptors.push(interceptor);
+
+// }]);

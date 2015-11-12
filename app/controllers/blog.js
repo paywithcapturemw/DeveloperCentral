@@ -44,18 +44,18 @@ module.exports.read = function(req, res) {
 
   var blogId = req.params.blogId;
   Blog.findOne({
-    _id: blogId
-  }).populate('user').populate('comments')
-  .exec(function(err, blog) {
-    if (err) {
-      return res.status(400).send({
-        data: err
-      });
-    } else {
-      console.log('blog', blog);
-      return res.jsonp(blog);
-    }
-  });
+      _id: blogId
+    }).populate('user').populate('comments')
+    .exec(function(err, blog) {
+      if (err) {
+        return res.status(400).send({
+          data: err
+        });
+      } else {
+        console.log('blog', blog);
+        return res.jsonp(blog);
+      }
+    });
 
 };
 
@@ -89,18 +89,14 @@ module.exports.update = function(req, res) {
  */
 module.exports.delete = function(req, res) {
   var blogId = req.params.blogId;
-  Blog.findOne({
+  Blog.remove({
     _id: blogId
   }, function(err, blog) {
+    if (err)
+      res.send(err);
 
-    blog.remove(function(err) {
-      if (err) {
-        return res.status(400).send({
-          message: getErrorMessage(err)
-        });
-      } else {
-        res.jsonp(blog);
-      }
+    res.json({
+      message: 'Successfully deleted'
     });
   });
 };

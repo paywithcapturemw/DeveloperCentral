@@ -37,8 +37,8 @@ app.use(logger('dev'));                     // log every request to the console
 app.use(bodyParser.urlencoded({ extended: true }));    // parse application/x-www-form-urlencoded
 app.use(function(req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
+    res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type,Authorization,Accept,X-Access-Token,X-Key');
     next();
 });
 app.use(session({ resave: true,

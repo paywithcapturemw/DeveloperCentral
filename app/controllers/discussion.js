@@ -63,19 +63,19 @@ module.exports.read = function(req, res) {
 module.exports.update = function(req, res) {
   // if (req.user.role === 'admin') {
 
-  var blog = req.blog;
+  // var blog = req.blog;
 
-  blog = _.extend(blog, req.body);
+  // blog = _.extend(blog, req.body);
 
-  blog.save(function(err) {
-    if (err) {
-      return res.status(400).send({
-        message: getErrorMessage(err)
-      });
-    } else {
-      res.jsonp(blog);
-    }
-  });
+  // blog.save(function(err) {
+  //   if (err) {
+  //     return res.status(400).send({
+  //       message: getErrorMessage(err)
+  //     });
+  //   } else {
+  //     res.jsonp(blog);
+  //   }
+  // });
 };
 
 
@@ -83,18 +83,19 @@ module.exports.update = function(req, res) {
  * Delete a blog
  */
 module.exports.delete = function(req, res) {
-  var blog = req.blog;
+  var discussionId = req.params.discussionId;
+  Discussion.remove({
+    _id: discussionId
+  }, function(err, discussion) {
+    if (err)
+      res.send(err);
 
-  blog.remove(function(err) {
-    if (err) {
-      return res.status(400).send({
-        message: getErrorMessage(err)
-      });
-    } else {
-      res.jsonp(blog);
-    }
+    res.json({
+      message: 'Successfully deleted'
+    });
   });
 };
+
 
 /**
  * List of Blogs

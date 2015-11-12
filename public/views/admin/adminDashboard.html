@@ -12,27 +12,6 @@
       </div>
       <br>
       <div class="row input-form" data-ng-controller="AdminCtrl">
-        <div class="col-md-12">
-          <div class="col-md-10">
-            <div data-ng-init="listApps()">
-              <div data-ng-repeat="app in apps" ng-if="!newAppForm">
-                <div class="row">
-                  <!-- <div class="col-md-8"> -->
-                  <div class="app-div">
-                    <a href="/#/user/{{user._id}}/dashboard/app/{{app._id}}">
-                      <h2 class="app-name">Name: {{app.name}}</h2>
-                      <button style="color:#2A68C9;" class="btn btn-sm btn-default glyphicon glyphicon-trash pull-right" type="button" ng-click="deleteApp(app, apps, $index)">
-                      </button>
-                      <hr>
-                      <p>Description: {{app.description}}</p>
-                    </a>
-                    <!-- </div> -->
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
         <div class="col-md-12 input-form" data-ng-init="getAllDevelopers()">
           <h4 class="text-center">DEVELOPERS</h4>
           <div ng-if=allDevelopers.length===0>

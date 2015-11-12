@@ -3,7 +3,7 @@
 // /**
 //  * Module dependencies.
 //  */
-// User = require('../models/user'),
+// User = requ¡ire('../models/user'),
 
 var mongoose = require('mongoose'),
   async = require('async'),
@@ -27,8 +27,6 @@ module.exports.addComment = function(req, res) {
         data: err
       });
     } else {
-      console.log('in add comment for discussion', blog);
-
       async.waterfall([
           function(callback) {
             var newComment = new Comment(comment);
@@ -45,8 +43,6 @@ module.exports.addComment = function(req, res) {
         ],
         function(err, savedComment) {
           blog.discussionComments.unshift(savedComment);
-          console.log('after addin for discussion', blog);
-
           blog.save(function(err, blog) {
             if (err) {
               console.log(err);
@@ -106,32 +102,27 @@ module.exports.addBlogComment = function(req, res) {
 };
 
 
-// /**
-//  * Delete a comment
-//  */
-// module.exports.deleteComment = function(req, res) {
-//     if (req.user.role === 'admin') {
+/**
+ * Delete a comment
+ */
+module.exports.deleteComment = function(req, res) {
+  var blog = req.blog;
 
-//         var blog = req.blog;
+  
+  blog.discussionComments.id(req.params.commentId).remove();
+  // blog.discussionComments.id(id).remove();
 
-//         blog.discussionComments.id(req.params.commentId).remove();
-//         // blog.discussionComments.id(id).remove();
+  // blog.save(function(err) {
+  //   if (err) {
+  //     return res.status(400).send({
+  //       message: 'comment delete failed'
+  //     });
+  //   } else {
+  //     res.jsonp(blog);
+  //   }
+  // });
 
-//         blog.save(function(err) {
-//             if (err) {
-//                 return res.status(400).send({
-//                     message: 'comment delete failed'
-//                 });
-//             } else {
-//                 res.jsonp(blog);
-//             }
-//         });
-//     } else {
-//         return res.status(401).send({
-//             message: 'User is not authorized'
-//         });
-//     }
-// };
+};
 
 
 module.exports.likeComment = function(req, res) {

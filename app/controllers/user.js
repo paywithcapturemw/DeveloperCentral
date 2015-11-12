@@ -394,7 +394,7 @@ module.exports = function(app, config, router) {
 
   // route middleware to verify a token
   module.exports.requiresLogin = function(req, res, next) {
-    var token = req.body.token || req.headers.token;
+    var token = req.body.token || req.headers.token || req.query.token;
     if (token) {
       jwt.verify(token, secret, function(err, decoded) {
         if (err) {
@@ -403,6 +403,7 @@ module.exports = function(app, config, router) {
             message: 'Failed to authenticate token.'
           });
         } else {
+          console.log('signed in');
           next();
         }
       });
