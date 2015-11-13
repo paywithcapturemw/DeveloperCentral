@@ -1,0 +1,21 @@
+<div ng-controller="BlogsCtrl" ng-cloak>
+  <div ng-controller="DashboardCtrl" data-ng-init="getUser()">
+    <h3><b>Edit Blog</b></h3>
+    <form ng-init="singleBlog()" ng-submit="updateBlog(blog)" flex>
+      <div class="form-group has-feedback">
+        <input type="text" class="form-control login-input" placeholder="Blog Title" ng-model="blog.title">
+      </div>
+      <div class="form-group has-feedback">
+        <input type="text" class="form-control login-input" placeholder="Blog Caption" ng-model="blog.caption">
+      </div>
+      <div class="form-group has-feedback">
+        <input type="text" class="form-control login-input" placeholder="Blog Content" ng-model="blog.blogContent">
+      </div>
+      <p><b>By: </b>{{blog.user.username}}</p>
+      <div class="col-xs-12">
+        <button class="btn btn-tia-primary btn-block btn-flat">Update Blog</button>
+      </div>
+    </form>
+  </div>
+</div>
+

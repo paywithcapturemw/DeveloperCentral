@@ -19,8 +19,6 @@ var app = angular.module('DeveloperCentral', [
   'angular-jwt',
   'ng-showdown',
   'ngMaterial'
-  // 'underscore'
-  // 'angularFileUpload'
 ]);
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
 
@@ -111,27 +109,11 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpP
     //   templateUrl: 'views/transfers-blog.html',
     //   controller: 'MainCtrl'
     // })
-    // .state('airtimePurchasesDiscussion', {
-    //   url: '/airtime-purchases-API-Discussion',
-    //   templateUrl: 'views/airtime-purchase-blog.html',
-    //   controller: 'BlogsCtrl'
-    // })
-    // .state('airtimePurchasesDiscussion', {
-    //   url: '/airtime-purchases-API-Discussion',
-    //   templateUrl: 'views/airtime-purchase-blog.html',
-    //   controller: 'DiscussionsCtrl'
-    // })
-    // .state('transfersDiscussion', {
-    //   url: '/transfers-API-Discussion',
-    //   templateUrl: 'views/transfers-blog.html',
-    //   controller: 'DiscussionsCtrl'
-    // })
-
-  // .state('paymentsDiscussion', {
-  //   url: '/payments-API-Discussion',
-  //   templateUrl: 'views/payments-blog.html',
-  //   controller: 'DiscussionsCtrl'
-  // })
+    .state('editBlog', {
+      url: '/community/blogs/:id/edit',
+      templateUrl: 'views/edit-blog.html',
+      controller: 'BlogsCtrl'
+    })
   .state('signup', {
       url: '/signup',
       templateUrl: 'views/partials/register-modal.html',

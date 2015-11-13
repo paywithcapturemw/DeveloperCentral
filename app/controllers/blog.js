@@ -25,7 +25,6 @@ module.exports.create = function(req, res) {
   newBlog.user = req.params.userId;
   newBlog.save(function(error, blog) {
     if (error) {
-      console.log('error:', error);
       return res.status(500).send({
         data: error
       });
@@ -52,7 +51,6 @@ module.exports.read = function(req, res) {
           data: err
         });
       } else {
-        console.log('blog', blog);
         return res.jsonp(blog);
       }
     });
@@ -64,22 +62,24 @@ module.exports.read = function(req, res) {
  */
 module.exports.update = function(req, res) {
   var blogId = req.params.blogId;
+  var editedBlog = req.body.blog;
   Blog.findOne({
     _id: blogId
   }, function(err, blog) {
-    blog = req.body.blog;
+    blog.title = editedBlog.title;
+    blog.caption = editedBlog.caption;
+    blog.blogContent = editedBlog.blogContent;
     blog.save(function(err) {
-      if (error) {
+      if (err) {
         return res.status(400).send({
           data: err
         });
       } else {
+        console.log('blog updated', blog);
         res.jsonp(blog);
       }
     });
-
   });
-
 };
 
 
@@ -94,7 +94,6 @@ module.exports.delete = function(req, res) {
   }, function(err, blog) {
     if (err)
       res.send(err);
-
     res.json({
       message: 'Successfully deleted'
     });
@@ -137,6 +136,7 @@ module.exports.likePost = function(req, res) {
           data: 'You cannot like your own post.'
         });
       } else {
+        // var hasliked = true (req.body.userId == blog.likes[i].liker)  ? false;
         for (var i = 0; i < blog.likes.length; i++) {
           if (req.body.userId == blog.likes[i].liker) {
             hasLiked = true;

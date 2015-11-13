@@ -76,9 +76,14 @@ app.controller('BlogsCtrl', ['$scope', '$http', '$location', '$stateParams', '$r
     };
 
     $scope.updateBlog = function(blog) {
-      $http.put('/admin/' + $scope.userId + '/blogs/' + blog._id).success(function(response) {
-         $location.url('');
+      var blogBody = {
+        token: token,
+        blog: blog
+      };
+      $http.put('/admin/' + $scope.userId + '/blogs/' + blog._id + '?token=' + token, blogBody).success(function(response) {
+        $location.url('/community/blogs/' + blog._id);
       }).error(function(errorResponse) {
+        console.log('errorResponse', errorResponse);
         $scope.error = errorResponse.message;
       });
     };
@@ -120,16 +125,12 @@ app.controller('BlogsCtrl', ['$scope', '$http', '$location', '$stateParams', '$r
     };
 
     $scope.deleteBlogComment = function(blog, blogs, comment) {
-      // /blogs/:blogId/comments/:commentId')
       $http.delete('/blogs/' + blog._id + '/comment/' + comment._id).success(function(response) {
-
         blogs.splice(index, 1);
       }).error(function(errorResponse) {
         $scope.error = errorResponse.message;
       });
     };
-
-
 
   }
 ]);

@@ -403,7 +403,6 @@ module.exports = function(app, config, router) {
             message: 'Failed to authenticate token.'
           });
         } else {
-          console.log('signed in');
           next();
         }
       });

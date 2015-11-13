@@ -46,7 +46,6 @@ module.exports.read = function(req, res) {
   Discussion.findOne({
     _id: discussionId
   }).populate('user discussionComments discussionComments.creator').exec(function(err, blog) {
-     console.log('blog', blog);
     if (err) {
       return res.status(400).send({
         data: err

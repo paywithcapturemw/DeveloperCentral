@@ -1,19 +1,15 @@
 <div ng-controller="BlogsCtrl" ng-cloak>
   <md-content class="md-padding" ng-controller="DashboardCtrl" data-ng-init="getUser()">
     <md-card>
-      <!-- <img ng-src="{{imagePath}}" class="md-card-image" alt="Washed Out"> -->
       <md-card-content>
         <h3><b>Blogs</b></h3>
         <div ng-init="singleBlog()" flex>
-          <!-- <div> -->
           <img src="">
           <h3>Title: {{blog.title}}</h3>
           <h4><b>Caption: </b>{{blog.caption}}</h4>
           <p><b>Content: </b>{{blog.blogContent}}</p>
           <p><b>By: </b>{{blog.user.username}}</p>
-          <!-- </div> -->
           <ul class="discussion-icon">
-            <!-- <li class="pull-left"><span class="glyphicon glyphicon-comment"></span>&nbsp;{{discussion.comments.length}}&nbsp;Comments</li> -->
             <ul ng-repeat="comment in blog.comments">
               <li>
                 <p>{{comment.commentContent}}</p>
@@ -21,6 +17,7 @@
               </li>
             </ul>
             <li class="pull-left insights-icon-li"><span class=" icon-like"><i class="fa fa-heart"></i>&nbsp;{{blog.likes.length}}&nbsp;<md-button ng-click="likeBlog(blog)">Likes</md-button></span> </li>
+            <li><a href="/#/community/blogs/{{blog._id}}/edit" class="btn btn-sm btn-default glyphicon glyphicon-pencil pull-right" ng-if="user.role=='admin'"></a></li>
           </ul>
           <br>
           <br>
@@ -37,12 +34,8 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <!-- <a href="">preview</a> -->
                   <input type="submit" class="btn btn-default">
                 </div>
-                <!--    <div class="col-xs-12 error-message" ng-show="message">
-              <div class="col-xs-12" ng-bind="message" style="color:#F00;"></div>
-            </div> -->
               </fieldset>
             </form>
           </div>
