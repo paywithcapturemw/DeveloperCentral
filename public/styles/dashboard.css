@@ -96,10 +96,11 @@ div.app-div a {
 
 .dashboard-top {
   float: left;
-  width: 80px;
-  height: 80px;
-  border-radius: 40px;
+  width: 100px;
+  height: 100px;
   text-align: center;
+  margin-right: 20px;
+  border-radius: 10px
 }
 
 .dashboard-icon {
@@ -112,16 +113,35 @@ div.app-div a {
 }
 
 .light-blue {
-  background: #E3F2FD!important;
+  background: #30a5ff!important;
 }
 
 .white-background {
   background: #fff !important;
 }
 
-.blue{
+.blue {
   background: #2A68C9!important;
 }
+
+.inner-div {
+  margin: 10px;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.list-style-none {
+  list-style: none;
+}
+
+.list-div {
+  font-weight: bold;
+  font-size: 1em;
+  margin-top: 14px;
+}
+
+
 /*h4.app-title{
   color: #2A68C9; 
 }*/

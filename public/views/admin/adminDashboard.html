@@ -13,39 +13,101 @@
         </div>
         <br>
         <div class="row">
-          <div class="col-md-4 white-background">
-            <div class="dashboard-top gold"><i class="fa fa-users fa-3x dashboard-icon"></i>
-            </div>
-            <div class="dashboard-top">
-              <ul>
-                <li data-ng-bind="allDevelopers.length"></li>
-                <li ng-if="allDevelopers.length===1">Developer</li>
-                <li ng-if="!allDevelopers.length===0">Developers</li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-4 white-background">
-            <div class="dashboard-top light-blue"><i class="fa fa-asterisk fa-3x dashboard-icon"></i>
-            </div>
-            <div class="dashboard-top">
-              <ul>
-                <li data-ng-bind="allApps.length"></li>
-                <li ng-if="allDevelopers.length===1">APP</li>
-                <li ng-if="allDevelopers.length > 1">APPs</li>
-              </ul>
+          <div class="col-xs-8 col-sm-4">
+            <div class="row">
+              <div class="inner-div clearfix">
+                <div class="dashboard-top gold"><i class="fa fa-users fa-3x dashboard-icon"></i>
+                </div>
+                <div class="list-div">
+                  <ul class="list-style-none">
+                    <li data-ng-bind="allDevelopers.length"></li>
+                    <li ng-if="allDevelopers.length===1">Developer</li>
+                    <li ng-if="allDevelopers.length > 1">Developers</li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="col-md-4 white-background">
-            <div class="dashboard-top blue"><i class="fa fa-users fa-3x dashboard-icon"></i>
+          <div class="col-xs-8 col-sm-4">
+            <!-- <div class="col-md-4 white-background"> -->
+            <div class="row">
+              <div class="inner-div clearfix">
+                <div class="dashboard-top light-blue"><i class="fa fa-asterisk fa-4x dashboard-icon"></i>
+                </div>
+                <div class="list-div">
+                  <ul class="list-style-none">
+                    <li data-ng-bind="allApps.length"></li>
+                    <li ng-if="allDevelopers.length===1">APP</li>
+                    <li ng-if="allDevelopers.length > 1">APPS</li>
+                  </ul>
+                </div>
+              </div>
             </div>
-            <div class="dashboard-top">
-              <ul>
-                <li data-ng-bind="allDevelopers.length"></li>
-                <li>Developers</li>
-              </ul>
+          </div>
+          <div class="col-xs-8 col-sm-4">
+            <div class="row">
+              <div class="inner-div clearfix">
+                <div class="dashboard-top blue"><i class="fa fa-users fa-3x dashboard-icon"></i>
+                </div>
+                <div class="list-div">
+                  <ul class="list-style-none">
+                    <li data-ng-bind="allDevelopers.length"></li>
+                    <li>Developers</li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+        <!--    <div class="row">
+          <div class="col-xs-16 col-md-6 col-lg-3">
+            <div class="panel panel-orange panel-widget">
+              <div class="row
+ no-padding">
+                <div class="col-sm-3 col-lg-5 widget-left">
+                  <svg class="glyph stroked empty-message">
+                    <use xlink:href="#stroked-empty-message"></use>
+                  </svg>
+                </div>
+                <div class="col-sm-9 col-lg-7 widget-right">
+                  <div class="large">52</div>
+                  <div class="text-muted">Comments</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-16 col-md-6 col-lg-3">
+            <div class="panel panel-teal panel-widget">
+              <div class="row no-padding">
+                <div class="col-sm-3 col-lg-5 widget-left">
+                  <svg class="glyph stroked male-user">
+                    <use xlink:href="#stroked-male-user"></use>
+                  </svg>
+                </div>
+                <div class="col-sm-9 col-lg-7 widget-right">
+                  <div class="large">24</div>
+                  <div class="text-muted">New Users</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-16 col-md-6 col-lg-3">
+            <div class="panel panel-red panel-widget">
+              <div class="row no-padding">
+                <div class="col-sm-3 col-lg-5 widget-left">
+                  <svg class="glyph stroked app-window-with-content">
+                    <use xlink:href="#stroked-app-window-with-content"></use>
+                  </svg>
+                </div>
+                <div class="col-sm-9 col-lg-7 widget-right">
+                  <div class="large">25.2k</div>
+                  <div class="text-muted">Page Views</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div> -->
         <div class="row input-form">
           <div class="col-md-12 input-form">
             <h4 class="text-center">DEVELOPERS</h4>
