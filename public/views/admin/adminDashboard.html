@@ -109,12 +109,12 @@
         </div>
         </div> -->
         <div class="row input-form">
-          <div class="col-md-12 input-form">
-            <h4 class="text-center">DEVELOPERS</h4>
+          <div class="col-md-12 input-form panel panel-default dev-table">
+            <h4 class="text-center panel-heading">DEVELOPERS</h4>
             <div ng-if="allDevelopers.length===0">
               NO EXISTING DEVELOPER
             </div>
-            <div data-ng-repeat="developer in allDevelopers">
+            <div class="panel-body">
               <!-- {{developer}} -->
               <table class="table">
                 <col width="200">
@@ -127,7 +127,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
+                      <tr data-ng-repeat="developer in allDevelopers">
                         <td>{{developer.username}}</td>
                         <!-- <td>{{developer}}</td> -->
                         <td>{{developer.role}}</td>

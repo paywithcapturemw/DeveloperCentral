@@ -141,7 +141,19 @@ div.app-div a {
   margin-top: 14px;
 }
 
+.dev-table{
+  margin: 100px 0;
+}
 
+.panel{
+  height: 300px;
+  width: 50%;
+  overflow: scroll;
+}
+
+.panel-heading{
+  font-weight: bold;
+}
 /*h4.app-title{
   color: #2A68C9; 
 }*/
