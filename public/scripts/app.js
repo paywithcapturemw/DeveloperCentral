@@ -104,11 +104,6 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpP
       templateUrl: 'views/create-blog.html',
       controller: 'BlogsCtrl'
     })
-    // .state('discussion', {
-    //   url: '/community/discussion',
-    //   templateUrl: 'views/transfers-blog.html',
-    //   controller: 'MainCtrl'
-    // })
     .state('editBlog', {
       url: '/community/blogs/:id/edit',
       templateUrl: 'views/edit-blog.html',
@@ -209,8 +204,6 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpP
     });
 
   $urlRouterProvider.otherwise('/');
-  // $locationProvider.html5Mode(true);
-
   // $locationProvider.html5Mode({
   //   enabled: true,
   //   requireBase: false

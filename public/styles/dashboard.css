@@ -1,5 +1,6 @@
 .dashboard-parent-div {
-    padding: 100px 0;}
+  padding: 100px 0;
+}
 
 .config-panel,
 .app-tab {
@@ -7,6 +8,7 @@
   padding-left: 0 !important;
   padding-right: 0 !important;
 }
+
 .config-panel ul li,
 .app-tab ul li {
   text-align: center;
@@ -71,7 +73,7 @@
   text-decoration: none;
 }
 
-.app-div:hover hr{
+.app-div:hover hr {
   border-color: #2A68C9;
 }
 
@@ -83,14 +85,43 @@ div.app-div a {
   text-decoration: none;
 }
 
-.app-details{
+.app-details {
   padding: 50px;
   background-color: #fff;
 }
-.service-table{
+
+.service-table {
   padding-top: 38px;
+}
+
+.dashboard-top {
+  float: left;
+  width: 80px;
+  height: 80px;
+  border-radius: 40px;
+  text-align: center;
+}
+
+.dashboard-icon {
+  margin-top: 20px;
+  /*margin: 10px; */
+}
+
+.gold {
+  background: #d3a938!important;
+}
+
+.light-blue {
+  background: #E3F2FD!important;
+}
+
+.white-background {
+  background: #fff !important;
+}
+
+.blue{
+  background: #2A68C9!important;
 }
 /*h4.app-title{
   color: #2A68C9; 
 }*/
-

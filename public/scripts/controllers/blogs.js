@@ -83,7 +83,6 @@ app.controller('BlogsCtrl', ['$scope', '$http', '$location', '$stateParams', '$r
       $http.put('/admin/' + $scope.userId + '/blogs/' + blog._id + '?token=' + token, blogBody).success(function(response) {
         $location.url('/community/blogs/' + blog._id);
       }).error(function(errorResponse) {
-        console.log('errorResponse', errorResponse);
         $scope.error = errorResponse.message;
       });
     };
