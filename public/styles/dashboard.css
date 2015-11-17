@@ -145,11 +145,11 @@ div.app-div a {
   margin: 100px 0;
 }
 
-.panel{
+/*.panel{
   height: 300px;
   width: 50%;
   overflow: scroll;
-}
+}*/
 
 .panel-heading{
   font-weight: bold;

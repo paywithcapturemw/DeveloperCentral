@@ -8,7 +8,6 @@ app.controller('AdminCtrl', ['$scope', '$http', '$location', '$stateParams', '$r
         password: user.password
       };
       $http.put('/user/admin/verifyAdmin', $scope.credentials).success(function(response) {
-        console.log('sucessful verification', response)
         $location.url('/admin-user/' + response.data._id + '/changeFirstPassword');
       }).error(function(response) {
         $scope.message = response.data;
@@ -82,6 +81,12 @@ app.controller('AdminCtrl', ['$scope', '$http', '$location', '$stateParams', '$r
       }).error(function(error) {
         $scope.error = error.message;
       });
+    };
+
+    $scope.dashboardTabs = ['DEVELOPERS', 'APPS'];
+    $scope.selectedTabIndex = 0;
+    $scope.switchTab = function(index){
+      $scope.selectedTabIndex = index;
     };
   }
 ]);

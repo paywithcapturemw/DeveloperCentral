@@ -59,130 +59,90 @@
             </div>
           </div>
         </div>
-        <!--    <div class="row">
-          <div class="col-xs-16 col-md-6 col-lg-3">
-            <div class="panel panel-orange panel-widget">
-              <div class="row
- no-padding">
-                <div class="col-sm-3 col-lg-5 widget-left">
-                  <svg class="glyph stroked empty-message">
-                    <use xlink:href="#stroked-empty-message"></use>
-                  </svg>
-                </div>
-                <div class="col-sm-9 col-lg-7 widget-right">
-                  <div class="large">52</div>
-                  <div class="text-muted">Comments</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-xs-16 col-md-6 col-lg-3">
-            <div class="panel panel-teal panel-widget">
-              <div class="row no-padding">
-                <div class="col-sm-3 col-lg-5 widget-left">
-                  <svg class="glyph stroked male-user">
-                    <use xlink:href="#stroked-male-user"></use>
-                  </svg>
-                </div>
-                <div class="col-sm-9 col-lg-7 widget-right">
-                  <div class="large">24</div>
-                  <div class="text-muted">New Users</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-xs-16 col-md-6 col-lg-3">
-            <div class="panel panel-red panel-widget">
-              <div class="row no-padding">
-                <div class="col-sm-3 col-lg-5 widget-left">
-                  <svg class="glyph stroked app-window-with-content">
-                    <use xlink:href="#stroked-app-window-with-content"></use>
-                  </svg>
-                </div>
-                <div class="col-sm-9 col-lg-7 widget-right">
-                  <div class="large">25.2k</div>
-                  <div class="text-muted">Page Views</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        </div> -->
-        <div class="row input-form">
-          <div class="col-md-12 input-form panel panel-default dev-table">
-            <h4 class="text-center panel-heading">DEVELOPERS</h4>
-            <div ng-if="allDevelopers.length===0">
-              NO EXISTING DEVELOPER
-            </div>
-            <div class="panel-body">
-              <!-- {{developer}} -->
-              <table class="table">
-                <col width="200">
-                  <col width="100">
-                    <thead>
-                      <tr>
-                        <th>Username</th>
-                        <!-- <th>Number Of Apps</th> -->
-                        <th>Role</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr data-ng-repeat="developer in allDevelopers">
-                        <td>{{developer.username}}</td>
-                        <!-- <td>{{developer}}</td> -->
-                        <td>{{developer.role}}</td>
-                      </tr>
-                    </tbody>
-              </table>
-            </div>
-          </div>
-          <div class="col-md-12 input-form">
-            <h4 class="text-center">APP DATA</h4>
-            <div ng-if=allApps.length===0>
-              NO APP EXISTS
-            </div>
-            <div data-ng-repeat="app in allApps">
-              <!-- <b></b> {{app}} -->
-              <table class="table" data-ng-init="singleAppService(app._id)">
-                <col width="60">
-                  <col width="150">
-                    <col width="30">
-                      <col width="30">
-                        <col width="30">
-                          <col width="30">
+        <div class="col-md-12">
+          <div class="panel panel-default">
+            <div class="panel-body tabs">
+              <ul class="nav nav-tabs">
+                <li ng-class="{active: $index === selectedTabIndex}" ng-repeat="tab in dashboardTabs">
+                  <a ng-click="switchTab($index)">
+                    <h4>{{tab}}</h4>
+                  </a>
+                </li>
+              </ul>
+              <div class="tab-content">
+                <div class="tab-pane fade in active" ng-if="selectedTabIndex===0">
+                  <!--   <div class="row input-form"> -->
+                  <div class="col-md-12 input-form panel panel-default dev-table">
+                    <h4 class="text-center panel-heading">DEVELOPERS</h4>
+                    <div ng-if="allDevelopers.length===0">
+                      NO EXISTING DEVELOPER
+                    </div>
+                    <div class="panel-body">
+                      <table class="table">
+                        <col width="200">
+                          <col width="100">
                             <thead>
                               <tr>
-                                <th>App Name</th>
-                                <th>Description</th>
-                                <!-- CHeck for app id and populate it. if it works-->
-                                <th>Payments</th>
-                                <th>Transfers</th>
-                                <th>Recharges</th>
-                                <th>Total Calls</th>
+                                <th>Username</th>
+                                <!-- <th>Number Of Apps</th> -->
+                                <th>Role</th>
                               </tr>
                             </thead>
                             <tbody>
-                              <tr data-ng-repeat="count in appServiceCount">
-                                <td>{{app.name}}</td>
-                                <td>{{app.description}}</td>
-                                <td>{{count.paymentCount}}</td>
-                                <td>{{count.transferCount}}</td>
-                                <td>{{count.rechargeCount}}</td>
-                                <td>{{count.totalCount}}</td>
+                              <tr data-ng-repeat="developer in allDevelopers">
+                                <td>{{developer.username}}</td>
+                                <!-- <td>{{developer}}</td> -->
+                                <td>{{developer.role}}</td>
                               </tr>
                             </tbody>
-              </table>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane fade in active" ng-if="selectedTabIndex===1">
+                  <div class="col-md-12 input-form panel panel-default dev-table">
+                    <h4 class="text-center">APP DATA</h4>
+                    <div ng-if="allApps.length===0">
+                      NO APP EXISTS
+                    </div>
+                    <div data-ng-repeat="app in allApps">
+                      <!-- <b></b> {{app}} -->
+                      <table class="table" data-ng-init="singleAppService(app._id)">
+                        <col width="60">
+                          <col width="150">
+                            <col width="30">
+                              <col width="30">
+                                <col width="30">
+                                  <col width="30">
+                                    <thead>
+                                      <tr>
+                                        <th>App Name</th>
+                                        <th>Description</th>
+                                        <th>Payments</th>
+                                        <th>Transfers</th>
+                                        <th>Recharges</th>
+                                        <th>Total Calls</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr data-ng-repeat="count in appServiceCount">
+                                        <td>{{app.name}}</td>
+                                        <td>{{app.description}}</td>
+                                        <td>{{count.paymentCount}}</td>
+                                        <td>{{count.transferCount}}</td>
+                                        <td>{{count.rechargeCount}}</td>
+                                        <td>{{count.totalCount}}</td>
+                                      </tr>
+                                    </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="tab-pane fade in active" ng-if="selectedTabIndex===1">
+              </div> -->
             </div>
           </div>
-          <!-- <table> -->
-          <!-- <div class="col-md-12 input-form" data-ng-init="allServiceCounts()">
-          <div ng-if=allServiceCounts.length===0>
-            NO SERVICE CALLS HAVE BEEN MADE
-          </div>
-          <div data-ng-repeat="count in allServiceCounts">
-            Total Count {{count.}}
-          </div>
-        </div> -->
         </div>
       </div>
     </div>
