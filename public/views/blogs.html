@@ -6,23 +6,24 @@
     </a>
   </div>
   <div ng-contoller="BlogsCtrl">
-    <div ng-cloak class="discussion-div">
-      <md-content>
-        <md-list data-ng-init="displayBlogs()">
-          <md-list-item ng-if="blogs.length === 0">
-            <p>There are no posts to view.</p>
-          </md-list-item>
-          <md-list-item class="md-3-line" ng-repeat="blog in blogs">
-            <img ng-src="" class="face" alt="">
-            <div class="md-list-item-text discussion-div">
+    <div class="row">
+      <div class="services-list clearfix col-md-12" data-ng-init="displayBlogs()">
+        <div id="home_div">
+          <div class="list-group">
+            <div class="list-group-item" ng-repeat="blog in blogs">
               <a href="/#/community/blogs/{{blog._id}}">
-                <h3>{{blog.title}}</h3>
-                <em><b>by: </b>{{blog.user.username}}</em></a>
+                <img ng-src="" class="face" alt="">
+                <div class="md-list-item-text discussion-div blog-body">
+                  <h3>{{blog.title}}</h3>
+                  <em>by: {{blog.user.username}}</em>
+                </div>
+              </a>
               <button style="color:#2A68C9;" class="btn btn-sm btn-default glyphicon glyphicon-trash pull-right" type="button" ng-click="deleteBlog(blog, blogs, $index)" ng-if="user.role=='admin'">
               </button>
             </div>
-            <md-divider md-inset ng-if="!$last"></md-divider>
-          </md-list-item>
-        </md-list>
-      </md-content>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+.face {
+  height: 100px;
+  width: 100px;
+  border: 1px solid #ccc;
+  border-radius: 48px;
+  display: inline-block;
+  background-color: #ccc;
+  margin: 0 auto;
+}
+.blog-body{
+  display: inline-block;
+  color: #000;
+  margin: 5px 0 0 20px;
+}
+.blog-body h3{
+  margin-top: 0 !important;
+}
