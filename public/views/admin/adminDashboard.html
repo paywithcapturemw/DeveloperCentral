@@ -1,5 +1,5 @@
 <div ng-controller="DashboardCtrl" data-ng-init="getUser()">
-  <div class="row dashboard-parent-div" ng-if="user.role==='admin'">
+  <div class="dashboard-parent-div" ng-if="user.role==='admin'">
     <div data-ng-init="getAllApps()">
       <div class="col-md-12" data-ng-controller="AdminCtrl" data-ng-init="getAllDevelopers()">
         <div class="config-panel">

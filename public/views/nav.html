@@ -32,9 +32,9 @@
           <a class="nav-border" ng-click="signout()" data-ng-show="isloggedin">Signout</a>
         </li>
         <li class="divider-vertical"></li>
-        <li>
+        <li data-ng-if="!isloggedin">
           <a href="/#/signup">Register</a>
-        </li>
+        </li> 
         <ul class="nav navbar-nav navbar-right" data-ng-show="isloggedin">
           <li class="dropdown headerhover">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">

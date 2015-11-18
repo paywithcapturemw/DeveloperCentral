@@ -1,31 +1,29 @@
-<div class="login-box">
-
-    <!-- /.login-logo -->
-    <div class="login-box-body">
-        <p class="login-box-msg">Login To Your Account</p>
+<div class="row">
+  <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
+    <div class="login-panel panel panel-default">
+      <div class="panel-heading">Login To Your Account</div>
+      <div class="panel-body">
         <form ng-submit="signin(user)">
-            <div class="form-group has-feedback">
-                <input type="text" class="form-control login-input" placeholder="Username" ng-model="user.username">
-                <span class="glyphicon glyphicon-user form-control-feedback"></span>
+          <div class="form-group has-feedback">
+            <input type="text" class="form-control login-input" placeholder="Username" ng-model="user.username">
+            <span class="glyphicon glyphicon-user form-control-feedback"></span>
+          </div>
+          <div class="form-group has-feedback">
+            <input type="password" class="form-control login-input" placeholder="Password" ng-model="user.password">
+            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 error-message" ng-show="message">
+              <div class="col-xs-12" ng-bind="message" style="color:#F00;"></div>
             </div>
-            <div class="form-group has-feedback">
-                <input type="password" class="form-control login-input" placeholder="Password" ng-model="user.password">
-                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            <div class="col-xs-12">
+              <button class="btn btn-tia-primary btn-block btn-flat">Sign In</button>
             </div>
-            <div class="row">
-                <div class="col-xs-12 error-message" ng-show="message">
-                    <div class="col-xs-12" ng-bind="message" style="color:#F00;"></div>
-                </div>
-                <div class="col-xs-12">
-                    <button class="btn btn-tia-primary btn-block btn-flat">Sign In</button>
-                </div>
-                <!-- /.col -->
-            </div>
+          </div>
         </form>
-        <!-- /.social-auth-links -->
         <span><a href="/#/forgotPassword">Forgot password?</a><br>
         Don't have an account? <a href="/#/signup" class="text-center">Sign up</a></span>
+      </div>
     </div>
-    <!-- /.login-box-body -->
+  </div>
 </div>
-<!-- /.login-box -->

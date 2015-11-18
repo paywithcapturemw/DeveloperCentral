@@ -1,21 +1,25 @@
 <div ng-controller="DashboardCtrl" data-ng-init="getUser()">
-  <div class="row services-parent-div" ng-if="user.role === 'admin'">
-    <!--  <div ng-controller="AuthenticationCtrl">
+  <div class="container-fluid">
+    <div class="services-parent-div" ng-if="user.role === 'admin'">
+      <!--  <div ng-controller="AuthenticationCtrl">
             <a ng-click="signout()" class="pull-right">Logout</a>
         </div> -->
-    <!-- <h2 class="introduction"><b>APP DETAILS</b></h2> -->
-    <div class="col-md-12 introduction">
-      <h2 class="text-uppercase text-center"><b>USER DETAILS</b></h2>
+      <!-- <h2 class="introduction"><b>APP DETAILS</b></h2> -->
+      <div class="col-md-12 introduction">
+        <h2 class="text-uppercase text-center"><b>USER DETAILS</b></h2>
+      </div>
+      <div class="col-md-12">
+        <p>Username: </p>
+        <div class="form-control login-input blue-box" data-ng-bind="user.username"> </div>
+        <p>Email: </p>
+        <div class="form-control login-input blue-box" data-ng-bind="user.email"> </div>
+        <a href="/#/admin-user/{{user._id}}/profile/edit"><i class="fa fa-pencil-square-o fa-2x pull-right"></i></a>
+        <p>Role:</p>
+        <div class="form-control login-input blue-box" data-ng-bind="user.role"> </div>
+      </div>
     </div>
-    <p>Username: </p>
-    <div class="form-control login-input blue-box" data-ng-bind="user.username"> </div>
-    <p>Email: </p>
-    <div class="form-control login-input blue-box" data-ng-bind="user.email"> </div>
-    <a href="/#/admin-user/{{user._id}}/profile/edit"><i class="fa fa-pencil-square-o fa-2x pull-right"></i></a>
-    <p>Role:</p>
-    <div class="form-control login-input blue-box" data-ng-bind="user.role"> </div>
-  </div>
-  <div class="row services-parent-div" `="user.role !== 'admin'">
-    You are not an administrator . Please sign in as an administrator to view this page.
+    <div class="row services-parent-div" `="user.role !== 'admin'">
+      You are not an administrator . Please sign in as an administrator to view this page.
+    </div>
   </div>
 </div>
