@@ -1,4 +1,5 @@
-body, html{
+body,
+html {
   padding-top: 30px;
   background-color: #ebebeb !important;
   background: #ebebeb !important;
@@ -7,8 +8,6 @@ body, html{
 a {
   text-decoration: none;
 }
-
-
 
 div.introduction {
   color: #2A68C9 !important;
@@ -19,7 +18,6 @@ div.introduction {
 }
 
 div.service-div {
-  /*position: absolute;*/
   padding-bottom: 20px;
   margin: 0px 22px 50px 15px;
   border: 1px solid #ccc;
@@ -123,4 +121,3 @@ div.service-title.payment h2 {
   margin-top: 348px;
   font-size: 20px;
 }
-
