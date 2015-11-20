@@ -24,14 +24,17 @@ ul.nav.navbar-nav.navbar-right {
   margin-right: 35px;
 }
 
-.navbar-default .navbar-nav>li>a:focus,
-.navbar-default .navbar-nav>li>a:hover {
+.navbar-default .navbar-nav>li>a:focus {
   color: #2A68C9;
   background-color: transparent;
 }
 
+.navbar-default .navbar-nav>li>a:hover {
+  color: #5b8cdc;
+}
 .navbar-brand {
   color: #2A68C9 !important;
 }
 
 
+/*#416CAF;*/

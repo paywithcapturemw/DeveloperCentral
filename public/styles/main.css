@@ -30,7 +30,7 @@ div.service-main {
 }
 
 div.service-title.purchase {
-  background-color: #48284d;
+  background-color: #d3a938;
 }
 
 div.service-title.transfer {
@@ -87,7 +87,7 @@ div.service-title.payment h2 {
 }
 
 .purchase-link p {
-  color: #48284d;
+  color: #d3a938;
   /*   color: #fff;
   font-size: 12px;*/
 }
