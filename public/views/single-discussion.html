@@ -1,7 +1,6 @@
 <div ng-controller="DiscussionsCtrl" ng-cloak>
   <md-content class="md-padding" ng-controller="DashboardCtrl" data-ng-init="getUser()">
     <md-card>
-      <!-- <img ng-src="{{imagePath}}" class="md-card-image" alt="Washed Out"> -->
       <md-card-content>
         <h3><b>Discussions</b></h3>
         <div ng-init="singleDiscussion()" flex>
@@ -13,7 +12,6 @@
             <p><b>By: </b>{{discussion.user.username}}</p>
           </div>
           <ul class="discussion-icon">
-            <!-- <li class="pull-left"><span class="glyphicon glyphicon-comment"></span>&nbsp;{{discussion.comments.length}}&nbsp;Comments</li> -->
             <ul ng-repeat="comment in discussion.discussionComments">
               <li>
                 <p>{{comment.commentContent}}</p>
@@ -22,12 +20,6 @@
             </ul>
             <li class="pull-left insights-icon-li"><span class=" icon-like"><i class="fa fa-heart"></i>&nbsp;{{discussion.discussionLikes.length}}&nbsp;<md-button ng-click="likeBlog(discussion)">Likes</md-button></span> </li>
           </ul>
-          <!--     <div ng-if="!openDiscussionForm">
-      <div>Blog List</div>
-      <md-button ng-click="openForm()">Likes</md-button>
-    </div> -->
-          <!--    <label class="control-label" for="blog">Join in the Discussion</label>
-  </div> -->
           <br>
           <br>
           <div class="col-md-12">
@@ -43,12 +35,8 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <!-- <a href="">preview</a> -->
-                  <input type="submit" class="btn btn-default">
+                  <input type="submit" class="btn-default blog-button">
                 </div>
-                <!--    <div class="col-xs-12 error-message" ng-show="message">
-              <div class="col-xs-12" ng-bind="message" style="color:#F00;"></div>
-            </div> -->
               </fieldset>
             </form>
           </div>

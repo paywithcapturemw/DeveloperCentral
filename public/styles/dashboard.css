@@ -105,7 +105,6 @@ div.app-div a {
 
 .dashboard-icon {
   margin-top: 20px;
-  /*margin: 10px; */
 }
 
 .gold {
@@ -154,6 +153,6 @@ div.app-div a {
 .panel-heading{
   font-weight: bold;
 }
-/*h4.app-title{
+h4.app-title{
   color: #2A68C9; 
-}*/
+}
