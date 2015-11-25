@@ -49,7 +49,7 @@ app.use(methodOverride());                  // simulate DELETE and PUT
 // app.use(express.static(path.join(__dirname, './public'))); 
 
 app.get('/', function(req, res) {
-    res.send('/public/index.html'); 
+    res.send('./public/index.html'); 
 });
 
 // app.use(express.static(__dirname + '/public'));         
