@@ -1,7 +1,6 @@
 app.controller('AdminCtrl', ['$scope', '$http', '$location', '$stateParams', '$rootScope', '$localStorage', 'Authentication', 'jwtHelper',
   function($scope, $http, $location, $stateParams, $rootScope, $localStorage, Authentication, jwtHelper) {
     var token = $localStorage.token;
-
     $scope.verifyAdmin = function(user) {
       $scope.credentials = {
         username: user.username,

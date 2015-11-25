@@ -11,7 +11,6 @@ var app = express();
 var  pem = require('pem');
 var config = require('./config/config');
 
-
 // your express configuration here
 
 var logger         = require('morgan');
@@ -47,7 +46,23 @@ app.use(session({ resave: true,
 app.use(bodyParser.json());    // parse application/json
 app.use(methodOverride());                  // simulate DELETE and PUT
 // app.use(multer());
-app.use(express.static(path.join(__dirname, './public'))); 
+// app.use(express.static(path.join(__dirname, './public'))); 
+
+app.get('/', function(req, res) {
+    res.send('/public/index.html'); 
+});
+
+// app.use(express.static(__dirname + '/public'));         
+app.use('/bower_components', express.static(__dirname + '/public/bower_components'));
+app.use('/js', express.static(__dirname + '/public/scripts'));
+app.use('/css', express.static(__dirname + '/public/styles'));
+
+app.all('/*', function(req, res, next) {
+    // Just send the index.html for other files to support HTML5Mode
+    res.sendFile('index.html', { root: __dirname + '/public'});
+});
+
+// console.log('__dirnameYYYYyYYYYYYYYYYYYYY', __dirname + '/public/scripts');
 
 var server = app.listen((process.env.PORT || 8000), function(){
  var host = server.address().address;
