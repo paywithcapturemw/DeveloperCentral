@@ -48,11 +48,11 @@ app.use(methodOverride());                  // simulate DELETE and PUT
 // app.use(multer());
 // app.use(express.static(path.join(__dirname, './public'))); 
 
-app.get('/', function(req, res) {
-    res.send('./public/index.html'); 
-});
+// app.get('/', function(req, res) {
+//     res.send('./public/index.html'); 
+// });
 
-// app.use(express.static(__dirname + '/public'));         
+app.use(express.static(__dirname + '/public'));         
 app.use('/bower_components', express.static(__dirname + '/public/bower_components'));
 app.use('/js', express.static(__dirname + '/public/scripts'));
 app.use('/css', express.static(__dirname + '/public/styles'));
