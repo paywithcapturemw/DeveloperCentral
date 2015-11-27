@@ -4,7 +4,8 @@
   "description": "An app to test my knowledge in creating an app from the scratch",
   "main": "server.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "postinstall": "node_modules/bower/bin/bower install"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,7 @@
     "bcrypt-nodejs": "0.0.3",
     "bcryptjs": "^2.2.1",
     "body-parser": "^1.13.3",
+    "bower": "^1.6.7",
     "errorhandler": "^1.4.2",
     "express": "^4.13.3",
     "express-session": "^1.11.3",
