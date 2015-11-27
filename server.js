@@ -34,35 +34,34 @@ app.set('port', process.env.PORT || 8000);
 app.set('view engine', 'jade');
 app.use(logger('dev'));                     // log every request to the console
 app.use(bodyParser.urlencoded({ extended: true }));    // parse application/x-www-form-urlencoded
-app.use(function(req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type,Authorization,Accept,X-Access-Token,X-Key');
-    next();
-});
+// app.use(function(req, res, next) {
+//     res.setHeader('Access-Control-Allow-Origin', '*');
+//     res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+//     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type,Authorization,Accept,X-Access-Token,X-Key');
+//     next();
+// });
 app.use(session({ resave: true,
                   saveUninitialized: true,
                   secret: 'uwotm8' }));
 app.use(bodyParser.json());    // parse application/json
 app.use(methodOverride());                  // simulate DELETE and PUT
 // app.use(multer());
-// app.use(express.static(path.join(__dirname, './public'))); 
+app.use(express.static(path.join(__dirname, './public'))); 
 
 // app.get('/', function(req, res) {
 //     res.send('./public/index.html'); 
 // });
 
-app.use(express.static(__dirname + '/public'));         
-app.use('/bower_components', express.static(__dirname + '/public/bower_components'));
-app.use('/js', express.static(__dirname + '/public/scripts'));
-app.use('/css', express.static(__dirname + '/public/styles'));
+// app.use(express.static(__dirname ));         
+// app.use('/bower_components', express.static(__dirname + '/public/bower_components'));
+// app.use('/js', express.static(__dirname + '/public/scripts'));
+// app.use('/css', express.static(__dirname + '/public/styles'));
 
-app.all('/*', function(req, res, next) {
-    // Just send the index.html for other files to support HTML5Mode
-    res.sendFile('index.html', { root: __dirname + '/public'});
-});
+// app.all('/*', function(req, res, next) {
+//     // Just send the index.html for other files to support HTML5Mode
+//     res.sendFile('index.html', { root: __dirname + '/public'});
+// });
 
-// console.log('__dirnameYYYYyYYYYYYYYYYYYYY', __dirname + '/public/scripts');
 
 var server = app.listen((process.env.PORT || 8000), function(){
  var host = server.address().address;
