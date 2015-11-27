@@ -46,7 +46,10 @@ app.use(session({ resave: true,
 app.use(bodyParser.json());    // parse application/json
 app.use(methodOverride());                  // simulate DELETE and PUT
 // app.use(multer());
-app.use(express.static(path.join(__dirname + '/public'))); 
+// 
+var static_dir = express.static(path.join(__dirname + '/public'));
+console.log('==========================================================================================>', static_dir);
+app.use(static_dir); 
 
 // app.get('/', function(req, res) {
 //     res.send('./public/index.html'); 
