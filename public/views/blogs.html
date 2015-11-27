@@ -10,8 +10,7 @@
       <div class="services-list clearfix col-md-12" data-ng-init="displayBlogs()">
         <div id="home_div">
           <div class="list-group">
-          {{blogs}}
-           <!--  <div class="list-group-item" ng-repeat="blog in blogs">
+            <div class="list-group-item" ng-repeat="blog in blogs">
               <a href="/#/community/blogs/{{blog._id}}" class="black-color">
                 <img ng-src="" class="face" alt="">
                 <div class="md-list-item-text discussion-div blog-body">
@@ -22,7 +21,7 @@
               <button style="color:#2A68C9;" class="btn btn-sm btn-default glyphicon glyphicon-trash pull-right" type="button" ng-click="deleteBlog(blog, blogs, $index)" ng-if="user.role=='admin'">
               </button>
             </div>
-          </div> -->
+          </div>
         </div>
       </div>
     </div>
