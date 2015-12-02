@@ -16,7 +16,6 @@ var mongoose = require('mongoose'),
  */
 module.exports.create = function(req, res) {
   blogBody = req.body;
-
   var newBlog = new Discussion({
     caption: blogBody.caption,
     title: blogBody.title,
@@ -41,7 +40,6 @@ module.exports.create = function(req, res) {
  * Show the current blog
  */
 module.exports.read = function(req, res) {
-
   var discussionId = req.params.discussionId;
   Discussion.findOne({
     _id: discussionId
@@ -60,16 +58,12 @@ module.exports.read = function(req, res) {
  * Update a blog
  */
 module.exports.update = function(req, res) {
-  // if (req.user.role === 'admin') {
-
-  // var blog = req.blog;
-
-  // blog = _.extend(blog, req.body);
-
+  // var blog = req.body.blog;
+  
   // blog.save(function(err) {
   //   if (err) {
   //     return res.status(400).send({
-  //       message: getErrorMessage(err)
+  //       message: err
   //     });
   //   } else {
   //     res.jsonp(blog);

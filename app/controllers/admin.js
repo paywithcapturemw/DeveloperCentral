@@ -18,7 +18,7 @@ module.exports = function(app) {
     var regex = new RegExp('/', 'g');
     return bcryptjs.genSaltSync(8).toString('hex').replace(regex, '');
   };
-  // create admin user
+  // create admin user with provided email address
   module.exports.createAdmin = function(req, res) {
     var token = genToken();
     User.findOne({
@@ -45,8 +45,6 @@ module.exports = function(app) {
               password: token,
               role: 'admin'
             });
-
-
             userModel.save(function(err, user) {
               if (err) {
                 res.status(400).json({
@@ -65,7 +63,8 @@ module.exports = function(app) {
       });
   };
 
-
+//this is for the admin to use on https://developer-central.herokuapp.com/#/admin-user/verifyAdmin
+// to comtinue his registration with the password given to him
   module.exports.signUpVerification = function(req, res) {
     User.findOne({
         username: req.body.username,
@@ -88,7 +87,6 @@ module.exports = function(app) {
 
   //when the user enters the new password it should come to this endpoint
   //it is also for updating the admin profile
-
   module.exports.updateAdmin = function(req, res) {
     var editedUserObj = req.body;
     User.findOne({
@@ -101,8 +99,6 @@ module.exports = function(app) {
           var userSecret = bcrypt.genSaltSync(20);
           var preString = "PWC_";
           user.token = preString.concat(userSecret.slice(3));
-
-          // user.token = bcrypt.genSaltSync(20);
 
           user.save(function(error, savedUser) {
             if (error) {
@@ -150,8 +146,7 @@ module.exports = function(app) {
     });
   };
 
-  //ADMIN SIGNIN SHOULD I USE THE SAME END POINT
-  //IF I WON'T, I HAVE TO USE ANOTHER SIGIN PAGE AND REDIRECT TO THE ADMINS DASHBOARD
+
   module.exports.isAdmin = function(req, res, next) {
     User.findOne({
       _id: req.params.userId
@@ -200,18 +195,6 @@ module.exports = function(app) {
         });
       }
     });
-    // Apps.find(function(err, apps) {
-    //   if (err) {
-    //     return res.status(500).send({
-    //       data: err
-    //     });
-    //   }
-    //   if (apps) {
-    //     return res.status(200).send({
-    //       data: apps
-    //     });
-    //   }
-    // });
   };
   module.exports.allServiceCounts = function(req, res) {
     ServiceCount.find(function(err, counts) {

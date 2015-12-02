@@ -7,13 +7,9 @@ var express = require('express'),
 
 module.exports = function(app) {
   app.route('/api/v1/qt/billers')
-    // .get(services.hasAuthorization, services.listBillers);
     .get(services.listBillers);
-
   app.route('/api/v1/qt/billers/:billerId/payitems')
-    // .get(services.hasAuthorization, services.listBillers);
-    .get(services.singleBiller);
-
+    .get(services.listBillers);
   app.route('/api/v1/qt/recharge')
     .post(services.hasAuthorization, services.recharge);
   app.route('/api/v1/qt/bills/pay')

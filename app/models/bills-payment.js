@@ -35,9 +35,3 @@ var BillsPaymentSchema = new Schema({
 });
 
 module.exports = mongoose.model('BillsPayment', BillsPaymentSchema);
-
- // amount: (required) the bill amount to pay
-// phone: (required) the customer / user 's phone number
-// email: (required) the customer / user 's email address
-// paymentcode: (required) the paymentcode of the sunscriber network as returned from the GetBillerPaymentItems response from interswitch
-// customerid: 

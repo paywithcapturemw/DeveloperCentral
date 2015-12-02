@@ -21,36 +21,9 @@ app.controller('MainCtrl', ['$scope', '$stateParams', '$state', '$location', fun
       url: "/payments-APIdocumentation"
     }];
     $scope.switchDoc = function(index, service) {
-      // #stateParams
       $scope.selectedRoleIndex = index;
       console.log('index', index);
       $location.url(service.url);
-
     };
 
-    $scope.datadetails = {
-      "firstname": "XXXXXXX",
-      "lastname": "XXXXXXXX",
-      "email": "XXXXXXXX@yahoo.com",
-      "phone": "xxxxxxxxxx",
-      "accountnumber": "xxxyxyxxyx",
-      "accounttype": "20",
-      "bankcode": "XXXXXX"
-    };
-
-    var converter = new showdown.Converter(),
-      text = '#hello, markdown!',
-      html = converter.makeHtml(text);
-
-  }])
-  // window.location.replace(redirect);
-  //
-
-.filter('htmlToPlaintext', function() {
-  return function(text) {
-    console.log('text', text);
-    var newtext = text ? String(text).replace(/<[^>]+>/gm, '') : '';
-    console.log('newtext', newtext);
-    return text;
-  };
-});
+  }]);

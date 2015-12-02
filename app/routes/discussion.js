@@ -42,10 +42,4 @@ module.exports = function(app) {
   // app.route('/discussions/:discussionId/comments/:commentId/approved')
   //     .post(users.requiresLogin, comments.hasAuthorization, comments.approvedComment);
 
-
-  // Finish by binding the blog middleware
-  // app.param('discussionId', discussions.blogByID);
-
-  // Finish by binding the comment middleware
-  // app.param('commentId', comments.commentByID);
 };

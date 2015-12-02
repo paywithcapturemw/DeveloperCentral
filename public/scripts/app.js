@@ -1,11 +1,3 @@
-/**
- * @ngdoc overview
- * @name andelaNotesApp
- * @description
- * # andelaNotesApp
- *
- * Main module of the application.
- */
 var app = angular.module('DeveloperCentral', [
   'ngAnimate',
   'ngCookies',
@@ -48,7 +40,6 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpP
       templateUrl: 'views/payments.html',
       controller: 'MainCtrl'
     })
-    // /#/transfers-APIdocumentation
     .state('airtimePurchasesDocumentation', {
       url: '/airtime-purchases-APIdocumentation',
       templateUrl: 'views/airtime-purchase-documentation.html',
@@ -74,7 +65,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpP
       templateUrl: 'views/community.html',
       controller: 'MainCtrl'
     })
-    .state('communityDiscussion', {
+    .state('discussionList', {
       url: '/community/discussions',
       templateUrl: 'views/discussion.html',
       controller: 'MainCtrl'
@@ -204,38 +195,6 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpP
     });
 
   $urlRouterProvider.otherwise('/');
-  // $locationProvider.html5Mode({
-  //   enabled: true,
-  //   requireBase: false
-  // });
+
 }]);
 
-// app.config(['$httpProvider', function($httpProvider) {
-//   var interceptor = ['$resource', '$rootScope', '$http', '$localStorage', '$q',
-//     function($resource, $rootScope, $http, $localStorage, $q) {
-//       var token = $localStorage.token;
-//       if (token) {
-//         var userId = JSON.parse($localStorage.userId).id;
-//         $rootScope.isloggedin = true;
-//       }
-//       return {
-//         request: function(config) {
-//           if (token) {
-//             console.log('in config request');
-//             config.headers['X-Access-Token'] = token;
-//             // config.headers['X-Key'] = $localStorage.userId;
-//             config.headers['Content-Type'] = "application/json";
-//           }
-//           return config || $q.when(config);
-//         },
-
-//         response: function(response) {
-//           return response || $q.when(response);
-//         }
-//       };
-//     }
-//   ];
-
-//   $httpProvider.interceptors.push(interceptor);
-
-// }]);

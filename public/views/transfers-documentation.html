@@ -7,55 +7,44 @@
       <div data-ng-include="'views/partials/documentation-sidebar.html'"></div>
       <div class="col-md-9">
         <h3>END POINTS</h3>
-        <div class="blue-box">
+        <div class="code">
           <b>STEP 1</b>
           <p><b>METHOD: GET</b></p>
-          <code class="link"><p>https://developer-central.herokuapp.com/api/v1/qt/billers</p></code>
+          <p><pre><code class="link">https://developer-central.herokuapp.com/api/v1/qt/billers</code></pre></p>
         </div>
-        <div class="blue-box">
+        <div class="code">
           <b>STEP 2</b>
           <p><b>METHOD: GET</b></p>
-          <p class="link">https://developer-central.herokuapp.com/api/v1/qt/billers/:billerId/payitems</p>
+          <p><pre><code class="link">https://developer-central.herokuapp.com/api/v1/qt/billers/:billerId/payitems</code></pre></p>
           <b>QUERY PARAMETERS</b>
-          <p><b>billerId:</b> The Biller Id of the merchant as returned from Step 1</p>
+          <p><pre><b>billerId:</b> The Biller Id of the merchant as returned from Step 1</pre></p>
         </div>
-        <div class="blue-box">
-          <p>STEP 3</p>
+        <div>
+          <p><b>STEP 3</b></p>
           <b>METHOD: POST</b>
-          <p><code class="link">https://developer-central.herokuapp.com/api/v1/qt/funds/transfer/account</code></p>
+          <p><pre><code class="link">https://developer-central.herokuapp.com/api/v1/qt/funds/transfer/account</code></pre></p>
         </div>
         <h3>AUTHORIZATION</h3>
-        <div class="blue-box">
-        <!-- <div><pre><code class="params"> -->
+        <div><pre>
           <p>1. User Token</p>
           <p>2. Client Token</p>
-          <p>3. Client Id</p>
-        <!-- </code></pre> -->
+          <p>3. Client Id</p></pre>
         </div>
         <h3>PARAMETERS</h3>
-        <div class="row">
-          <div><pre><code class="attr"><p><b>Sender:</b> {{datadetails}}</p></code></pre></div>
-          <!-- <div class="blue-box row"> -->
-          <!--  <div class="post-requirement col-md-6 blue-box">
-            <b>Sender</b> { "firstname": XXXXXXX, "lastname": XXXXXXXX, "email": XXXXXXXX@yahoo.com, "phone": xxxxxxxxxx, "accountnumber": xxxyxyxxyx, "accounttype": "20", "bankcode": "XXXXXX" }
-          </div> -->
-          <!--  <p>{{datadetails | htmlToPlaintext}}</p>
-          <p markdown-to-html="vm.datadetails"></p> -->
-          <!-- <div class="post-requirement col-md-6 blue-box"> -->
+        <div><pre><code class="attr"><p><b>Sender:</b> {{datadetails}}</p></code></pre></div>
         <div><pre><code class="code"><p><b>Receiver:</b> { "firstname": XXXXXXX, "lastname": XXXXXXXX, "email": XXXXXXXX@yahoo.com, "phone": xxxxxxxxxx}</p></code></pre>
         </div>
-      </div>
-      <h3>RESPONSE</h3>
-      <em>Status-Code: 200 OK</em>
-      <div class="blue-box">
-        <p></p>
-      </div>
-      <h3>ERROR RESPONSE</h3>
-      <em>Status-Code: 500 SERVER ERROR</em>
-      <div class="blue-box">
-        <p></p>
+        <h3>RESPONSE</h3>
+        <em>Status-Code: 200 OK</em>
+        <div class="">
+          <p><pre></pre></p>
+        </div>
+        <h3>ERROR RESPONSE</h3>
+        <em>Status-Code: 500 SERVER ERROR</em>
+        <div class="">
+          <p><pre></pre></p>
+        </div>
       </div>
     </div>
   </div>
-</div>
 </div>

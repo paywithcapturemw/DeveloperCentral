@@ -10,7 +10,6 @@ app.controller('AdminCtrl', ['$scope', '$http', '$location', '$stateParams', '$r
         $location.url('/admin-user/' + response.data._id + '/changeFirstPassword');
       }).error(function(response) {
         $scope.message = response.data;
-        
       });
     };
     $scope.validatePassword = function() {
@@ -24,7 +23,6 @@ app.controller('AdminCtrl', ['$scope', '$http', '$location', '$stateParams', '$r
         $scope.changePasswordMessage = 'The two passwords do not match';
         return false;
       }
-      // else{}
       return true;
 
     };
@@ -44,7 +42,6 @@ app.controller('AdminCtrl', ['$scope', '$http', '$location', '$stateParams', '$r
 
     $scope.changePasswordInBackend = function(passwordObject) {
       $http.put('/user/admin/' + $stateParams.id + '/completeRegistration', passwordObject).success(function(response) {
-        // $location.url('/admin-user/' + response.data._id + '/profile');
         console.log('response fnally', response);
         $scope.changePasswordMessage = response.message;
       }).error(function(error) {
@@ -91,8 +88,3 @@ app.controller('AdminCtrl', ['$scope', '$http', '$location', '$stateParams', '$r
 ]);
 
 
-// /user/admin/:userId/apps/:appId/singleAppService
-//  app.route('/user/admin/:userId/getAllApps')
-//    .get(admin.allApps);
-//  app.route('/user/admin/:userId/getAllServiceCounts')
-//    .get(admin.isAdmin, admin.allServiceCounts);

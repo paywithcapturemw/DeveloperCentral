@@ -37,18 +37,10 @@ module.exports = function(app) {
   // like Comment
   app.route('/blogs/:blogId/comments/:commentId/like')
     .post(users.requiresLogin, comments.likeComment);
-
-
+    
   // app.route('/blogs/:blogId/comments/:commentId/inappropriate')
   //     .post(users.requiresLogin, comments.inappropriateComment);
 
   // app.route('/blogs/:blogId/comments/:commentId/approved')
   //     .post(users.requiresLogin, comments.hasAuthorization, comments.approvedComment);
-
-
-  // Finish by binding the blog middleware
-  // app.param('blogId', blogs.blogByID);
-
-  // Finish by binding the comment middleware
-  // app.param('commentId', comments.commentByID);
 };

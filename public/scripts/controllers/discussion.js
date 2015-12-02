@@ -58,9 +58,7 @@ app.controller('DiscussionsCtrl', ['$scope', '$http', '$location', '$stateParams
       });
     };
 
-    // Create new discussion
     $scope.createComment = function(blog, user) {
-      // Create new Blog object
       var commentBody = {
         token: token,
         comment: {

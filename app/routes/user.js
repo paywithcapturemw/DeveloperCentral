@@ -26,4 +26,3 @@ module.exports = function(app) {
   app.route('/user/admin/:userId/apps/:appId/singleAppService')
     .get(admin.isAdmin, admin.singleAppServiceCount);
 };
-// singleAppServiceCount

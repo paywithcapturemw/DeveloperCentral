@@ -54,10 +54,7 @@ app.controller('AuthenticationCtrl', ['$scope', '$http', '$location', '$statePar
       return true;
     };
 
-
-
     $scope.signup = function(user) {
-      // Authentication.signup(user);
       $http.post('/user/signup', user).success(function(response) {
         //If successful we assign the response to the global user model
         $scope.signupMessage = response.message;
@@ -90,14 +87,13 @@ app.controller('AuthenticationCtrl', ['$scope', '$http', '$location', '$statePar
         $scope.user.password = '';
         $localStorage.token = response.signintoken;
         $localStorage.userId = JSON.stringify(userObj);
-        //if user is developer
+        
         if($rootScope.user.role === 'developer'){
           $location.url('/user/' + $rootScope.user._id + '/dashboard');
         }
         if($rootScope.user.role === 'admin'){
           $location.url('/admin-user/' + $rootScope.user._id + '/dashboard');
         }
-        //else it shoudl redirect to the admin dashboard
       
 
       }).error(function(response) {
@@ -191,8 +187,6 @@ app.controller('AuthenticationCtrl', ['$scope', '$http', '$location', '$statePar
         $scope.signout();
       }
     }
-
-
 
   }
 ]);
