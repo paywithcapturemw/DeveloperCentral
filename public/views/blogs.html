@@ -10,6 +10,9 @@
       <div class="services-list clearfix col-md-12" data-ng-init="displayBlogs()">
         <div id="home_div">
           <div class="list-group">
+            <div class="list-group-item" ng-if="blogs.length === 0">
+              <p>There are no posts to view.</p>
+            </div>
             <div class="list-group-item" ng-repeat="blog in blogs">
               <a href="/#/community/blogs/{{blog._id}}" class="black-color">
                 <img ng-src="" class="face" alt="">
