@@ -164,7 +164,9 @@ module.exports = function(app, config, router) {
           username: req.body.username
         },
         function(err, user) {
-          if (user.verified === false) {
+           console.log('user', user);
+          console.log('verified:', user.verified, 'type', typeof(user.verified));
+          if (user.verified == false) {
             return res.status(403).json({
               message: 'Please verify your account.'
             });
