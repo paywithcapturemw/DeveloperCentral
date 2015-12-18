@@ -1,10 +1,13 @@
 <div class="container input-form" ng-controller="DiscussionsCtrl">
-  <div class="col-md-12 new-app" ng-controller="DashboardCtrl" data-ng-init="getUser()" ng-if="user">
-    <a ng-click="openForm()">
-      <button class="btn btn-sm btn-default glyphicon glyphicon-plus" type="button">
-      </button>
-    </a>
-    Start a Discussion
+  <div class="col-md-12 new-app" ng-controller="DashboardCtrl" data-ng-init="getUser()">
+    {{user}}
+    <div ng-if="user"> 
+      <a ng-click="openForm()">
+        <button class="btn btn-sm btn-default glyphicon glyphicon-plus" type="button">
+        </button>
+      </a>
+      Start a Discussion
+    </div>
   </div>
   <br>
   <br>
