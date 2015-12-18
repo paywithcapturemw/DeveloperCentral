@@ -161,16 +161,16 @@ module.exports = function(app, config, router) {
     } else {
       userPassword = req.body.password;
       User.findOne({
-          username: req.body.username
-        },
-        function(err, user) {
-           console.log('user', user);
+        username: req.body.username
+      }, function(err, user) {
+        console.log('user', user);
+        if (user) {
           console.log('verified:', user.verified, 'type', typeof(user.verified));
           if (user.verified == false) {
             return res.status(403).json({
-              message: 'Please verify your account.'
+             message: 'Please verify your account.'
             });
-          } else if (user) {
+          } else {
             if (bcrypt.compareSync(userPassword, user.password)) {
               userObject = {
                 username: user.username,
@@ -181,25 +181,27 @@ module.exports = function(app, config, router) {
               });
 
               var decodedOnSignIn = jwt.decode(token);
-              res.status(200).send({
-                data: user,
-                signintoken: token,
-                expiresInMinutes: 1440
-              });
+                res.status(200).send({
+                  data: user,
+                  signintoken: token,
+                  expiresInMinutes: 1440
+                });
             } else {
               res.status(401).send({
                 data: "Invalid password. Please try again."
               });
             }
-          } else if (err || !user) {
-            var message = !user ? "User not found" : err;
-            var status = !user ? 401 : 500;
-            res.status(status).send({
-              type: false,
-              data: "Error occured: " + message
-            });
-          }
-        });
+          } 
+
+        } else if (err || !user) {
+          var message = !user ? "User not found" : err;
+          var status = !user ? 401 : 500;
+          res.status(status).send({
+            type: false,
+            data: "Error occured: " + message
+          });
+        }
+     });
     }
   });
 
