@@ -166,7 +166,7 @@ module.exports = function(app, config, router) {
         console.log('user', user);
         if (user) {
           console.log('verified:', user.verified, 'type', typeof(user.verified));
-          if (user.verified == false) {
+          if (user.verified === false) {
             return res.status(403).json({
              message: 'Please verify your account.'
             });
